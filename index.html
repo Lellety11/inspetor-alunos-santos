@@ -58,6 +58,15 @@
 
   .mast { padding: 52px 0 30px; border-bottom: 2px solid var(--ink); display: flex; flex-direction: column; gap: 15px; }
 
+  .kit { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 9px;
+         font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .715rem; }
+  .kit-label { color: var(--ink-3); letter-spacing: .11em; text-transform: uppercase; font-weight: 600; }
+  .kit a, .kit .atual { border-radius: 100px; padding: 6px 13px; white-space: nowrap; border: 1px solid var(--line-2); }
+  .kit a { color: var(--ink-2); text-decoration: none; }
+  .kit a:hover { color: var(--ink); background: var(--sunk); border-color: var(--ink-3); }
+  .kit a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .kit .atual { color: var(--accent); border-color: var(--accent); background: var(--accent-w); font-weight: 600; }
+
   .contagem { display: flex; flex-wrap: wrap; gap: 12px 30px; align-items: baseline; padding-top: 6px; }
   .ct { display: flex; flex-direction: column; gap: 1px; }
   .ct-n { font-family: "IBM Plex Mono", monospace; font-size: 1.55rem; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
@@ -105,12 +114,21 @@
   <header class="mast">
     <span class="eyebrow">Prefeitura de Santos · Edital 73/2026</span>
     <h1>Kit de Estudo<br>Inspetor de Alunos</h1>
-    <p class="lede">Três materiais para a prova de <strong>11 de outubro de 2026</strong>, um domingo. Tudo feito a partir do edital e dos textos oficiais das leis de Santos.</p>
+    <p class="lede">Cinco materiais para a prova de <strong>11 de outubro de 2026</strong>, um domingo. Tudo feito a partir do edital e dos textos oficiais das leis de Santos.</p>
     <div class="contagem">
       <div class="ct"><span class="ct-n hot">40</span><span class="ct-l">questões, 3h30</span></div>
       <div class="ct"><span class="ct-n">100</span><span class="ct-l">pontos, mínimo 50</span></div>
       <div class="ct"><span class="ct-n">22</span><span class="ct-l">vagas</span></div>
     </div>
+    <nav class="kit" aria-label="Material de estudo" style="padding-top:10px">
+      <span class="kit-label">Kit de estudo</span>
+      <span class="atual">Início</span>
+      <a href="./revisao.html">Voltando a Estudar</a>
+      <a href="./caderno.html">Caderno</a>
+      <a href="./simulado.html">Simulado 1</a>
+      <a href="./simulado2.html">Simulado 2</a>
+      <a href="./treino.html">Treino dos erros</a>
+    </nav>
   </header>
 
   <div class="cards">
@@ -131,8 +149,22 @@
 
     <a class="card destaque" href="./simulado.html">
       <span class="ordem">Quando estiver pronta</span>
-      <h3>Simulado</h3>
+      <h3>Simulado 1</h3>
       <p>40 questões no formato exato da prova. Marque as respostas, clique em corrigir e a página calcula os 100 pontos como a banca calcula, mostra o placar por matéria e explica cada questão. As respostas ficam salvas no aparelho — dá para parar e voltar depois.</p>
+      <span class="abrir">Abrir →</span>
+    </a>
+
+    <a class="card destaque" href="./treino.html">
+      <span class="ordem">Depois de corrigir</span>
+      <h3>Treino dos Erros</h3>
+      <p>Monta sozinho um treino só com as questões que você errou, agrupadas por matéria e com os pesos originais. Mostra quantos pontos cada bloco custou e onde vale a pena voltar primeiro. Vai se atualizando conforme você refaz os simulados.</p>
+      <span class="abrir">Abrir →</span>
+    </a>
+
+    <a class="card destaque" href="./simulado2.html">
+      <span class="ordem">Por último</span>
+      <h3>Simulado 2</h3>
+      <p>Outras 40 questões, nenhuma repetida do primeiro simulado. Deixe para fazer depois de ter revisado os erros — serve para medir se o estudo entre um simulado e outro fez diferença de verdade.</p>
       <span class="abrir">Abrir →</span>
     </a>
 

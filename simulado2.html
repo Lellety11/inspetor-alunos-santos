@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Segundo simulado, com 40 questões inteiramente novas no formato e nos pesos da prova.">
+<meta name="theme-color" content="#14574A">
+<title>Simulado 2 do Inspetor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="./prova.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="mast">
+    <span class="eyebrow">Concurso de Inspetor de Alunos · Santos 2026</span>
+    <h1>Simulado 2</h1>
+    <p class="lede">Outras 40 questões, nenhuma repetida do Simulado 1. Mesmo formato, mesmos pesos — faça depois de ter revisado os erros do primeiro.</p>
+    <nav class="kit" aria-label="Material de estudo">
+      <span class="kit-label">Kit de estudo</span>
+      <a href="./index.html">Início</a>
+      <a href="./revisao.html">Voltando a Estudar</a>
+      <a href="./caderno.html">Caderno</a>
+      <a href="./simulado.html">Simulado 1</a>
+      <span class="atual">Simulado 2</span>
+      <a href="./treino.html">Treino dos erros</a>
+    </nav>
+  </header>
+
+  <div style="padding-top:34px; display:flex; flex-direction:column; gap:16px;">
+    <div class="card rule">
+      <h3>Como fazer</h3>
+      <ul style="margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:6px;">
+        <li>Marque uma alternativa em cada questão. As respostas ficam salvas neste aparelho — dá para parar e voltar depois.</li>
+        <li>Na prova real são <strong>3h30</strong> para as 40 questões. Vale cronometrar.</li>
+        <li>Não há desconto por erro: <strong>não deixe nenhuma em branco</strong>.</li>
+        <li>Só clique em <strong>Corrigir</strong> no fim — os comentários aparecem junto com a nota.</li>
+      </ul>
+    </div>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Bloco</th><th class="num">Questões</th><th class="num">Peso</th><th class="num">Pontos</th></tr></thead>
+        <tbody>
+          <tr><td>Língua Portuguesa</td><td class="num">10</td><td class="num">1</td><td class="num">10</td></tr>
+          <tr><td>Matemática</td><td class="num">6</td><td class="num">1</td><td class="num">6</td></tr>
+          <tr><td>Legislação e Atendimento Escolar</td><td class="num">8</td><td class="num">4</td><td class="num">32</td></tr>
+          <tr><td>Informática e Rotinas Escolares</td><td class="num">6</td><td class="num">2</td><td class="num">12</td></tr>
+          <tr><td>Conhecimentos Específicos</td><td class="num">10</td><td class="num">4</td><td class="num">40</td></tr>
+          <tr class="total"><td>Total</td><td class="num">40</td><td class="num">—</td><td class="num">100</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <main id="prova"></main>
+
+  <section id="resultado" aria-live="polite"></section>
+
+  <footer>
+    <span class="eyebrow">Sobre este material</span>
+    <p class="fine">Questões elaboradas a partir do conteúdo programático do <strong>Edital nº 73/2026 – SEPLA-RH</strong> da Prefeitura de Santos e dos textos oficiais das leis citadas. Não são questões de provas anteriores do IBAM — servem para treinar o formato, o peso e o raciocínio cobrado.</p>
+  </footer>
+
+</div>
+
+<div class="barra">
+  <div class="barra-inner">
+    <div class="prog">
+      <span class="prog-txt" id="progTxt">carregando…</span>
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+    <button class="ghost" id="btnLimpar" type="button">Recomeçar</button>
+    <button id="btnCorrigir" type="button" disabled>Corrigir prova</button>
+  </div>
+</div>
+
+<script src="./banco.js"></script>
+<script src="./motor.js"></script>
+<script>
+(function () {
+  var s = BANCO.s2;
+  var grupos = s.blocos.map(function (b) {
+    return {
+      nome: b.nome,
+      peso: b.peso,
+      texto: b.temTexto ? s.texto : null,
+      questoes: b.questoes.map(function (q, i) {
+        return { id: "s2-" + b.id + "-" + i, e: q.e, a: q.a, c: q.c, m: q.m };
+      })
+    };
+  });
+  MOTOR.iniciar({ chave: "simulado2-inspetor-santos-v1", alvo: "prova", grupos: grupos });
+})();
+</script>
+</body>
+</html>

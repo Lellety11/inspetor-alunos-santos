@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Treino personalizado com as questões que você errou nos simulados 1 e 2.">
+<meta name="theme-color" content="#14574A">
+<title>Treino dos Erros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="./prova.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="mast">
+    <span class="eyebrow">Concurso de Inspetor de Alunos · Santos 2026</span>
+    <h1>Treino dos Erros</h1>
+    <p class="lede">Esta página monta um treino só com as questões que você errou nos simulados, agrupadas por matéria e com os pesos originais. Ela lê os resultados salvos neste aparelho.</p>
+    <nav class="kit" aria-label="Material de estudo">
+      <span class="kit-label">Kit de estudo</span>
+      <a href="./index.html">Início</a>
+      <a href="./revisao.html">Voltando a Estudar</a>
+      <a href="./caderno.html">Caderno</a>
+      <a href="./simulado.html">Simulado 1</a>
+      <a href="./simulado2.html">Simulado 2</a>
+      <span class="atual">Treino dos erros</span>
+    </nav>
+  </header>
+
+  <div id="diagnostico"></div>
+
+  <main id="prova"></main>
+
+  <section id="resultado" aria-live="polite"></section>
+
+  <footer>
+    <span class="eyebrow">Como esta página funciona</span>
+    <p class="fine">Os resultados dos simulados ficam guardados no próprio navegador deste aparelho — nada é enviado para lugar nenhum. Se você abrir o treino em outro celular, em outro navegador ou numa janela anônima, ele não vai encontrar os resultados e vai pedir que os simulados sejam feitos primeiro.</p>
+  </footer>
+
+</div>
+
+<div class="barra">
+  <div class="barra-inner">
+    <div class="prog">
+      <span class="prog-txt" id="progTxt">carregando…</span>
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+    <button class="ghost" id="btnLimpar" type="button">Recomeçar</button>
+    <button id="btnCorrigir" type="button" disabled>Corrigir treino</button>
+  </div>
+</div>
+
+<script src="./banco.js"></script>
+<script src="./motor.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var FONTES = [
+    { chave: "s1", storage: "simulado-inspetor-santos-v1", rotulo: "Simulado 1", pagina: "./simulado.html" },
+    { chave: "s2", storage: "simulado2-inspetor-santos-v1", rotulo: "Simulado 2", pagina: "./simulado2.html" }
+  ];
+
+  var soPeso4 = location.search.indexOf("peso4") !== -1;
+
+  /* ---- levanta o que foi errado em cada simulado ---- */
+  var feitos = [];        // simulados já corrigidos
+  var pendentes = [];     // simulados ainda não corrigidos
+  var porBloco = {};      // blocoId -> { nome, peso, erradas: [], total: 0 }
+
+  BANCO.s1.blocos.forEach(function (b) {
+    porBloco[b.id] = { nome: b.nome, peso: b.peso, erradas: [], total: 0, ordem: Object.keys(porBloco).length };
+  });
+
+  FONTES.forEach(function (f) {
+    var salvo = MOTOR.ler(f.storage);
+    if (!salvo || !salvo.c) { pendentes.push(f); return; }
+    feitos.push(f);
+    BANCO[f.chave].blocos.forEach(function (b) {
+      var alvo = porBloco[b.id];
+      b.questoes.forEach(function (q, i) {
+        var id = f.chave + "-" + b.id + "-" + i;
+        alvo.total++;
+        var escolha = salvo.r.hasOwnProperty(id) ? salvo.r[id] : null;
+        if (escolha !== q.c) {
+          alvo.erradas.push({
+            id: "tr-" + id, e: q.e, a: q.a, c: q.c, m: q.m,
+            origem: f.rotulo, emBranco: escolha === null
+          });
+        }
+      });
+    });
+  });
+
+  var ordemBlocos = BANCO.s1.blocos.map(function (b) { return b.id; });
+  var totalErradas = ordemBlocos.reduce(function (a, id) { return a + porBloco[id].erradas.length; }, 0);
+  var pontosPerdidos = ordemBlocos.reduce(function (a, id) {
+    return a + porBloco[id].erradas.length * porBloco[id].peso;
+  }, 0);
+
+  var diag = document.getElementById("diagnostico");
+
+  /* ---- nenhum simulado corrigido ainda ---- */
+  if (!feitos.length && !soPeso4) {
+    diag.innerHTML =
+      '<div class="vazio">' +
+        '<div class="card rule-hot">' +
+          '<h3>Ainda não há resultado para analisar</h3>' +
+          "<p>Este treino é montado a partir das questões que você errou. Para ele funcionar, é preciso " +
+          "primeiro fazer um simulado <strong>e clicar em Corrigir</strong> no fim.</p>" +
+          '<p class="fine">Se você já fez o simulado em outro celular ou em outro navegador, o resultado ficou guardado lá — ' +
+          "refazer aqui resolve.</p>" +
+        "</div>" +
+        '<div class="card">' +
+          "<h3>Por onde ir agora</h3>" +
+          '<ul style="margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:8px;">' +
+            '<li><a href="./simulado.html">Fazer o Simulado 1</a> — comece por ele.</li>' +
+            '<li><a href="./simulado2.html">Fazer o Simulado 2</a> — depois de revisar os erros do primeiro.</li>' +
+            '<li><a href="./treino.html?peso4=1">Treinar as questões de peso 4 mesmo assim</a> — ' +
+              "as 36 questões de Legislação e Conhecimentos Específicos dos dois simulados, que valem 72 dos 100 pontos.</li>" +
+          "</ul>" +
+        "</div>" +
+      "</div>";
+    document.querySelector(".barra").style.display = "none";
+    return;
+  }
+
+  /* ---- modo peso 4: treina os blocos que mais valem, independente de erro ---- */
+  if (soPeso4) {
+    var grupos4 = [];
+    ["leg", "esp"].forEach(function (id) {
+      var qs = [];
+      FONTES.forEach(function (f) {
+        BANCO[f.chave].blocos.forEach(function (b) {
+          if (b.id !== id) return;
+          b.questoes.forEach(function (q, i) {
+            qs.push({ id: "p4-" + f.chave + "-" + b.id + "-" + i, e: q.e, a: q.a, c: q.c, m: q.m, origem: f.rotulo });
+          });
+        });
+      });
+      grupos4.push({ nome: porBloco[id].nome, peso: 4, questoes: qs });
+    });
+    diag.innerHTML =
+      '<div class="card rule-hot" style="margin-top:34px">' +
+        '<span class="eyebrow" style="color:var(--alert)">Treino dos blocos de peso 4</span>' +
+        "<h3>As 36 questões que decidem a prova</h3>" +
+        "<p>Legislação e Conhecimentos Específicos dos dois simulados, juntos. Na prova real esses dois blocos " +
+        "valem <strong>72 dos 100 pontos</strong>.</p>" +
+        '<p class="fine"><a href="./treino.html">Voltar ao treino dos erros</a></p>' +
+      "</div>";
+    MOTOR.iniciar({
+      chave: "treino-peso4-inspetor-santos-v1", alvo: "prova", grupos: grupos4,
+      rotulos: { titulo: "Resultado do treino de peso 4" }
+    });
+    return;
+  }
+
+  /* ---- acertou tudo ---- */
+  if (!totalErradas) {
+    diag.innerHTML =
+      '<div class="vazio">' +
+        '<div class="card rule">' +
+          "<h3>Você não errou nenhuma questão</h3>" +
+          "<p>Nos simulados corrigidos até agora (" + feitos.map(function (f) { return f.rotulo; }).join(" e ") +
+          ") todas as respostas estão certas. Não há o que treinar aqui." +
+          (pendentes.length ? " Falta fazer o <strong>" + pendentes.map(function (f) { return f.rotulo; }).join(" e o ") + "</strong>." : "") + "</p>" +
+        "</div>" +
+        '<div class="card">' +
+          "<h3>Próximo passo</h3>" +
+          '<ul style="margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:8px;">' +
+            (pendentes.length ? '<li><a href="' + pendentes[0].pagina + '">Fazer o ' + pendentes[0].rotulo + "</a></li>" : "") +
+            '<li><a href="./treino.html?peso4=1">Treinar as 36 questões de peso 4</a></li>' +
+            '<li><a href="./caderno.html">Revisar o Caderno do Inspetor</a></li>' +
+          "</ul>" +
+        "</div>" +
+      "</div>";
+    document.querySelector(".barra").style.display = "none";
+    return;
+  }
+
+  /* ---- diagnóstico + treino ---- */
+  var barras = "";
+  ordemBlocos.forEach(function (id) {
+    var b = porBloco[id];
+    if (!b.total) return;
+    var pct = Math.round(b.erradas.length / b.total * 100);
+    var perdidos = b.erradas.length * b.peso;
+    barras +=
+      '<div class="barra-bloco">' +
+        '<div class="bb-top"><span class="bb-nome">' + b.nome + "</span>" +
+        '<span class="bb-num">' + b.erradas.length + "/" + b.total + " · " +
+          perdidos + (perdidos === 1 ? " ponto perdido" : " pontos perdidos") + "</span></div>" +
+        '<div class="bb-trilho"><div class="bb-preenche' + (b.peso === 4 ? "" : " leve") +
+          '" style="width:' + pct + '%"></div></div>' +
+      "</div>";
+  });
+
+  var pior = ordemBlocos.map(function (id) { return porBloco[id]; })
+    .filter(function (b) { return b.erradas.length; })
+    .sort(function (x, y) { return (y.erradas.length * y.peso) - (x.erradas.length * x.peso); })[0];
+
+  var emBranco = 0;
+  ordemBlocos.forEach(function (id) {
+    porBloco[id].erradas.forEach(function (q) { if (q.emBranco) emBranco++; });
+  });
+
+  diag.innerHTML =
+    '<div style="padding-top:34px; display:flex; flex-direction:column; gap:16px;">' +
+      '<div class="card rule-hot">' +
+        '<span class="eyebrow" style="color:var(--alert)">O que os simulados mostraram</span>' +
+        "<h3>" + totalErradas + " quest" + (totalErradas === 1 ? "ão" : "ões") + " para recuperar, " +
+          pontosPerdidos + " pontos perdidos</h3>" +
+        "<p>Baseado em <strong>" + feitos.map(function (f) { return f.rotulo; }).join(" e ") + "</strong>." +
+          (pendentes.length ? " O " + pendentes.map(function (f) { return f.rotulo; }).join(" e o ") +
+            " ainda não " + (pendentes.length > 1 ? "foram corrigidos" : "foi corrigido") +
+            " — quando " + (pendentes.length > 1 ? "forem" : "for") + ", esta página se atualiza sozinha." : "") +
+          (emBranco ? " " + emBranco + " " + (emBranco === 1 ? "questão ficou" : "questões ficaram") +
+            " em branco e " + (emBranco === 1 ? "entra" : "entram") + " no treino também." : "") + "</p>" +
+        '<div class="resumo-erros">' + barras + "</div>" +
+        (pior ? '<p class="fine">Onde mais dói: <strong>' + pior.nome + "</strong> — " +
+          (pior.erradas.length * pior.peso) + " pontos. " +
+          (pior.peso === 4 ? "Cada questão desse bloco vale 4 pontos, o mesmo que quatro de Português."
+                           : "Bloco de peso baixo: recuperar aqui rende menos que nos blocos de peso 4.") + "</p>" : "") +
+      "</div>" +
+      '<div class="card">' +
+        "<h3>Como usar este treino</h3>" +
+        '<ul style="margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:6px;">' +
+          "<li>São as <strong>mesmas questões</strong> que você errou. A ideia não é decorar a letra, e sim entender o porquê.</li>" +
+          "<li>Antes de marcar, tente dizer em voz alta por que a alternativa escolhida está certa.</li>" +
+          "<li>Se errar de novo a mesma questão, copie o comentário à mão no caderno de erros.</li>" +
+          "<li>Vale refazer este treino a cada poucos dias — ele se atualiza conforme você refaz os simulados.</li>" +
+        "</ul>" +
+      "</div>" +
+    "</div>";
+
+  var grupos = [];
+  ordemBlocos.forEach(function (id) {
+    var b = porBloco[id];
+    if (b.erradas.length) grupos.push({ nome: b.nome, peso: b.peso, questoes: b.erradas });
+  });
+
+  MOTOR.iniciar({
+    chave: "treino-inspetor-santos-v1",
+    alvo: "prova",
+    grupos: grupos,
+    rotulos: { titulo: "Resultado do treino" },
+    veredito: function (nota100, acertos, total) {
+      if (acertos === total) {
+        return { titulo: "Recuperou todas.",
+                 texto: "Todas as questões que você tinha errado agora estão certas. Refaça o simulado inteiro daqui a alguns dias para confirmar que fixou — acertar no treino, com a questão fresca na memória, é mais fácil que acertar na prova." };
+      }
+      if (acertos >= total * 0.7) {
+        return { titulo: "Recuperou " + acertos + " de " + total + ".",
+                 texto: "Boa parte já está fixada. As que sobraram são as que realmente precisam ir para o caderno de erros — releia o comentário de cada uma e procure o assunto no Caderno do Inspetor." };
+      }
+      return { titulo: "Recuperou " + acertos + " de " + total + ".",
+               texto: "Ainda escapou bastante coisa, e isso é informação útil: significa que o problema não foi distração na hora do simulado, e sim conteúdo que falta. Vale voltar ao Caderno do Inspetor nos temas acima antes de refazer o treino." };
+    }
+  });
+})();
+</script>
+</body>
+</html>

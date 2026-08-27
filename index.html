@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Material de estudo para o concurso de Inspetor de Alunos da Prefeitura de Santos — Edital 73/2026. Prova em 11 de outubro de 2026.">
+<meta name="theme-color" content="#14574A">
+<title>Kit de Estudo — Inspetor de Alunos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --paper:#F5F7F4; --surface:#FFFFFF; --sunk:#EDF1EC;
+    --ink:#16211C; --ink-2:#56635C; --ink-3:#7C8A83;
+    --line:#DBE3DD; --line-2:#C3CFC6;
+    --accent:#14574A; --accent-w:#E2EDE7;
+    --alert:#9B3A22; --alert-w:#F6E9E3;
+    --shadow: 0 1px 2px rgba(22,33,28,.05), 0 8px 24px -16px rgba(22,33,28,.28);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#111614; --surface:#191F1B; --sunk:#1F2723;
+      --ink:#E7EDE8; --ink-2:#9BA9A1; --ink-3:#7E8C85;
+      --line:#2A342E; --line-2:#3A463F;
+      --accent:#74C4AC; --accent-w:#1B2E29;
+      --alert:#E4967A; --alert-w:#2E211C;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#111614; --surface:#191F1B; --sunk:#1F2723;
+    --ink:#E7EDE8; --ink-2:#9BA9A1; --ink-3:#7E8C85;
+    --line:#2A342E; --line-2:#3A463F;
+    --accent:#74C4AC; --accent-w:#1B2E29;
+    --alert:#E4967A; --alert-w:#2E211C;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: "Public Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px; line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    margin: 0; padding: 0 20px 80px;
+  }
+  .wrap { max-width: 660px; margin: 0 auto; }
+
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  h1 { font-family: Newsreader, Georgia, serif; font-size: clamp(2.2rem, 7vw, 3.1rem); font-weight: 600; line-height: 1.06; letter-spacing: -.015em; }
+  h2 { font-family: Newsreader, Georgia, serif; font-size: 1.5rem; font-weight: 600; line-height: 1.15; }
+  h3 { font-size: 1.15rem; font-weight: 700; line-height: 1.3; }
+  p { margin: 0; }
+  .eyebrow { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .705rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3); }
+  .lede { font-size: 1.12rem; color: var(--ink-2); }
+  .fine { font-size: .88rem; color: var(--ink-2); line-height: 1.55; }
+
+  .mast { padding: 52px 0 30px; border-bottom: 2px solid var(--ink); display: flex; flex-direction: column; gap: 15px; }
+
+  .contagem { display: flex; flex-wrap: wrap; gap: 12px 30px; align-items: baseline; padding-top: 6px; }
+  .ct { display: flex; flex-direction: column; gap: 1px; }
+  .ct-n { font-family: "IBM Plex Mono", monospace; font-size: 1.55rem; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .ct-n.hot { color: var(--alert); }
+  .ct-l { font-size: .78rem; color: var(--ink-2); }
+
+  .cards { display: flex; flex-direction: column; gap: 16px; padding-top: 34px; }
+  a.card {
+    display: flex; flex-direction: column; gap: 9px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent); border-radius: 3px;
+    padding: 21px 23px; text-decoration: none; color: inherit;
+    box-shadow: var(--shadow);
+  }
+  a.card:hover { border-color: var(--line-2); border-left-color: var(--accent); background: var(--sunk); }
+  a.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  a.card .ordem {
+    font-family: "IBM Plex Mono", monospace; font-size: .68rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+  }
+  a.card .abrir {
+    font-family: "IBM Plex Mono", monospace; font-size: .74rem; font-weight: 600;
+    color: var(--accent); padding-top: 3px;
+  }
+  a.card.destaque { border-left-color: var(--alert); }
+  a.card.destaque .ordem, a.card.destaque .abrir { color: var(--alert); }
+
+  .note {
+    background: var(--sunk); border: 1px solid var(--line); border-radius: 3px;
+    padding: 17px 19px; margin-top: 30px;
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  footer { margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line); }
+
+  @media (max-width: 560px) {
+    body { font-size: 16.5px; padding: 0 16px 64px; }
+    a.card { padding: 18px 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="mast">
+    <span class="eyebrow">Prefeitura de Santos · Edital 73/2026</span>
+    <h1>Kit de Estudo<br>Inspetor de Alunos</h1>
+    <p class="lede">Três materiais para a prova de <strong>11 de outubro de 2026</strong>, um domingo. Tudo feito a partir do edital e dos textos oficiais das leis de Santos.</p>
+    <div class="contagem">
+      <div class="ct"><span class="ct-n hot">40</span><span class="ct-l">questões, 3h30</span></div>
+      <div class="ct"><span class="ct-n">100</span><span class="ct-l">pontos, mínimo 50</span></div>
+      <div class="ct"><span class="ct-n">22</span><span class="ct-l">vagas</span></div>
+    </div>
+  </header>
+
+  <div class="cards">
+
+    <a class="card" href="./revisao.html">
+      <span class="ordem">Comece por aqui</span>
+      <h3>Voltando a Estudar</h3>
+      <p>Português e Matemática do começo, para quem está há anos sem abrir um caderno. Como ler uma questão de prova, as palavras que confundem, acentuação, vírgula — e do outro lado porcentagem, regra de três e contas com horas, tudo com exemplo resolvido passo a passo.</p>
+      <span class="abrir">Abrir →</span>
+    </a>
+
+    <a class="card" href="./caderno.html">
+      <span class="ordem">Depois</span>
+      <h3>Caderno do Inspetor</h3>
+      <p>O conteúdo que decide a prova. Traz o mapa dos pesos — 18 questões valem 72 dos 100 pontos —, um plano de estudo dia a dia, os oito temas de Conhecimentos Específicos, as onze leis que caem em Legislação e o checklist do dia da prova.</p>
+      <span class="abrir">Abrir →</span>
+    </a>
+
+    <a class="card destaque" href="./simulado.html">
+      <span class="ordem">Quando estiver pronta</span>
+      <h3>Simulado</h3>
+      <p>40 questões no formato exato da prova. Marque as respostas, clique em corrigir e a página calcula os 100 pontos como a banca calcula, mostra o placar por matéria e explica cada questão. As respostas ficam salvas no aparelho — dá para parar e voltar depois.</p>
+      <span class="abrir">Abrir →</span>
+    </a>
+
+  </div>
+
+  <div class="note">
+    <span class="eyebrow">Duas datas para não perder</span>
+    <p><strong>2 de outubro</strong> — sai o local e o horário da prova. Não chega por e-mail: é preciso consultar o site do IBAM e o Diário Oficial de Santos.</p>
+    <p><strong>11 de outubro</strong> — dia da prova. Chegar com <strong>60 minutos</strong> de antecedência, com documento oficial com foto <strong>original</strong> e caneta preta ou azul. Depois que os portões fecham não há segunda chamada.</p>
+  </div>
+
+  <footer>
+    <p class="fine">Material de apoio ao estudo. Não substitui a leitura do edital nem das leis — onde houver divergência, vale o texto oficial.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Português e Matemática do zero, para retomar os estudos depois de anos parada.">
+<meta name="theme-color" content="#14574A">
+<title>Voltando a Estudar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --paper:   #F5F7F4;
+    --surface: #FFFFFF;
+    --sunk:    #EDF1EC;
+    --ink:     #16211C;
+    --ink-2:   #56635C;
+    --ink-3:   #7C8A83;
+    --line:    #DBE3DD;
+    --line-2:  #C3CFC6;
+    --accent:  #14574A;
+    --accent-w:#E2EDE7;
+    --alert:   #9B3A22;
+    --alert-w: #F6E9E3;
+    --shadow:  0 1px 2px rgba(22,33,28,.05), 0 8px 24px -16px rgba(22,33,28,.28);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#111614; --surface:#191F1B; --sunk:#1F2723;
+      --ink:#E7EDE8; --ink-2:#9BA9A1; --ink-3:#7E8C85;
+      --line:#2A342E; --line-2:#3A463F;
+      --accent:#74C4AC; --accent-w:#1B2E29;
+      --alert:#E4967A; --alert-w:#2E211C;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#111614; --surface:#191F1B; --sunk:#1F2723;
+    --ink:#E7EDE8; --ink-2:#9BA9A1; --ink-3:#7E8C85;
+    --line:#2A342E; --line-2:#3A463F;
+    --accent:#74C4AC; --accent-w:#1B2E29;
+    --alert:#E4967A; --alert-w:#2E211C;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: "Public Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 17.5px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    margin: 0; padding: 0 20px 96px;
+  }
+  .wrap { max-width: 740px; margin: 0 auto; }
+
+  h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
+  h1 { font-family: Newsreader, Georgia, serif; font-size: clamp(2.1rem, 6vw, 3rem); font-weight: 600; line-height: 1.08; letter-spacing: -.015em; }
+  h2 { font-family: Newsreader, Georgia, serif; font-size: clamp(1.6rem, 4.4vw, 2.05rem); font-weight: 600; line-height: 1.15; letter-spacing: -.01em; }
+  h3 { font-size: 1.08rem; font-weight: 700; line-height: 1.35; }
+  h4 { font-size: .95rem; font-weight: 700; line-height: 1.4; }
+  p { margin: 0; }
+  strong { font-weight: 600; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+  .eyebrow { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .705rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3); }
+  .lede { font-size: 1.1rem; color: var(--ink-2); }
+  .fine { font-size: .88rem; color: var(--ink-2); line-height: 1.55; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+  .mast { padding: 54px 0 32px; border-bottom: 2px solid var(--ink); display: flex; flex-direction: column; gap: 16px; }
+
+  /* ---------- kit de estudo ---------- */
+  .kit { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 9px; padding-top: 4px;
+         font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .715rem; }
+  .kit-label { color: var(--ink-3); letter-spacing: .11em; text-transform: uppercase; font-weight: 600; }
+  .kit a, .kit .atual { border-radius: 100px; padding: 6px 13px; white-space: nowrap; border: 1px solid var(--line-2); }
+  .kit a { color: var(--ink-2); text-decoration: none; }
+  .kit a:hover { color: var(--ink); background: var(--sunk); border-color: var(--ink-3); }
+  .kit a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .kit .atual { color: var(--accent); border-color: var(--accent); background: var(--accent-w); font-weight: 600; }
+
+  nav.jump {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    margin: 0 -20px; padding: 0 20px;
+  }
+  .jump-inner { max-width: 740px; margin: 0 auto; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding: 9px 0; }
+  .jump-inner::-webkit-scrollbar { display: none; }
+  .jump a {
+    flex: 0 0 auto; font-family: "IBM Plex Mono", monospace;
+    font-size: .74rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--ink-2); text-decoration: none; padding: 5px 11px;
+    border-radius: 100px; border: 1px solid transparent; white-space: nowrap;
+  }
+  .jump a:hover { color: var(--ink); background: var(--sunk); border-color: var(--line); }
+
+  section { padding-top: 58px; scroll-margin-top: 56px; }
+  .sec-head { display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; }
+  .sec-head .bar { width: 46px; height: 3px; background: var(--accent); }
+  .stack { display: flex; flex-direction: column; gap: 18px; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 3px;
+    padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--shadow);
+  }
+  .card.rule { border-left: 3px solid var(--accent); }
+  .card.rule-hot { border-left: 3px solid var(--alert); }
+  .note { background: var(--sunk); border: 1px solid var(--line); border-radius: 3px; padding: 16px 18px; display: flex; flex-direction: column; gap: 9px; }
+  .note.warn { background: var(--alert-w); border-color: color-mix(in srgb, var(--alert) 32%, transparent); }
+  .note.warn .eyebrow { color: var(--alert); }
+
+  /* worked example */
+  .ex {
+    background: var(--sunk); border: 1px solid var(--line); border-left: 3px solid var(--line-2);
+    border-radius: 2px; padding: 13px 15px;
+    display: flex; flex-direction: column; gap: 6px;
+    font-size: .95rem;
+  }
+  .ex .step { display: flex; gap: 10px; align-items: baseline; }
+  .ex .step-n { font-family: "IBM Plex Mono", monospace; font-size: .74rem; color: var(--ink-3); flex: 0 0 auto; }
+  .ex .res { font-family: "IBM Plex Mono", monospace; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+  ul.clean, ol.clean { margin: 0; padding-left: 1.15em; display: flex; flex-direction: column; gap: 7px; }
+  ul.clean li::marker { color: var(--ink-3); }
+  ol.clean li::marker { color: var(--ink-3); font-family: "IBM Plex Mono", monospace; font-size: .85em; }
+  ul.flat { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.flat > li { display: flex; gap: 11px; align-items: flex-start; }
+  .tag {
+    flex: 0 0 auto; font-family: "IBM Plex Mono", monospace; font-size: .72rem; font-weight: 600;
+    color: var(--accent); background: var(--accent-w); border-radius: 2px; padding: 2px 6px; margin-top: 4px; white-space: nowrap;
+  }
+  .tag.hot { color: var(--alert); background: var(--alert-w); }
+
+  .tw { overflow-x: auto; border: 1px solid var(--line); border-radius: 3px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: .93rem; min-width: 440px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th { font-family: "IBM Plex Mono", monospace; font-size: .68rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); background: var(--sunk); border-bottom: 1px solid var(--line-2); }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.mono, th.mono { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+
+  .ok  { color: var(--accent); font-weight: 700; }
+  .bad { color: var(--alert); font-weight: 700; text-decoration: line-through; text-decoration-thickness: 1px; }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 2px 0; }
+  code { font-family: "IBM Plex Mono", monospace; font-size: .88em; background: var(--sunk); border: 1px solid var(--line); border-radius: 2px; padding: 1px 5px; }
+
+  footer { margin-top: 70px; padding-top: 24px; border-top: 2px solid var(--ink); display: flex; flex-direction: column; gap: 12px; }
+
+  @media (max-width: 560px) {
+    body { font-size: 17px; padding: 0 16px 72px; }
+    nav.jump { margin: 0 -16px; padding: 0 16px; }
+    .card { padding: 17px 18px; }
+  }
+  @media print {
+    nav.jump { display: none; }
+    body { background: #fff; color: #000; }
+    .card, .note, .tw, .ex { break-inside: avoid; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <span class="eyebrow">Concurso de Inspetor de Alunos · Santos 2026</span>
+    <h1>Voltando a Estudar</h1>
+    <p class="lede">Português e Matemática do começo, para quem está há anos sem abrir um caderno. Nada aqui pressupõe que você lembre de alguma coisa da escola — é para reler devagar, em voz alta, quantas vezes precisar.</p>
+    <nav class="kit" aria-label="Material de estudo">
+      <a class="kit-label" href="./index.html" style="text-decoration:none">&larr; Kit de estudo</a>
+      <a href="./caderno.html">Caderno do Inspetor</a>
+      <span class="atual">Voltando a Estudar</span>
+      <a href="./simulado.html">Simulado</a>
+    </nav>
+  </header>
+
+  <nav class="jump" aria-label="Seções">
+    <div class="jump-inner">
+      <a href="#comecar">Como recomeçar</a>
+      <a href="#leitura">Ler a questão</a>
+      <a href="#palavras">Palavras que confundem</a>
+      <a href="#acento">Acentuação</a>
+      <a href="#classes">Classes de palavras</a>
+      <a href="#concordancia">Concordância</a>
+      <a href="#virgula">Vírgula</a>
+      <a href="#conectivos">Conectivos</a>
+      <a href="#formal">Linguagem formal</a>
+      <a href="#contas">Contas</a>
+      <a href="#fracao">Frações</a>
+      <a href="#porcento">Porcentagem</a>
+      <a href="#tres">Regra de três</a>
+      <a href="#medidas">Medidas e tempo</a>
+      <a href="#tabelas">Tabelas</a>
+    </div>
+  </nav>
+
+  <!-- =============== COMEÇAR =============== -->
+  <section id="comecar">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Antes de tudo</span>
+      <h2>Como recomeçar depois de anos parada</h2>
+    </div>
+
+    <div class="stack">
+      <p>Voltar a estudar depois de muito tempo tem uma dificuldade que não é de conteúdo, é de <strong>ritmo</strong>. Nas duas primeiras semanas parece que nada entra, a leitura cansa rápido e a cabeça foge. Isso é normal e passa — não é sinal de que não vai dar certo. É só o hábito voltando.</p>
+
+      <div class="card rule">
+        <h3>Sete coisas que funcionam de verdade</h3>
+        <ul class="flat">
+          <li><span class="tag">1</span><span><strong>Pouco e todo dia vence muito de vez em quando.</strong> 40 minutos por dia rende bem mais que quatro horas no domingo. O cérebro fixa por repetição, não por esforço concentrado.</span></li>
+          <li><span class="tag">2</span><span><strong>Ler em voz alta.</strong> Parece bobagem, mas para quem está sem prática de leitura é o que mais ajuda: obriga a ir mais devagar e usa dois sentidos ao mesmo tempo.</span></li>
+          <li><span class="tag">3</span><span><strong>Escrever à mão o que aprendeu.</strong> Depois de ler uma parte, feche o material e escreva num caderno, com suas palavras, o que ficou. O que não conseguir escrever é exatamente o que precisa reler.</span></li>
+          <li><span class="tag">4</span><span><strong>Revisar em intervalos crescentes.</strong> O que estudou hoje, reveja amanhã (5 minutos), depois em três dias, depois em uma semana. Três revisões curtas fixam mais do que estudar a mesma coisa três horas seguidas.</span></li>
+          <li><span class="tag">5</span><span><strong>Um caderno só de erros.</strong> Toda questão errada vai para lá, com a explicação do porquê. Na véspera da prova, é a única coisa que ela precisa reler.</span></li>
+          <li><span class="tag">6</span><span><strong>Blocos de 25 minutos com 5 de pausa.</strong> Quando bater o cansaço ou a cabeça começar a fugir, é sinal de que passou da hora da pausa — não de que “não está conseguindo”.</span></li>
+          <li><span class="tag">7</span><span><strong>Estudar sempre no mesmo lugar e no mesmo horário.</strong> Reduz o esforço de começar, que é a parte mais difícil do dia.</span></li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <span class="eyebrow">Um lembrete</span>
+        <p>Português e Matemática juntas valem <strong>16 dos 100 pontos</strong> da prova. Este material serve para ela não perder ponto bobo e para destravar a leitura — não para virar especialista. O que decide o concurso está no <em>Caderno do Inspetor</em>: Conhecimentos Específicos e Legislação, que valem 72.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== LEITURA =============== -->
+  <section id="leitura">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Português · 1</span>
+      <h2>Como ler uma questão de prova</h2>
+    </div>
+
+    <div class="stack">
+      <p>Metade dos erros de interpretação não vem de não entender o texto — vem de não entender <strong>a pergunta</strong>. Um método de quatro passos resolve a maioria:</p>
+
+      <div class="card">
+        <ul class="flat">
+          <li><span class="tag">1</span><span><strong>Leia a pergunta primeiro</strong>, antes do texto. Saber o que se procura muda completamente a leitura.</span></li>
+          <li><span class="tag">2</span><span><strong>Leia o texto inteiro sem parar</strong>, só para pegar o assunto geral. Não sublinhe nada ainda.</span></li>
+          <li><span class="tag">3</span><span><strong>Volte ao texto atrás da resposta.</strong> Ela está lá. Marque com o dedo o trecho que responde.</span></li>
+          <li><span class="tag">4</span><span><strong>Elimine alternativas</strong> em vez de procurar a certa. Riscar duas erradas dobra a chance de acerto mesmo na dúvida.</span></li>
+        </ul>
+      </div>
+
+      <div class="card rule-hot">
+        <h3>Os três tipos de alternativa errada</h3>
+        <ul class="clean">
+          <li><strong>A exagerada.</strong> Contém <em>sempre, nunca, todos, nenhum, apenas, exclusivamente</em>. Textos de prova quase nunca afirmam de forma tão absoluta.</li>
+          <li><strong>A verdadeira que não está no texto.</strong> É a mais traiçoeira: a frase é correta no mundo, mas o texto não disse aquilo. A pergunta é sempre <em>“o texto diz?”</em>, não <em>“é verdade?”</em>.</li>
+          <li><strong>A quase certa.</strong> Copia palavras do texto mas troca uma coisinha — o número, a pessoa, o momento, um “não”. Ler até o fim, sem pressa.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Explícito e implícito</h3>
+        <p><strong>Explícito</strong> é o que está escrito com todas as letras. <strong>Implícito</strong> é o que se conclui a partir do que está escrito — mas ainda assim se apoia no texto.</p>
+        <div class="ex">
+          <p><em>“O inspetor pediu que os alunos guardassem os celulares antes de entrar na sala.”</em></p>
+          <div class="step"><span class="step-n">explícito</span><span>Ele pediu que guardassem os celulares.</span></div>
+          <div class="step"><span class="step-n">implícito</span><span>Os alunos estavam com os celulares na mão.</span></div>
+          <div class="step"><span class="step-n">não está</span><span>Que os alunos obedeceram. O texto não diz.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== PALAVRAS =============== -->
+  <section id="palavras">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Português · 2</span>
+      <h2>As palavras que mais confundem</h2>
+    </div>
+
+    <div class="stack">
+      <p>Esta é a parte de Português que mais cai em prova de nível fundamental. Vale ler a tabela uma vez por semana até virar automático.</p>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Par</th><th>Como diferenciar</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">mas / mais</td><td><strong>mas</strong> = porém · <strong>mais</strong> = quantidade</td><td>Ela quis entrar, <strong>mas</strong> o portão estava fechado. / Chegaram <strong>mais</strong> dez alunos.</td></tr>
+            <tr><td class="mono">mau / mal</td><td><strong>mau</strong> é o contrário de bom · <strong>mal</strong> é o contrário de bem</td><td>Um <strong>mau</strong> exemplo. / Ele se sentiu <strong>mal</strong>.</td></tr>
+            <tr><td class="mono">há / a</td><td><strong>há</strong> = tempo que já passou (existe) · <strong>a</strong> = tempo futuro ou distância</td><td><strong>Há</strong> dois anos ela estuda. / Daqui <strong>a</strong> dois meses é a prova.</td></tr>
+            <tr><td class="mono">porque / por que</td><td><strong>porque</strong> responde · <strong>por que</strong> pergunta</td><td><strong>Por que</strong> ele saiu? <strong>Porque</strong> passou mal.</td></tr>
+            <tr><td class="mono">por quê / porquê</td><td><strong>por quê</strong> no fim da frase · <strong>porquê</strong> é substantivo (o motivo)</td><td>Ele saiu, não sei <strong>por quê</strong>. / Não entendi o <strong>porquê</strong> da briga.</td></tr>
+            <tr><td class="mono">onde / aonde</td><td><strong>onde</strong> = lugar parado · <strong>aonde</strong> = com movimento (ir a)</td><td><strong>Onde</strong> ele está? / <strong>Aonde</strong> ele foi?</td></tr>
+            <tr><td class="mono">senão / se não</td><td><strong>senão</strong> = caso contrário · <strong>se não</strong> = caso não</td><td>Entre agora, <strong>senão</strong> perde a aula. / <strong>Se não</strong> chover, teremos recreio no pátio.</td></tr>
+            <tr><td class="mono">tem / têm</td><td><strong>tem</strong> = uma pessoa · <strong>têm</strong> = duas ou mais</td><td>O aluno <strong>tem</strong> autorização. / Os alunos <strong>têm</strong> autorização.</td></tr>
+            <tr><td class="mono">vem / vêm</td><td>mesma regra do <em>tem/têm</em></td><td>Ela <strong>vem</strong> cedo. / Eles <strong>vêm</strong> cedo.</td></tr>
+            <tr><td class="mono">meio / meia</td><td><strong>meio</strong> = um pouco (não muda) · <strong>meia</strong> = metade (concorda)</td><td>Ela ficou <strong>meio</strong> cansada. / <strong>Meia</strong> hora de intervalo.</td></tr>
+            <tr><td class="mono">este / esse</td><td><strong>este</strong> = perto de quem fala · <strong>esse</strong> = perto de quem ouve</td><td><strong>Este</strong> caderno aqui é meu. / <strong>Esse</strong> aí é seu.</td></tr>
+            <tr><td class="mono">a fim de / afim</td><td><strong>a fim de</strong> = para (finalidade) · <strong>afim</strong> = parecido</td><td>Saiu <strong>a fim de</strong> ajudar. / São áreas <strong>afins</strong>.</td></tr>
+            <tr><td class="mono">acerca de / há cerca de</td><td><strong>acerca de</strong> = sobre · <strong>há cerca de</strong> = aproximadamente, no passado</td><td>Falou <strong>acerca de</strong> disciplina. / Trabalha aqui <strong>há cerca de</strong> dez anos.</td></tr>
+            <tr><td class="mono">mim / eu</td><td>Antes de verbo no infinitivo, use <strong>eu</strong></td><td class="ok">Ele trouxe o papel para <strong>eu</strong> assinar.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Ortografia — as letras que geram dúvida</h3>
+        <ul class="clean">
+          <li><strong>S ou Z:</strong> palavras derivadas de outras com S mantêm o S — <em>casa → casinha, análise → analisar</em>. Sufixos <em>-ês, -esa, -osa</em> vão com S: <em>portuguesa, gostosa</em>.</li>
+          <li><strong>Ç ou SS:</strong> depois de consoante e no começo de palavra nunca vai SS — <em>ação, criança, cansaço</em>. Entre vogais, geralmente SS em palavras derivadas: <em>discutir → discussão</em>.</li>
+          <li><strong>X ou CH:</strong> depois de <em>en-</em> vai X (<em>enxada, enxergar</em>) — exceção <em>encher</em> e derivados. Depois de ditongo vai X: <em>caixa, peixe, ameixa</em>.</li>
+          <li><strong>G ou J:</strong> terminações <em>-agem, -igem, -ugem</em> vão com G: <em>viagem, origem, ferrugem</em>. Palavras de origem indígena ou africana vão com J: <em>jiboia, canjica</em>.</li>
+        </ul>
+        <p class="fine">Uma armadilha comum: <strong>viagem</strong> (o substantivo, a viagem) × <strong>viajem</strong> (o verbo, que eles viajem).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== ACENTUAÇÃO =============== -->
+  <section id="acento">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Português · 3</span>
+      <h2>Acentuação em três regras</h2>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <h3>Primeiro: achar a sílaba forte</h3>
+        <p>Fale a palavra em voz alta e alongue: <em>ca-DER-no</em>, <em>ES-co-la</em>, <em>a-lu-NO</em>. A sílaba que sai mais forte é a <strong>tônica</strong>. Todo o resto da acentuação depende disso.</p>
+        <div class="ex">
+          <div class="step"><span class="step-n">oxítona</span><span>a força está na <strong>última</strong> sílaba — <em>ca-fé, por-TÃO, a-LU-guel</em></span></div>
+          <div class="step"><span class="step-n">paroxítona</span><span>na <strong>penúltima</strong> — <em>CA-der-no, ES-co-la, fá-cil</em> (a maioria das palavras)</span></div>
+          <div class="step"><span class="step-n">proparoxítona</span><span>na <strong>antepenúltima</strong> — <em>MÉ-di-co, sá-ba-do, ú-ni-co</em></span></div>
+        </div>
+      </div>
+
+      <div class="card rule">
+        <h3>As três regras</h3>
+        <ul class="flat">
+          <li><span class="tag">1</span><span><strong>Todas as proparoxítonas são acentuadas.</strong> Sem exceção. <em>médico, lâmpada, número, sábado, público, pêssego</em>. Esta regra sozinha resolve muita questão.</span></li>
+          <li><span class="tag">2</span><span><strong>Oxítonas</strong> terminadas em <strong>a, e, o</strong> (com ou sem s) e em <strong>em, ens</strong>. <em>sofá, café, cipó, armazém, parabéns</em>. Não se acentua <em>portão</em> pela regra — o til não é acento de regra.</span></li>
+          <li><span class="tag">3</span><span><strong>Paroxítonas</strong> terminadas em qualquer coisa <strong>menos</strong> a, e, o, em, ens. Ou seja: <em>fácil, açúcar, tórax, ímã, órgão, hífen</em>. Como a maioria das paroxítonas termina em a/e/o, a maioria não leva acento.</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Mais duas situações</h3>
+        <ul class="clean">
+          <li><strong>Hiato</strong> — o <em>i</em> ou o <em>u</em> sozinhos formando sílaba, depois de vogal: <em>sa-í-da, pa-ís, ju-í-zo, ba-ú, sa-ú-de</em>.</li>
+          <li><strong>Acento diferencial</strong> — sobra pouca coisa: <em>pôde</em> (passado) × <em>pode</em> (presente), <em>têm/vêm</em> no plural, e <em>pôr</em> (verbo) × <em>por</em> (preposição).</li>
+        </ul>
+        <p class="fine">Já <strong>não se acentua mais</strong>, desde o acordo de 2009: <em>ideia, assembleia, heroico, feiura, voo, enjoo</em>. Se a prova trouxer <em>“idéia”</em>, está errado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== CLASSES =============== -->
+  <section id="classes">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Português · 4</span>
+      <h2>Classes de palavras</h2>
+    </div>
+
+    <div class="stack">
+      <p>O edital pede exatamente estas nove. A questão costuma ser simples: “na frase, a palavra X é um…”. O truque é olhar <strong>a função na frase</strong>, não a palavra sozinha.</p>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Classe</th><th>O que é</th><th>Exemplo na escola</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Substantivo</strong></td><td>Dá nome a algo — pessoa, coisa, lugar, sentimento</td><td>O <strong>inspetor</strong> abriu o <strong>portão</strong>.</td></tr>
+            <tr><td><strong>Adjetivo</strong></td><td>Qualifica o substantivo</td><td>Um pátio <strong>tranquilo</strong>, alunos <strong>atentos</strong>.</td></tr>
+            <tr><td><strong>Artigo</strong></td><td>Vem antes do substantivo: <em>o, a, os, as</em> (definido); <em>um, uma</em> (indefinido)</td><td><strong>O</strong> aluno chegou. / <strong>Um</strong> aluno chegou.</td></tr>
+            <tr><td><strong>Numeral</strong></td><td>Indica quantidade ou ordem</td><td><strong>Trinta</strong> alunos, o <strong>primeiro</strong> da fila.</td></tr>
+            <tr><td><strong>Pronome</strong></td><td>Substitui ou acompanha o substantivo</td><td><strong>Ele</strong> chegou. <strong>Meu</strong> caderno. <strong>Este</strong> aluno.</td></tr>
+            <tr><td><strong>Verbo</strong></td><td>Ação, estado ou fenômeno</td><td>Os alunos <strong>entraram</strong>. Ela <strong>está</strong> cansada. <strong>Choveu</strong>.</td></tr>
+            <tr><td><strong>Advérbio</strong></td><td>Modifica o verbo — diz como, quando, onde, quanto</td><td>Chegou <strong>cedo</strong>. Falou <strong>calmamente</strong>. Está <strong>aqui</strong>.</td></tr>
+            <tr><td><strong>Preposição</strong></td><td>Liga palavras: <em>de, em, para, com, por, a, sobre</em></td><td>O caderno <strong>de</strong> matemática está <strong>sobre</strong> a mesa.</td></tr>
+            <tr><td><strong>Conjunção</strong></td><td>Liga orações: <em>e, mas, porque, se, quando</em></td><td>Ele saiu <strong>porque</strong> passou mal.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>A mesma palavra em duas classes</h3>
+        <p>É a pegadinha favorita da banca. Olhe sempre a função:</p>
+        <div class="ex">
+          <div class="step"><span class="step-n">adjetivo</span><span>O aluno <strong>calmo</strong> esperou. <em>(qualifica “aluno”)</em></span></div>
+          <div class="step"><span class="step-n">substantivo</span><span>O <strong>calmo</strong> sempre espera. <em>(virou o nome de alguém, com artigo)</em></span></div>
+          <div class="step"><span class="step-n">advérbio</span><span>Ele falou <strong>alto</strong>. <em>(diz como falou)</em></span></div>
+          <div class="step"><span class="step-n">adjetivo</span><span>Ele é <strong>alto</strong>. <em>(qualifica “ele”)</em></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Flexão: singular/plural, masculino/feminino</h3>
+        <ul class="clean">
+          <li><strong>Plural com -ão:</strong> a maior parte vira <em>-ões</em> (<em>portão → portões</em>); alguns viram <em>-ães</em> (<em>pão → pães, cão → cães</em>) e alguns <em>-ãos</em> (<em>mão → mãos, irmão → irmãos</em>).</li>
+          <li><strong>Plural com -l:</strong> troca por <em>-is</em> — <em>papel → papéis, funil → funis, azul → azuis</em>. Só <em>mal → males</em> e <em>cônsul → cônsules</em> fogem.</li>
+          <li><strong>Verbos:</strong> os tempos que caem são presente (<em>ele organiza</em>), passado (<em>ele organizou</em>) e futuro (<em>ele organizará</em>). O modo <strong>imperativo</strong> é o das ordens e pedidos — comum em avisos escolares: <em>“Entrem em fila”, “Aguarde no pátio”</em>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== CONCORDÂNCIA =============== -->
+  <section id="concordancia">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Português · 5</span>
+      <h2>Concordância</h2>
+    </div>
+
+    <div class="stack">
+      <div class="card rule">
+        <h3>Primeiro: achar o sujeito</h3>
+        <p>Pergunte ao verbo <strong>“quem?”</strong> ou <strong>“o quê?”</strong>. A resposta é o sujeito, e é com ele que o verbo concorda.</p>
+        <div class="ex">
+          <p><em>Os alunos do quinto ano chegaram atrasados.</em></p>
+          <div class="step"><span class="step-n">pergunta</span><span>Quem chegou? → <strong>os alunos</strong> (plural)</span></div>
+          <div class="step"><span class="step-n">verbo</span><span class="res">chegaram</span></div>
+          <div class="step"><span class="step-n">cuidado</span><span>“do quinto ano” está no meio e no singular. Ele <strong>não</strong> manda no verbo.</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Concordância verbal — os casos de prova</h3>
+        <ul class="flat">
+          <li><span class="tag hot">✗</span><span><span class="bad">A maioria dos alunos chegaram cedo.</span> <br><span class="ok">A maioria dos alunos chegou cedo.</span> — o sujeito é <em>a maioria</em>. (O plural também é aceito, mas a banca costuma cobrar o singular.)</span></li>
+          <li><span class="tag hot">✗</span><span><span class="bad">Fazem dois anos que ela trabalha aqui.</span> <br><span class="ok">Faz dois anos que ela trabalha aqui.</span> — <em>fazer</em> indicando tempo não vai para o plural.</span></li>
+          <li><span class="tag hot">✗</span><span><span class="bad">Houveram muitos casos.</span> <br><span class="ok">Houve muitos casos.</span> — <em>haver</em> no sentido de existir fica sempre no singular.</span></li>
+          <li><span class="tag">✓</span><span><span class="ok">Existiram muitos casos.</span> — <em>existir</em>, ao contrário de <em>haver</em>, concorda normalmente.</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Concordância nominal</h3>
+        <p>Artigo, adjetivo e numeral concordam com o substantivo em gênero e número.</p>
+        <ul class="clean">
+          <li><span class="ok">Muitos alunos atrasados</span> · <span class="ok">muitas alunas atrasadas</span></li>
+          <li>Adjetivo depois de dois substantivos vai para o plural: <span class="ok">o inspetor e o professor <strong>atentos</strong></span>. Se houver um masculino e um feminino, o plural fica masculino: <span class="ok">a professora e o inspetor <strong>atentos</strong></span>.</li>
+          <li><strong>É proibido</strong> e <strong>é permitido</strong> ficam invariáveis sem artigo: <span class="ok">É proibido entrada de estranhos.</span> Com artigo, concordam: <span class="ok">É proibida a entrada de estranhos.</span></li>
+          <li><strong>Anexo</strong> e <strong>obrigado</strong> concordam com quem fala ou com o que acompanham: <span class="ok">Segue anexa a lista.</span> · <span class="ok">(uma mulher diz) Obrigada.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== VÍRGULA =============== -->
+  <section id="virgula">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Português · 6</span>
+      <h2>A vírgula</h2>
+    </div>
+
+    <div class="stack">
+      <div class="card rule">
+        <h3>Os cinco usos que caem</h3>
+        <ul class="flat">
+          <li><span class="tag">1</span><span><strong>Separar itens de uma lista.</strong><br><em>O inspetor observa o pátio, o corredor, a quadra e o portão.</em> (antes do “e” final, não)</span></li>
+          <li><span class="tag">2</span><span><strong>Isolar o vocativo</strong> — quando se chama alguém.<br><em>Alunos, entrem em fila.</em> · <em>Bom dia, dona Maria.</em></span></li>
+          <li><span class="tag">3</span><span><strong>Isolar uma explicação</strong> no meio da frase.<br><em>O inspetor, que estava no portão, viu tudo.</em> (as duas vírgulas andam em par)</span></li>
+          <li><span class="tag">4</span><span><strong>Marcar termo fora da ordem direta.</strong><br><em>Na entrada dos alunos, o inspetor organiza a fila.</em> (se voltasse para o fim, a vírgula sairia)</span></li>
+          <li><span class="tag">5</span><span><strong>Antes de conectivo de oposição.</strong><br><em>Ela avisou a direção, mas ninguém apareceu.</em></span></li>
+        </ul>
+      </div>
+
+      <div class="card rule-hot">
+        <h3>Onde a vírgula nunca entra</h3>
+        <ul class="clean">
+          <li><strong>Entre o sujeito e o verbo.</strong> <span class="bad">O inspetor de alunos, organizou a fila.</span> → <span class="ok">O inspetor de alunos organizou a fila.</span> Não importa o tamanho do sujeito.</li>
+          <li><strong>Entre o verbo e o complemento.</strong> <span class="bad">Ele comunicou, o ocorrido à direção.</span> → <span class="ok">Ele comunicou o ocorrido à direção.</span></li>
+        </ul>
+        <p class="fine">Regra prática: se a frase está na ordem natural — quem fez, o que fez, o quê — não há vírgula nenhuma no meio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== CONECTIVOS =============== -->
+  <section id="conectivos">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Português · 7</span>
+      <h2>Conectivos e reescrita</h2>
+    </div>
+
+    <div class="stack">
+      <p>A questão típica dá uma frase e pede para trocar o conectivo <strong>mantendo o sentido</strong>. Basta saber que relação cada palavrinha marca.</p>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Relação</th><th>Conectivos</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Causa</strong> (o motivo)</td><td>porque, pois, já que, uma vez que, como</td><td>Saiu <strong>porque</strong> passou mal.</td></tr>
+            <tr><td><strong>Consequência</strong> (o resultado)</td><td>portanto, logo, por isso, de modo que, assim</td><td>Passou mal, <strong>por isso</strong> saiu.</td></tr>
+            <tr><td><strong>Oposição</strong></td><td>mas, porém, contudo, todavia, entretanto, no entanto</td><td>Avisou, <strong>mas</strong> ninguém veio.</td></tr>
+            <tr><td><strong>Finalidade</strong> (para quê)</td><td>para, a fim de, para que</td><td>Chegou cedo <strong>para</strong> organizar a fila.</td></tr>
+            <tr><td><strong>Condição</strong></td><td>se, caso, desde que, contanto que</td><td><strong>Se</strong> chover, o recreio será interno.</td></tr>
+            <tr><td><strong>Tempo</strong></td><td>quando, enquanto, assim que, logo que</td><td><strong>Enquanto</strong> os alunos entram, ele observa.</td></tr>
+            <tr><td><strong>Comparação</strong></td><td>como, tal qual, assim como, mais que</td><td>Organizou <strong>como</strong> sempre faz.</td></tr>
+            <tr><td><strong>Adição</strong></td><td>e, também, além disso, ademais</td><td>Observa o pátio <strong>e também</strong> o portão.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Reescrever sem mudar o sentido</h3>
+        <div class="ex">
+          <p><em>“Ele não conseguiu entrar, pois o portão já estava fechado.”</em></p>
+          <div class="step"><span class="step-n">relação</span><span>causa — o portão fechado é o motivo</span></div>
+          <div class="step"><span class="step-n">trocando</span><span class="ok">Ele não conseguiu entrar <strong>porque</strong> o portão já estava fechado.</span></div>
+          <div class="step"><span class="step-n">invertendo</span><span class="ok"><strong>Como</strong> o portão já estava fechado, ele não conseguiu entrar.</span></div>
+          <div class="step"><span class="step-n">também</span><span class="ok">O portão já estava fechado, <strong>por isso</strong> ele não conseguiu entrar. <em>(vira consequência, mas o sentido se mantém)</em></span></div>
+          <div class="step"><span class="step-n">errado</span><span class="bad">Ele não conseguiu entrar, <strong>mas</strong> o portão já estava fechado.</span></div>
+        </div>
+        <p class="fine">Trocar causa por oposição é o erro que a banca planta. Ao reescrever, leia a frase nova em voz alta e pergunte: <strong>continua dizendo a mesma coisa?</strong></p>
+      </div>
+
+      <div class="card">
+        <h3>Ordem direta</h3>
+        <p>É a ordem natural: <strong>quem faz → o que faz → o complemento → as circunstâncias.</strong></p>
+        <div class="ex">
+          <div class="step"><span class="step-n">invertida</span><span>Todos os dias, no portão da escola, o inspetor recebe os alunos.</span></div>
+          <div class="step"><span class="step-n">direta</span><span class="ok">O inspetor recebe os alunos no portão da escola todos os dias.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== FORMAL =============== -->
+  <section id="formal">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Português · 8</span>
+      <h2>Linguagem formal e os textos da escola</h2>
+    </div>
+
+    <div class="stack">
+      <p>Este cargo cobra os gêneros do dia a dia escolar: <strong>aviso, comunicado, bilhete, e-mail, formulário, instrução, regra de convivência, cartaz, placa e registro de ocorrência</strong>. Saber para que serve cada um já responde boa parte das questões.</p>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Texto</th><th>Serve para</th><th>Como se escreve</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Aviso / cartaz</strong></td><td>Informar rápido, para muita gente</td><td>Curto, letra grande, verbo no imperativo</td></tr>
+            <tr><td><strong>Comunicado</strong></td><td>Informar oficialmente as famílias</td><td>Formal, com data, assunto e assinatura da direção</td></tr>
+            <tr><td><strong>Bilhete</strong></td><td>Recado curto e pontual</td><td>Simples e direto, mas educado</td></tr>
+            <tr><td><strong>E-mail institucional</strong></td><td>Comunicação registrada</td><td>Assunto claro, saudação, texto objetivo, despedida</td></tr>
+            <tr><td><strong>Registro de ocorrência</strong></td><td>Documentar um fato</td><td><strong>Só fatos</strong>: data, hora, local, quem estava, o que aconteceu</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card rule-hot">
+        <h3>O registro de ocorrência — o texto do inspetor</h3>
+        <p>Cai em Português e em Conhecimentos Específicos. A regra é uma só: <strong>descrever, não julgar</strong>.</p>
+        <div class="ex">
+          <div class="step"><span class="step-n">errado</span><span class="bad">O aluno João, que é sempre um bagunceiro, começou mais uma briga por pura implicância.</span></div>
+          <div class="step"><span class="step-n">certo</span><span class="ok">Às 10h15, no pátio, durante o intervalo, os alunos João S. e Pedro M. se envolveram em discussão seguida de empurrões. Foram separados e encaminhados à coordenação. Presentes: a inspetora e a professora Ana.</span></div>
+        </div>
+        <p class="fine">Sem adjetivo, sem “sempre”, sem suposição de intenção. Se não foi visto, não se escreve.</p>
+      </div>
+
+      <div class="card">
+        <h3>Formal não é difícil — é respeitoso</h3>
+        <ul class="clean">
+          <li>Nada de gíria, abreviação de celular ou emoji.</li>
+          <li>Frases curtas. Uma ideia por frase.</li>
+          <li>Tratamento: <em>senhor, senhora, o(a) responsável</em>. Em documento, <em>Vossa Senhoria</em>.</li>
+          <li>Evitar o exagero: <em>“urgentíssimo”, “absurdo”, “nunca mais”</em>.</li>
+          <li>Clareza vale mais que palavra bonita. Se uma palavra difícil pode ser trocada por uma simples, troque.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== CONTAS =============== -->
+  <section id="contas">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Matemática · 1</span>
+      <h2>As quatro operações</h2>
+    </div>
+
+    <div class="stack">
+      <p>Na prova não há calculadora. Vale a pena refazer contas no papel até a mão lembrar sozinha.</p>
+
+      <div class="card">
+        <h3>O que costuma travar</h3>
+        <ul class="clean">
+          <li><strong>Somar “vai um”:</strong> quando a coluna passa de 9, escreve-se o algarismo das unidades e o outro sobe para a coluna seguinte.</li>
+          <li><strong>Subtrair “emprestando”:</strong> quando o de cima é menor que o de baixo, pega-se 10 emprestado da coluna à esquerda, que diminui 1.</li>
+          <li><strong>Multiplicar por número de dois algarismos:</strong> multiplica-se pela unidade, depois pela dezena — e a segunda linha começa <strong>uma casa à esquerda</strong>.</li>
+          <li><strong>Dividir:</strong> quanto cabe, multiplica, subtrai, desce o próximo. Se não couber nenhuma vez, põe-se <strong>zero no quociente</strong> e desce o próximo — o zero esquecido é o erro mais comum.</li>
+        </ul>
+      </div>
+
+      <div class="card rule">
+        <h3>Expressões numéricas — a ordem</h3>
+        <p>Primeiro <strong>parênteses</strong>, depois <strong>multiplicação e divisão</strong> (da esquerda para a direita), por último <strong>soma e subtração</strong>.</p>
+        <div class="ex">
+          <div class="step"><span class="step-n">1</span><span>20 + 3 × (10 − 6)</span></div>
+          <div class="step"><span class="step-n">2</span><span>20 + 3 × 4 &nbsp;<em>(parênteses primeiro)</em></span></div>
+          <div class="step"><span class="step-n">3</span><span>20 + 12 &nbsp;<em>(multiplicação antes da soma)</em></span></div>
+          <div class="step"><span class="step-n">=</span><span class="res">32</span></div>
+        </div>
+        <p class="fine">Quem soma primeiro chega a 92 — e essa costuma ser uma das alternativas erradas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== FRAÇÕES =============== -->
+  <section id="fracao">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Matemática · 2</span>
+      <h2>Frações e decimais</h2>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <h3>O que a fração significa</h3>
+        <p>Em <span class="mono">3/4</span>, o número de <strong>baixo</strong> diz em quantas partes o inteiro foi dividido; o de <strong>cima</strong>, quantas dessas partes se tomou. Três de quatro pedaços.</p>
+        <ul class="clean">
+          <li><strong>Somar e subtrair:</strong> só com o mesmo número embaixo. <span class="mono">1/2 + 1/4</span> → transforme <span class="mono">1/2</span> em <span class="mono">2/4</span> → <span class="mono">2/4 + 1/4 = 3/4</span>.</li>
+          <li><strong>Multiplicar:</strong> direto, de cima com cima e de baixo com baixo. <span class="mono">2/3 × 3/5 = 6/15 = 2/5</span>.</li>
+          <li><strong>Dividir:</strong> conserva a primeira e multiplica pela segunda invertida. <span class="mono">1/2 ÷ 1/4 = 1/2 × 4/1 = 4/2 = 2</span>.</li>
+          <li><strong>Virar decimal:</strong> divida o de cima pelo de baixo. <span class="mono">3/4 = 3 ÷ 4 = 0,75</span>.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Frações que vale a pena decorar</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th class="mono">Fração</th><th class="mono">Decimal</th><th class="mono">Porcentagem</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1/2</td><td class="mono">0,5</td><td class="mono">50%</td></tr>
+              <tr><td class="mono">1/3</td><td class="mono">0,333…</td><td class="mono">33,3%</td></tr>
+              <tr><td class="mono">1/4</td><td class="mono">0,25</td><td class="mono">25%</td></tr>
+              <tr><td class="mono">3/4</td><td class="mono">0,75</td><td class="mono">75%</td></tr>
+              <tr><td class="mono">1/5</td><td class="mono">0,2</td><td class="mono">20%</td></tr>
+              <tr><td class="mono">1/10</td><td class="mono">0,1</td><td class="mono">10%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Decimais — a vírgula</h3>
+        <ul class="clean">
+          <li><strong>Somar e subtrair:</strong> alinhe <strong>vírgula embaixo de vírgula</strong>. Complete com zeros se precisar: <span class="mono">3,5 + 0,75</span> → <span class="mono">3,50 + 0,75 = 4,25</span>.</li>
+          <li><strong>Multiplicar:</strong> multiplique ignorando as vírgulas e, no fim, conte quantas casas depois da vírgula havia no total. <span class="mono">1,5 × 0,2</span> → 15 × 2 = 30 → duas casas → <span class="mono">0,30</span>.</li>
+          <li><strong>Multiplicar e dividir por 10, 100, 1000:</strong> a vírgula só anda. Multiplicando, anda para a <strong>direita</strong> (<span class="mono">3,4 × 100 = 340</span>); dividindo, para a <strong>esquerda</strong> (<span class="mono">3,4 ÷ 100 = 0,034</span>).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== PORCENTAGEM =============== -->
+  <section id="porcento">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Matemática · 3</span>
+      <h2>Porcentagem</h2>
+    </div>
+
+    <div class="stack">
+      <p>Por cento quer dizer <strong>“a cada cem”</strong>. 20% é o mesmo que <span class="mono">20/100</span>, que é o mesmo que <span class="mono">0,20</span>. Toda questão de porcentagem é uma destas três perguntas:</p>
+
+      <div class="card rule">
+        <h4>1. Quanto é X% de um valor?</h4>
+        <p>Multiplique pelo decimal.</p>
+        <div class="ex">
+          <div class="step"><span class="step-n">pergunta</span><span>Uma escola tem 480 alunos. 25% são do período da tarde. Quantos são?</span></div>
+          <div class="step"><span class="step-n">conta</span><span>480 × 0,25</span></div>
+          <div class="step"><span class="step-n">=</span><span class="res">120 alunos</span></div>
+        </div>
+      </div>
+
+      <div class="card rule">
+        <h4>2. Um valor é quantos por cento do outro?</h4>
+        <p>Divida a parte pelo total e multiplique por 100.</p>
+        <div class="ex">
+          <div class="step"><span class="step-n">pergunta</span><span>De 480 alunos, 96 faltaram. Qual a porcentagem de faltas?</span></div>
+          <div class="step"><span class="step-n">conta</span><span>96 ÷ 480 = 0,20 → × 100</span></div>
+          <div class="step"><span class="step-n">=</span><span class="res">20%</span></div>
+        </div>
+      </div>
+
+      <div class="card rule">
+        <h4>3. Aumentar ou diminuir uma porcentagem</h4>
+        <p>Aumento: multiplique por <strong>1 + a taxa</strong>. Desconto: por <strong>1 − a taxa</strong>.</p>
+        <div class="ex">
+          <div class="step"><span class="step-n">aumento</span><span>Salário de R$ 2.500 com aumento de 8% → 2.500 × <strong>1,08</strong> = <span class="res">R$ 2.700</span></span></div>
+          <div class="step"><span class="step-n">desconto</span><span>Material de R$ 80 com 15% de desconto → 80 × <strong>0,85</strong> = <span class="res">R$ 68</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Atalhos de cabeça</h3>
+        <ul class="clean">
+          <li><strong>10%</strong> — ande a vírgula uma casa para a esquerda. 10% de 480 = 48.</li>
+          <li><strong>1%</strong> — duas casas. 1% de 480 = 4,8.</li>
+          <li><strong>5%</strong> — metade de 10%. 5% de 480 = 24.</li>
+          <li><strong>20%</strong> — 10% vezes 2. <strong>30%</strong> — 10% vezes 3. E assim por diante.</li>
+          <li><strong>50%</strong> — metade. <strong>25%</strong> — metade da metade.</li>
+        </ul>
+        <p class="fine">Com esses cinco atalhos dá para montar quase qualquer porcentagem de cabeça: 35% = 30% + 5%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== REGRA DE TRÊS =============== -->
+  <section id="tres">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Matemática · 4</span>
+      <h2>Regra de três</h2>
+    </div>
+
+    <div class="stack">
+      <p>É o conteúdo que mais aparece. Monte duas colunas, veja se as grandezas andam <strong>juntas</strong> ou <strong>ao contrário</strong>, e resolva.</p>
+
+      <div class="card rule">
+        <h3>Direta — sobe uma, sobe a outra</h3>
+        <div class="ex">
+          <div class="step"><span class="step-n">problema</span><span>3 caixas de giz atendem 60 alunos. Quantas caixas para 100 alunos?</span></div>
+          <div class="step"><span class="step-n">monta</span><span class="mono">3 caixas — 60 alunos<br>x caixas — 100 alunos</span></div>
+          <div class="step"><span class="step-n">pensa</span><span>Mais alunos pedem mais caixas: <strong>direta</strong>. Multiplica em cruz.</span></div>
+          <div class="step"><span class="step-n">conta</span><span class="mono">60 × x = 3 × 100 → 60x = 300 → x = 300 ÷ 60</span></div>
+          <div class="step"><span class="step-n">=</span><span class="res">5 caixas</span></div>
+        </div>
+      </div>
+
+      <div class="card rule-hot">
+        <h3>Inversa — sobe uma, desce a outra</h3>
+        <div class="ex">
+          <div class="step"><span class="step-n">problema</span><span>4 inspetores organizam a entrada em 30 minutos. Com 6 inspetores, em quanto tempo?</span></div>
+          <div class="step"><span class="step-n">monta</span><span class="mono">4 inspetores — 30 min<br>6 inspetores — x min</span></div>
+          <div class="step"><span class="step-n">pensa</span><span>Mais gente, <strong>menos</strong> tempo: <strong>inversa</strong>. Multiplica na horizontal (linha por linha).</span></div>
+          <div class="step"><span class="step-n">conta</span><span class="mono">4 × 30 = 6 × x → 120 = 6x → x = 120 ÷ 6</span></div>
+          <div class="step"><span class="step-n">=</span><span class="res">20 minutos</span></div>
+        </div>
+        <p class="fine">O único cuidado é este: perguntar <strong>“aumentando um, o outro aumenta ou diminui?”</strong> antes de fazer a conta. Direta multiplica em cruz; inversa multiplica em linha.</p>
+      </div>
+
+      <div class="card">
+        <h3>Média aritmética</h3>
+        <p>Some tudo e divida pela quantidade de valores.</p>
+        <div class="ex">
+          <div class="step"><span class="step-n">problema</span><span>Faltas na semana: 8, 5, 6, 9 e 7. Qual a média diária?</span></div>
+          <div class="step"><span class="step-n">soma</span><span class="mono">8 + 5 + 6 + 9 + 7 = 35</span></div>
+          <div class="step"><span class="step-n">divide</span><span class="mono">35 ÷ 5</span></div>
+          <div class="step"><span class="step-n">=</span><span class="res">7 faltas por dia</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== MEDIDAS =============== -->
+  <section id="medidas">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Matemática · 5</span>
+      <h2>Medidas, tempo e dinheiro</h2>
+    </div>
+
+    <div class="stack">
+      <div class="tw">
+        <table>
+          <thead><tr><th>Grandeza</th><th>Equivalências</th></tr></thead>
+          <tbody>
+            <tr><td>Comprimento</td><td class="mono">1 km = 1.000 m · 1 m = 100 cm · 1 cm = 10 mm</td></tr>
+            <tr><td>Massa</td><td class="mono">1 t = 1.000 kg · 1 kg = 1.000 g · 1 g = 1.000 mg</td></tr>
+            <tr><td>Capacidade</td><td class="mono">1 L = 1.000 mL · 1 m³ = 1.000 L</td></tr>
+            <tr><td>Tempo</td><td class="mono">1 h = 60 min · 1 min = 60 s · 1 dia = 24 h</td></tr>
+            <tr><td>Área</td><td class="mono">1 m² = 10.000 cm² · 1 km² = 1.000.000 m²</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Como converter sem errar</h3>
+        <p>Descendo na escala (de maior para menor), <strong>multiplica</strong>. Subindo (de menor para maior), <strong>divide</strong>.</p>
+        <div class="ex">
+          <div class="step"><span class="step-n">de m para cm</span><span>desce → multiplica por 100 → <span class="mono">2,5 m = 250 cm</span></span></div>
+          <div class="step"><span class="step-n">de g para kg</span><span>sobe → divide por 1.000 → <span class="mono">750 g = 0,75 kg</span></span></div>
+        </div>
+        <p class="fine">Em área, os saltos são de <strong>100 em 100</strong>, não de 10 em 10 — por isso 1 m² = 10.000 cm².</p>
+      </div>
+
+      <div class="card rule">
+        <h3>Contas com horas e minutos</h3>
+        <p>O segredo é <strong>converter tudo para minutos</strong>, fazer a conta e voltar para horas no fim.</p>
+        <div class="ex">
+          <div class="step"><span class="step-n">problema</span><span>Um turno vai das 7h20 às 11h50. Quanto dura?</span></div>
+          <div class="step"><span class="step-n">converte</span><span class="mono">7h20 = 440 min · 11h50 = 710 min</span></div>
+          <div class="step"><span class="step-n">subtrai</span><span class="mono">710 − 440 = 270 min</span></div>
+          <div class="step"><span class="step-n">volta</span><span class="mono">270 ÷ 60 = 4 e sobram 30</span></div>
+          <div class="step"><span class="step-n">=</span><span class="res">4h30</span></div>
+        </div>
+        <p class="fine">Para converter uma hora em minutos: multiplique as horas por 60 e some os minutos. 7h20 → 7 × 60 = 420, + 20 = 440.</p>
+      </div>
+
+      <div class="card">
+        <h3>Dinheiro e troco</h3>
+        <ul class="clean">
+          <li>Reais e centavos são só um decimal com duas casas: <span class="mono">R$ 12,50</span> é 12 reais e 50 centavos.</li>
+          <li>No troco, some o que foi comprado <strong>antes</strong> de subtrair — o erro comum é subtrair item por item.</li>
+          <li>Alinhe sempre vírgula com vírgula ao armar a conta.</li>
+        </ul>
+        <div class="ex">
+          <div class="step"><span class="step-n">problema</span><span>Compras de R$ 18,90 e R$ 7,45, pagas com R$ 50,00.</span></div>
+          <div class="step"><span class="step-n">soma</span><span class="mono">18,90 + 7,45 = 26,35</span></div>
+          <div class="step"><span class="step-n">troco</span><span class="mono">50,00 − 26,35</span></div>
+          <div class="step"><span class="step-n">=</span><span class="res">R$ 23,65</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== TABELAS =============== -->
+  <section id="tabelas">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Matemática · 6</span>
+      <h2>Tabelas e gráficos</h2>
+    </div>
+
+    <div class="stack">
+      <p>Costuma ser a questão mais fácil da prova — desde que se leia o cabeçalho antes de olhar os números.</p>
+
+      <div class="card">
+        <h3>A ordem de leitura</h3>
+        <ol class="clean">
+          <li><strong>Título:</strong> do que trata?</li>
+          <li><strong>Unidade:</strong> são alunos? reais? milhares? porcentagem?</li>
+          <li><strong>Período:</strong> que meses, que anos?</li>
+          <li><strong>Só então</strong> procure o número que a pergunta pede.</li>
+        </ol>
+        <p class="fine">A pegadinha quase sempre está na unidade — um gráfico “em milhares” em que a resposta certa é 3.500 e a alternativa errada é 3,5.</p>
+      </div>
+
+      <div class="card rule">
+        <h3>Exemplo comentado</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Turno</th><th class="mono">Alunos matriculados</th><th class="mono">Faltas em maio</th></tr></thead>
+            <tbody>
+              <tr><td>Manhã</td><td class="mono">320</td><td class="mono">48</td></tr>
+              <tr><td>Tarde</td><td class="mono">280</td><td class="mono">42</td></tr>
+              <tr><td>Noite</td><td class="mono">150</td><td class="mono">30</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ex">
+          <div class="step"><span class="step-n">a)</span><span>Quantos alunos ao todo? <span class="mono">320 + 280 + 150</span> = <span class="res">750</span></span></div>
+          <div class="step"><span class="step-n">b)</span><span>Qual turno teve maior <strong>porcentagem</strong> de faltas? Manhã <span class="mono">48÷320 = 15%</span> · Tarde <span class="mono">42÷280 = 15%</span> · Noite <span class="mono">30÷150 = 20%</span> → <span class="res">noite</span></span></div>
+          <div class="step"><span class="step-n">cuidado</span><span>Em número absoluto, a manhã teve mais faltas (48). Em porcentagem, a noite. Ler qual das duas a pergunta quer é a questão inteira.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="eyebrow">Para fechar</span>
+    <p>Quando parecer que nada está entrando, é quase sempre um destes três: cansaço, tempo demais sem pausa, ou conteúdo estudado uma vez só e nunca revisto. Nenhum dos três é falta de capacidade.</p>
+    <p class="fine">Depois de passar por este material, o próximo passo é o <strong>Simulado do Inspetor</strong> — 40 questões no formato e nos pesos da prova real. Errar lá é o que mostra onde voltar aqui.</p>
+  </footer>
+
+</div>
+</body>
+</html>

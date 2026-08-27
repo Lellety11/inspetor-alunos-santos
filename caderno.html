@@ -1,0 +1,1191 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mapa da prova, plano de 45 dias e conteúdo dos cinco blocos do concurso de Inspetor de Alunos de Santos.">
+<meta name="theme-color" content="#14574A">
+<title>Caderno do Inspetor de Alunos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --paper:   #F5F7F4;
+    --surface: #FFFFFF;
+    --sunk:    #EDF1EC;
+    --ink:     #16211C;
+    --ink-2:   #56635C;
+    --ink-3:   #7C8A83;
+    --line:    #DBE3DD;
+    --line-2:  #C3CFC6;
+    --accent:  #14574A;
+    --accent-w:#E2EDE7;
+    --alert:   #9B3A22;
+    --alert-w: #F6E9E3;
+    --shadow:  0 1px 2px rgba(22,33,28,.05), 0 8px 24px -16px rgba(22,33,28,.28);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:   #111614;
+      --surface: #191F1B;
+      --sunk:    #1F2723;
+      --ink:     #E7EDE8;
+      --ink-2:   #9BA9A1;
+      --ink-3:   #7E8C85;
+      --line:    #2A342E;
+      --line-2:  #3A463F;
+      --accent:  #74C4AC;
+      --accent-w:#1B2E29;
+      --alert:   #E4967A;
+      --alert-w: #2E211C;
+      --shadow:  0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:   #111614;
+    --surface: #191F1B;
+    --sunk:    #1F2723;
+    --ink:     #E7EDE8;
+    --ink-2:   #9BA9A1;
+    --ink-3:   #7E8C85;
+    --line:    #2A342E;
+    --line-2:  #3A463F;
+    --accent:  #74C4AC;
+    --accent-w:#1B2E29;
+    --alert:   #E4967A;
+    --alert-w: #2E211C;
+    --shadow:  0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Public Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0 20px 96px;
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  /* ---------- type ---------- */
+  h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
+  h1 {
+    font-family: Newsreader, Georgia, serif;
+    font-size: clamp(2.1rem, 6vw, 3.05rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -.015em;
+  }
+  h2 {
+    font-family: Newsreader, Georgia, serif;
+    font-size: clamp(1.65rem, 4.4vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -.01em;
+  }
+  h3 {
+    font-size: 1.06rem;
+    font-weight: 700;
+    letter-spacing: -.005em;
+    line-height: 1.35;
+  }
+  h4 {
+    font-size: .95rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  p { margin: 0; }
+  strong { font-weight: 600; color: var(--ink); }
+  em { font-style: italic; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .705rem;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .lede { font-size: 1.09rem; color: var(--ink-2); }
+  .fine { font-size: .87rem; color: var(--ink-2); line-height: 1.55; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+  /* ---------- masthead ---------- */
+  .mast {
+
+  /* ---------- kit de estudo ---------- */
+  .kit { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 9px; padding-top: 4px;
+         font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .715rem; }
+  .kit-label { color: var(--ink-3); letter-spacing: .11em; text-transform: uppercase; font-weight: 600; }
+  .kit a, .kit .atual { border-radius: 100px; padding: 6px 13px; white-space: nowrap; border: 1px solid var(--line-2); }
+  .kit a { color: var(--ink-2); text-decoration: none; }
+  .kit a:hover { color: var(--ink); background: var(--sunk); border-color: var(--ink-3); }
+  .kit a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .kit .atual { color: var(--accent); border-color: var(--accent); background: var(--accent-w); font-weight: 600; }
+    padding: 56px 0 34px;
+    border-bottom: 2px solid var(--ink);
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .mast-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; }
+  .mast h1 { margin-top: 2px; }
+  .countdown {
+    display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: baseline;
+    padding-top: 6px;
+  }
+  .cd-item { display: flex; flex-direction: column; gap: 1px; }
+  .cd-n {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 1.5rem; font-weight: 600; line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-n.hot { color: var(--alert); }
+  .cd-l { font-size: .78rem; color: var(--ink-2); }
+
+  /* ---------- nav ---------- */
+  nav.jump {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    margin: 0 -20px 0;
+    padding: 0 20px;
+  }
+  .jump-inner {
+    max-width: 760px; margin: 0 auto;
+    display: flex; gap: 4px; overflow-x: auto;
+    scrollbar-width: none; padding: 9px 0;
+  }
+  .jump-inner::-webkit-scrollbar { display: none; }
+  .jump a {
+    flex: 0 0 auto;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .74rem; font-weight: 500; letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--ink-2); text-decoration: none;
+    padding: 5px 11px; border-radius: 100px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .jump a:hover { color: var(--ink); background: var(--sunk); border-color: var(--line); }
+
+  /* ---------- sections ---------- */
+  section { padding-top: 60px; scroll-margin-top: 58px; }
+  .sec-head { display: flex; flex-direction: column; gap: 9px; margin-bottom: 26px; }
+  .sec-head .bar { width: 46px; height: 3px; background: var(--accent); }
+  .stack { display: flex; flex-direction: column; gap: 18px; }
+  .stack-tight { display: flex; flex-direction: column; gap: 11px; }
+
+  /* ---------- peso chip ---------- */
+  .peso {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .72rem; font-weight: 600; letter-spacing: .02em;
+    padding: 2px 8px 2px 6px; border-radius: 100px;
+    border: 1px solid var(--line-2); color: var(--ink-2);
+    white-space: nowrap;
+  }
+  .peso i {
+    display: block; width: 3px; height: 11px; border-radius: 1px;
+    background: var(--line-2);
+  }
+  .peso .bars { display: inline-flex; gap: 2px; }
+  .peso.p4 { border-color: var(--alert); color: var(--alert); background: var(--alert-w); }
+  .peso.p4 i { background: var(--alert); }
+  .peso.p2 { border-color: var(--accent); color: var(--accent); background: var(--accent-w); }
+  .peso.p2 i:nth-child(-n+2) { background: var(--accent); }
+  .peso.p1 i:nth-child(1) { background: var(--ink-3); }
+
+  /* ---------- block header ---------- */
+  .block-head {
+    display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 16px;
+    padding-bottom: 12px; margin-bottom: 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .block-head h2 { flex: 1 1 260px; }
+  .pts {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.35rem; font-weight: 600; line-height: 1;
+    color: var(--accent);
+  }
+  .pts small { font-size: .68rem; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); display: block; margin-top: 4px; }
+  .pts.hot { color: var(--alert); }
+
+  /* ---------- cards ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    box-shadow: var(--shadow);
+  }
+  .card.rule { border-left: 3px solid var(--accent); }
+  .card.rule-hot { border-left: 3px solid var(--alert); }
+  .card > .card-top { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; justify-content: space-between; }
+
+  .note {
+    background: var(--sunk);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .note.warn { background: var(--alert-w); border-color: color-mix(in srgb, var(--alert) 32%, transparent); }
+  .note.warn .eyebrow { color: var(--alert); }
+
+  /* ---------- lists ---------- */
+  ul.clean, ol.clean { margin: 0; padding-left: 1.15em; display: flex; flex-direction: column; gap: 7px; }
+  ul.clean li::marker { color: var(--ink-3); }
+  ol.clean li::marker { color: var(--ink-3); font-family: "IBM Plex Mono", monospace; font-size: .85em; }
+  ul.flat { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.flat > li { display: flex; gap: 11px; align-items: flex-start; }
+  .art {
+    flex: 0 0 auto;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .74rem; font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-w);
+    border-radius: 2px;
+    padding: 2px 6px;
+    margin-top: 3px;
+    white-space: nowrap;
+  }
+  .art.hot { color: var(--alert); background: var(--alert-w); }
+  .yes, .no { font-weight: 700; }
+  .yes { color: var(--accent); }
+  .no  { color: var(--alert); }
+
+  /* ---------- tables ---------- */
+  .tw { overflow-x: auto; border: 1px solid var(--line); border-radius: 3px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 470px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .68rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--ink-3); background: var(--sunk);
+    border-bottom: 1px solid var(--line-2);
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.num, th.num { text-align: right; font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+  tr.total td { background: var(--sunk); font-weight: 700; border-top: 1px solid var(--line-2); }
+  tr.heavy td:first-child { box-shadow: inset 3px 0 0 var(--alert); }
+  tr.mid td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+
+  /* ---------- plan timeline ---------- */
+  .etapa {
+    display: grid; grid-template-columns: 58px 1fr; gap: 0 16px;
+    padding-bottom: 22px;
+    position: relative;
+  }
+  .etapa:not(:last-child)::before {
+    content: ""; position: absolute; left: 13px; top: 30px; bottom: 0;
+    width: 1px; background: var(--line-2);
+  }
+  .etapa-n {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .8rem; font-weight: 600;
+    width: 27px; height: 27px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--accent); color: var(--surface);
+    position: relative; z-index: 1;
+  }
+  .etapa-n.last { background: var(--alert); }
+  .etapa-body { display: flex; flex-direction: column; gap: 7px; padding-top: 1px; }
+  .etapa-date {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .74rem; font-weight: 500; letter-spacing: .05em;
+    color: var(--ink-3); text-transform: uppercase;
+  }
+
+  /* ---------- misc ---------- */
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+  .kv { display: flex; flex-direction: column; gap: 2px; }
+  .kv dt { font-size: .76rem; color: var(--ink-3); font-family: "IBM Plex Mono", monospace; letter-spacing: .04em; text-transform: uppercase; }
+  .kv dd { margin: 0; font-size: .96rem; }
+  dl { margin: 0; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
+  code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .88em; background: var(--sunk);
+    border: 1px solid var(--line); border-radius: 2px;
+    padding: 1px 5px;
+  }
+  .check { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .check li { display: flex; gap: 10px; align-items: flex-start; }
+  .check li::before {
+    content: ""; flex: 0 0 auto; width: 14px; height: 14px; margin-top: 5px;
+    border: 1.5px solid var(--line-2); border-radius: 2px;
+  }
+  footer {
+    margin-top: 72px; padding-top: 26px; border-top: 2px solid var(--ink);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  @media (max-width: 560px) {
+    body { font-size: 16.5px; padding: 0 16px 72px; }
+    nav.jump { margin: 0 -16px; padding: 0 16px; }
+    .card { padding: 17px 18px; }
+  }
+  @media print {
+    nav.jump { display: none; }
+    body { background: #fff; color: #000; }
+    .card, .note, .tw { break-inside: avoid; box-shadow: none; }
+    section { page-break-before: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <div class="mast-meta">
+      <span class="eyebrow">Prefeitura de Santos · Edital 73/2026 — SEPLA-RH</span>
+      <span class="eyebrow">Banca IBAM</span>
+    </div>
+    <h1>Caderno do Inspetor de Alunos</h1>
+    <p class="lede">Tudo o que cai na prova de 11 de outubro de 2026, organizado por peso — do que mais vale ponto para o que menos vale. Feito a partir do edital e dos textos oficiais das leis de Santos.</p>
+    <div class="countdown">
+      <div class="cd-item"><span class="cd-n hot">45</span><span class="cd-l">dias de estudo (a partir de 27/08)</span></div>
+      <div class="cd-item"><span class="cd-n">40</span><span class="cd-l">questões, 4 alternativas</span></div>
+      <div class="cd-item"><span class="cd-n">3h30</span><span class="cd-l">de duração</span></div>
+      <div class="cd-item"><span class="cd-n">22</span><span class="cd-l">vagas</span></div>
+    </div>
+    <nav class="kit" aria-label="Material de estudo">
+      <a class="kit-label" href="./index.html" style="text-decoration:none">&larr; Kit de estudo</a>
+      <span class="atual">Caderno do Inspetor</span>
+      <a href="./revisao.html">Voltando a Estudar</a>
+      <a href="./simulado.html">Simulado</a>
+    </nav>
+  </header>
+
+  <nav class="jump" aria-label="Seções">
+    <div class="jump-inner">
+      <a href="#mapa">O mapa</a>
+      <a href="#plano">Plano 45 dias</a>
+      <a href="#especificos">Específicos · 40</a>
+      <a href="#legislacao">Legislação · 32</a>
+      <a href="#informatica">Informática · 12</a>
+      <a href="#portugues">Português · 10</a>
+      <a href="#matematica">Matemática · 6</a>
+      <a href="#prova">Dia da prova</a>
+    </div>
+  </nav>
+
+  <!-- ============ MAPA ============ -->
+  <section id="mapa">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Parte 1</span>
+      <h2>O mapa da prova</h2>
+    </div>
+
+    <div class="stack">
+      <p>A prova tem 40 questões, mas elas <strong>não valem a mesma coisa</strong>. Cada matéria tem um peso, e é isso que decide onde vale a pena gastar as horas de estudo.</p>
+
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th>Matéria</th>
+              <th class="num">Questões</th>
+              <th class="num">Peso</th>
+              <th class="num">Pontos</th>
+              <th class="num">% da nota</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="heavy"><td>Conhecimentos Específicos</td><td class="num">10</td><td class="num">4</td><td class="num">40</td><td class="num">40%</td></tr>
+            <tr class="heavy"><td>Legislação, Serviço Público e Atendimento Escolar</td><td class="num">8</td><td class="num">4</td><td class="num">32</td><td class="num">32%</td></tr>
+            <tr class="mid"><td>Informática, Comunicação e Rotinas Escolares</td><td class="num">6</td><td class="num">2</td><td class="num">12</td><td class="num">12%</td></tr>
+            <tr><td>Língua Portuguesa</td><td class="num">10</td><td class="num">1</td><td class="num">10</td><td class="num">10%</td></tr>
+            <tr><td>Matemática</td><td class="num">6</td><td class="num">1</td><td class="num">6</td><td class="num">6%</td></tr>
+            <tr class="total"><td>Total</td><td class="num">40</td><td class="num">—</td><td class="num">100</td><td class="num">100%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card rule-hot">
+        <span class="eyebrow" style="color:var(--alert)">A conta que muda tudo</span>
+        <p><strong>18 questões valem 72 dos 100 pontos.</strong> São as de Conhecimentos Específicos e as de Legislação. As outras 22 questões, somadas, valem só 28.</p>
+        <p>Uma questão de Específicos vale o mesmo que <strong>quatro</strong> de Português. Errar quatro questões de interpretação de texto custa menos que errar uma sobre o Estatuto da Criança e do Adolescente.</p>
+        <p class="fine">Isso não significa abandonar Português e Matemática — significa que, quando o tempo apertar, o corte vem delas.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Como se classificar</h3>
+          <ul class="clean">
+            <li>Acertar no mínimo <strong>50 dos 100 pontos</strong>; e</li>
+            <li>Estar entre os <strong>220 primeiros</strong> da lista geral (incluídos os empatados na última nota).</li>
+          </ul>
+          <p class="fine">Quem fica fora dessas duas condições é eliminado. Na lista de pessoas negras o corte é 44; para candidatos PCD, todos que fizerem 50% ficam habilitados.</p>
+        </div>
+        <div class="card">
+          <h3>Só existe prova objetiva</h3>
+          <p class="fine">A prova prática do edital é apenas para Auxiliar Veterinário, Eletricista e Motorista. Para Inspetor de Alunos, <strong>a prova de 11/10 decide tudo</strong>.</p>
+        </div>
+      </div>
+
+      <div class="card rule">
+        <h3>Critérios de desempate, na ordem</h3>
+        <ol class="clean">
+          <li>Candidato com <strong>60 anos ou mais</strong> (entre eles, o mais velho);</li>
+          <li><strong>Maior nota em Conhecimentos Específicos</strong>;</li>
+          <li>Maior número de filhos menores (não contam os que exercem atividade remunerada);</li>
+          <li>Ter exercido função de jurado;</li>
+          <li>Maior idade, entre os menores de 60.</li>
+        </ol>
+        <p class="fine">O segundo critério é mais um motivo para tratar Conhecimentos Específicos como a matéria principal: além de valer 40 pontos, é ela que desempata.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>O cargo</h3>
+          <dl class="stack-tight">
+            <div class="kv"><dt>Código</dt><dd>606</dd></div>
+            <div class="kv"><dt>Vagas</dt><dd>22 no total (2 reservadas a PCD, 4 a pessoas negras)</dd></div>
+            <div class="kv"><dt>Remuneração</dt><dd>R$ 2.981,16 + R$ 1.100,00 de auxílio-alimentação = <strong>R$ 4.081,16</strong></dd></div>
+            <div class="kv"><dt>Jornada</dt><dd>40 horas semanais</dd></div>
+            <div class="kv"><dt>Escolaridade</dt><dd>Ensino fundamental completo</dd></div>
+          </dl>
+        </div>
+        <div class="card">
+          <h3>A atribuição, no texto do edital</h3>
+          <p style="font-family:Newsreader,Georgia,serif; font-size:1.05rem; line-height:1.5;">“Observar os alunos em todas as dependências da escola, orientando-os, organizando-os, impedindo o trânsito de estranhos pelo recinto, mantendo ordem e disciplina.”</p>
+          <p class="fine">Decore essa frase. Ela é a régua das questões de Conhecimentos Específicos: <strong>observar, orientar, organizar, impedir estranhos, manter ordem</strong>. Alternativa que fuja disso costuma estar errada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLANO ============ -->
+  <section id="plano">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Parte 2</span>
+      <h2>Plano de 45 dias</h2>
+    </div>
+
+    <div class="stack">
+      <p>As etapas seguem a ordem de peso, não a ordem do edital. O conteúdo que mais vale ponto é estudado primeiro, quando a cabeça está mais descansada e ainda sobra tempo para revisar.</p>
+
+      <div class="card">
+        <h3>A rotina de cada dia</h3>
+        <p>Referência de <strong>2 horas diárias</strong>. Se só der 1 hora, corte pela metade cada parte e mantenha a proporção — o que não pode sumir é a revisão.</p>
+        <ul class="flat">
+          <li><span class="art">50 min</span><span><strong>Conteúdo novo.</strong> Ler a seção do dia neste caderno, em voz alta se ajudar.</span></li>
+          <li><span class="art">40 min</span><span><strong>Questões.</strong> Procurar provas antigas do IBAM para Inspetor de Alunos e Agente de Portaria. Errar aqui é de graça.</span></li>
+          <li><span class="art">20 min</span><span><strong>Revisão do dia anterior.</strong> Sem reler tudo: só olhar os grifos e tentar lembrar de cabeça.</span></li>
+          <li><span class="art">10 min</span><span><strong>Anotar os erros</strong> num caderno separado. Esse caderno de erros é o que ela vai reler na véspera.</span></li>
+        </ul>
+      </div>
+
+      <div style="margin-top:8px">
+        <div class="etapa">
+          <div class="etapa-n">1</div>
+          <div class="etapa-body">
+            <span class="etapa-date">27 ago – 5 set · 10 dias</span>
+            <h3>Conhecimentos Específicos <span class="peso p4"><span class="bars"><i></i><i></i><i></i><i></i></span>×4</span></h3>
+            <p>O bloco de 40 pontos. São oito temas, um a cada dia, com dois dias de folga para revisar. É a matéria mais fácil de aprender — quase tudo é bom senso organizado.</p>
+          </div>
+        </div>
+        <div class="etapa">
+          <div class="etapa-n">2</div>
+          <div class="etapa-body">
+            <span class="etapa-date">6 set – 13 set · 8 dias</span>
+            <h3>ECA, Lei Brasileira de Inclusão e Lei 14.811 <span class="peso p4"><span class="bars"><i></i><i></i><i></i><i></i></span>×4</span></h3>
+            <p>As três leis que sustentam o trabalho do inspetor: proteção da criança, inclusão da pessoa com deficiência e combate ao <em>bullying</em>. Aparecem tanto em Legislação quanto em Específicos.</p>
+          </div>
+        </div>
+        <div class="etapa">
+          <div class="etapa-n">3</div>
+          <div class="etapa-body">
+            <span class="etapa-date">14 set – 21 set · 8 dias</span>
+            <h3>Legislação de Santos <span class="peso p4"><span class="bars"><i></i><i></i><i></i><i></i></span>×4</span></h3>
+            <p>Lei Orgânica do Município, Estatuto dos Funcionários (Lei 4.623/84) e a LC 1.253/2024. É a parte mais decoreba do edital — números de artigo, prazos e listas. Vale fazer resumos de uma página por lei.</p>
+          </div>
+        </div>
+        <div class="etapa">
+          <div class="etapa-n">4</div>
+          <div class="etapa-body">
+            <span class="etapa-date">22 set – 28 set · 7 dias</span>
+            <h3>Atendimento, informação e dados <span class="peso p4"><span class="bars"><i></i><i></i><i></i><i></i></span>×4</span></h3>
+            <p>Leis 13.460, 10.048, 12.527 (Acesso à Informação), 13.709 (LGPD) e 14.129, mais os princípios da Administração Pública. Todas curtas; o que cai é sempre a mesma meia dúzia de pontos de cada uma.</p>
+          </div>
+        </div>
+        <div class="etapa">
+          <div class="etapa-n">5</div>
+          <div class="etapa-body">
+            <span class="etapa-date">29 set – 5 out · 7 dias</span>
+            <h3>Informática, Português e Matemática <span class="peso p2"><span class="bars"><i></i><i></i><i></i><i></i></span>×2</span> <span class="peso p1"><span class="bars"><i></i><i></i><i></i><i></i></span>×1</span></h3>
+            <p>Três dias para Informática e rotinas escolares, dois para Português, dois para Matemática. Objetivo aqui não é dominar: é não zerar.</p>
+          </div>
+        </div>
+        <div class="etapa">
+          <div class="etapa-n last">6</div>
+          <div class="etapa-body">
+            <span class="etapa-date">6 out – 10 out · 5 dias</span>
+            <h3>Simulados e revisão final</h3>
+            <p>Um simulado completo de 40 questões cronometrado em 3h30 — de preferência num domingo de manhã, no mesmo horário da prova. Os outros dias: só o caderno de erros e os resumos. <strong>Nada de conteúdo novo nesta semana.</strong></p>
+          </div>
+        </div>
+        <div class="etapa">
+          <div class="etapa-n last">✓</div>
+          <div class="etapa-body">
+            <span class="etapa-date">Domingo, 11 de outubro de 2026</span>
+            <h3>Prova</h3>
+            <p>Chegar com 60 minutos de antecedência. O local só é divulgado em <strong>2 de outubro</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="eyebrow">Ordem de resposta no dia da prova</span>
+        <p>Responder primeiro <strong>Conhecimentos Específicos</strong>, depois <strong>Legislação</strong>, depois Informática, e deixar Português e Matemática para o fim. São 3h30 — dá tempo, mas o cansaço deve cair sobre as questões que valem 1 ponto, não sobre as que valem 4.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ESPECÍFICOS ============ -->
+  <section id="especificos">
+    <div class="block-head">
+      <h2>Conhecimentos Específicos</h2>
+      <div class="pts hot">40<small>pontos · 10 questões</small></div>
+    </div>
+
+    <div class="stack">
+      <div class="card rule-hot">
+        <span class="eyebrow" style="color:var(--alert)">A chave de ouro</span>
+        <p>Quase toda questão deste bloco descreve uma situação na escola e pergunta o que o inspetor deve fazer. Quando a resposta não for óbvia, use estes filtros — eles resolvem a maioria das questões sozinhos.</p>
+        <ul class="flat">
+          <li><span class="art hot">NUNCA</span><span>Força física, gritos, castigo, apelido, ironia, exposição do aluno na frente dos outros. <span class="no">Elimine a alternativa.</span></span></li>
+          <li><span class="art hot">NUNCA</span><span>Resolver sozinho o que é da direção, do professor, da saúde ou do Conselho Tutelar. O inspetor <strong>atende, contém e comunica</strong> — não julga, não pune, não diagnostica.</span></li>
+          <li><span class="art hot">NUNCA</span><span>Ignorar, “deixar para lá”, esperar piorar ou dizer que não é da sua conta.</span></li>
+          <li><span class="art hot">NUNCA</span><span>Contar a terceiros informação sobre aluno, família ou servidor. Nem para outro pai, nem em grupo de mensagens.</span></li>
+          <li><span class="art">SEMPRE</span><span><strong>Observar → intervir com calma e sem julgar → separar/acolher → comunicar à equipe gestora → registrar por escrito.</strong> <span class="yes">Essa sequência é a resposta certa na maioria das questões.</span></span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">Tema 1</span>
+        <h3>Rotina de inspeção e organização dos espaços</h3>
+        <p>O inspetor circula por pátios, corredores, salas, refeitório, sanitários, quadras, biblioteca, portões e áreas externas. A palavra-chave do edital é <strong>observar</strong> — presença constante e visível, não vigilância escondida.</p>
+        <ul class="clean">
+          <li><strong>Prevenção antes da correção.</strong> Estar no lugar certo antes do problema acontecer (perto do portão na saída, no pátio no recreio, no corredor na troca de aulas) vale mais que apartar briga depois.</li>
+          <li><strong>Organização de filas, horários, intervalos, entrada e saída de turnos.</strong> Fila é organizada com orientação e antecedência, nunca com empurrão ou grito.</li>
+          <li><strong>Sanitários e áreas isoladas</strong> pedem atenção redobrada — é onde ocorrem os conflitos que ninguém vê. O acompanhamento é feito com respeito à privacidade dos alunos.</li>
+          <li><strong>Orientar sobre as regras</strong> (horários, espaços permitidos, condutas) faz parte do trabalho todo dia, não só quando alguém erra.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">Tema 2</span>
+        <h3>Controle de acesso e segurança escolar</h3>
+        <p>É a única parte da atribuição escrita como proibição: <em>“impedindo o trânsito de estranhos pelo recinto”</em>.</p>
+        <ul class="clean">
+          <li><strong>Toda pessoa que entra é identificada</strong> — familiares, fornecedores, prestadores de serviço, visitantes. Identificar, registrar e encaminhar ao setor competente. Ninguém circula sozinho pela escola.</li>
+          <li><strong>Aluno só sai com quem está autorizado</strong> na ficha/autorização da unidade. Na dúvida sobre quem busca a criança, a saída não acontece: chama-se a direção. Isso vale inclusive para parentes.</li>
+          <li><strong>Não confrontar</strong> pessoa alterada ou agressiva. Manter distância, não revidar, acionar a direção e, se for o caso, a segurança — o inspetor não é agente de segurança pública.</li>
+          <li><strong>Movimentações incomuns, danos, riscos e irregularidades</strong> são comunicados imediatamente e registrados.</li>
+          <li>Zelar por portões, chaves, sinalização, mobiliário, equipamentos e patrimônio da escola também é atribuição do cargo.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">Tema 3</span>
+        <h3>Ordem, disciplina e conflitos entre alunos</h3>
+        <ul class="clean">
+          <li><strong>Postura preventiva, educativa, respeitosa e não discriminatória</strong> — as quatro palavras estão no edital, quase sempre são a alternativa correta.</li>
+          <li>Prevenir <strong>tumultos, correria, aglomerações indevidas, brincadeiras perigosas</strong> e situações de risco antes que virem acidente.</li>
+          <li>Na briga: <strong>separar sem agredir</strong>, acalmar, afastar a plateia, ouvir cada um separadamente, encaminhar à gestão. Não interrogar em público, não tomar partido, não gritar.</li>
+          <li><strong>Intervenção inicial</strong> é a expressão do edital. O inspetor faz o primeiro atendimento; a decisão disciplinar é da equipe gestora.</li>
+          <li>Punição, suspensão, advertência formal e chamada de responsável <strong>não são do inspetor</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">Tema 4</span>
+        <h3>Proteção integral, <em>bullying</em> e violência</h3>
+        <p>Este é o tema mais cobrado, porque conecta os Conhecimentos Específicos ao ECA e à Lei 14.811/2024.</p>
+        <ul class="clean">
+          <li><strong>Sinais de alerta</strong> que o inspetor deve saber identificar: isolamento, medo de ir a certo lugar da escola, choro frequente, queda repentina de comportamento, marcas, roupa ou material sempre danificados, conflitos que se repetem sempre com as mesmas pessoas.</li>
+          <li><strong><em>Bullying</em> é intencional e repetitivo</strong>, contra alguém em posição desigual. Briga isolada entre iguais não é <em>bullying</em> — mas também não se ignora.</li>
+          <li><strong>Cyberbullying</strong> é o mesmo praticado por rede social, aplicativo, jogo eletrônico ou qualquer meio digital, e é punido com mais rigor.</li>
+          <li><strong>Nunca “resolver entre eles”</strong>, nem pedir que a vítima ignore, nem obrigar autor e vítima a se abraçarem. Acolher a vítima, registrar e comunicar à gestão.</li>
+          <li>Suspeita de <strong>violência, maus-tratos ou negligência</strong> — inclusive em casa — é comunicada à direção, que aciona o <strong>Conselho Tutelar</strong>. Omissão é falta grave; o inspetor não investiga, mas também não silencia.</li>
+          <li>Ao ouvir um relato de violência: <strong>escutar sem interromper, sem repetir a pergunta, sem pedir detalhes</strong> e sem fazer o aluno recontar para várias pessoas. Isso se chama evitar a revitimização.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">Tema 5</span>
+        <h3>Atendimento, comunicação e sigilo</h3>
+        <ul class="clean">
+          <li>Comunicação <strong>clara, objetiva, cordial e respeitosa</strong> com alunos, famílias, colegas e público externo — presencial, por telefone e por e-mail.</li>
+          <li><strong>Escuta ativa:</strong> deixar falar, olhar, não interromper, confirmar o que entendeu antes de encaminhar.</li>
+          <li>Orientação inicial e <strong>encaminhamento</strong> ao setor certo. O inspetor não dá informação sobre nota, matrícula, ocorrência disciplinar ou vida escolar do aluno — isso é da secretaria e da direção.</li>
+          <li><strong>Sigilo</strong> sobre informação de aluno, responsável e servidor. Não comentar no corredor, não postar foto de aluno, não repassar telefone ou endereço de família.</li>
+          <li>Recados são <strong>anotados e transmitidos</strong>, não guardados de memória.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">Tema 6</span>
+        <h3>Inclusão e acessibilidade</h3>
+        <ul class="clean">
+          <li>Apoiar a <strong>circulação e a permanência segura</strong> de alunos com deficiência, mobilidade reduzida, necessidades específicas ou condição temporária de saúde (perna engessada, muleta, pós-cirurgia).</li>
+          <li><strong>Eliminar barreiras atitudinais</strong> — as barreiras feitas de preconceito, superproteção e infantilização. É o tipo de barreira que mais aparece em prova.</li>
+          <li><strong>Perguntar antes de ajudar.</strong> Não empurrar cadeira de rodas, não segurar o braço de pessoa cega, não falar com o acompanhante em vez de falar com o aluno.</li>
+          <li>Respeito à <strong>autonomia, à dignidade e à segurança</strong> do aluno. Ajuda é oferecida, não imposta.</li>
+        </ul>
+      </div>
+
+      <div class="card rule-hot">
+        <span class="eyebrow" style="color:var(--alert)">Tema 7 · o mais pegadinha</span>
+        <h3>Primeiros cuidados e os limites da atuação</h3>
+        <p>O edital fala em <strong>“noções de primeiros cuidados”</strong> e, na mesma frase, em <strong>“limites da atuação do Inspetor de Alunos”</strong>. A banca quase sempre cobra o limite, não a técnica.</p>
+        <ul class="flat">
+          <li><span class="art">FAZ</span><span>Identificar mal-estar, queda, ferimento, desmaio, engasgo, convulsão; <strong>acionar imediatamente</strong> a equipe responsável; permanecer com o aluno; afastar as outras crianças; preservar o local; comunicar a direção e registrar.</span></li>
+          <li><span class="art hot">NÃO FAZ</span><span>Dar remédio (nem analgésico, nem o que “a mãe mandou”); dar água ou comida a quem passou mal; <strong>mover aluno que caiu ou bateu a cabeça</strong>; conter quem está em convulsão ou colocar objeto na boca; levar o aluno ao hospital por conta própria; avisar a família antes da direção.</span></li>
+        </ul>
+        <p class="fine">Na convulsão o correto é proteger a cabeça, afastar objetos, virar de lado se possível, cronometrar e chamar socorro — nunca segurar o corpo nem abrir a boca.</p>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">Tema 8</span>
+        <h3>Postura profissional e ética</h3>
+        <p>Lista praticamente decorada do edital, e que se repete no Estatuto dos Funcionários de Santos:</p>
+        <p><strong>assiduidade · pontualidade · discrição · urbanidade · responsabilidade · ética · respeito à hierarquia · trabalho em equipe · cumprimento das normas internas · proteção de dados pessoais · sigilo funcional.</strong></p>
+        <ul class="clean">
+          <li>Cooperação com direção, professores, servidores, famílias e alunos.</li>
+          <li>Elaboração de <strong>registros simples</strong>: comunicados, ocorrências, relatórios básicos, listas, controle de entrada e saída. Registro de ocorrência descreve <strong>fato</strong>, com data, hora, local e quem estava presente — não opinião, não adjetivo, não acusação.</li>
+          <li>Comunicar problemas de manutenção, limpeza, conservação e segurança da unidade.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LEGISLAÇÃO ============ -->
+  <section id="legislacao">
+    <div class="block-head">
+      <h2>Legislação, Serviço Público e Atendimento Escolar</h2>
+      <div class="pts hot">32<small>pontos · 8 questões</small></div>
+    </div>
+
+    <div class="stack">
+      <p>São onze leis para oito questões. Não dá para decorar tudo — o que segue são os pontos que as bancas cobram de verdade em cada uma.</p>
+
+      <!-- LOM -->
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Lei Orgânica do Município de Santos</h3>
+          <span class="eyebrow">municipal</span>
+        </div>
+        <ul class="flat">
+          <li><span class="art">Art. 6º</span><span><strong>Competência privativa.</strong> Legislar sobre assuntos de interesse local; instituir e arrecadar tributos; organizar e prestar os serviços públicos locais (o transporte coletivo <strong>tem caráter essencial</strong>); <strong>manter, com cooperação técnica e financeira da União e do Estado, programas de educação pré-escolar e de ensino fundamental</strong>; constituir a Guarda Municipal.</span></li>
+          <li><span class="art">Art. 7º</span><span><strong>Competência comum</strong> com União e Estado: cuidar da saúde e da <strong>proteção das pessoas com deficiência</strong>; proporcionar meios de acesso à cultura, à educação e à ciência; combater as causas da pobreza.</span></li>
+          <li><span class="art">Art. 8º</span><span><strong>Competência suplementar:</strong> complementar as legislações federal e estadual no que for de interesse local.</span></li>
+          <li><span class="art hot">Art. 66</span><span><strong>Pegadinha clássica.</strong> Em Santos os princípios são <strong>seis</strong>: legalidade, impessoalidade, moralidade, publicidade, eficiência <strong>e interesse público</strong>. A Constituição Federal traz cinco (LIMPE); a Lei Orgânica acrescenta o interesse público.</span></li>
+          <li><span class="art">Art. 67</span><span>Investidura depende de <strong>concurso público</strong> de provas ou de provas e títulos. Validade do concurso: <strong>até 2 anos, prorrogável uma vez por igual período</strong>. Acumulação remunerada é vedada, salvo com compatibilidade de horários: dois cargos de professor; um de professor com outro técnico ou científico; dois privativos de profissionais de saúde.</span></li>
+          <li><span class="art">Art. 72–73</span><span>Cargos são criados por lei, em número certo. O regime jurídico único é o <strong>estatutário</strong>.</span></li>
+          <li><span class="art">Art. 197</span><span>O Município responde <strong>prioritariamente pela educação infantil (creches e pré-escolas) e pelo ensino fundamental</strong>. A matrícula é feita preferencialmente na escola municipal <strong>mais próxima da residência</strong>, priorizando alunos com deficiência.</span></li>
+          <li><span class="art">Art. 199</span><span><strong>Gestão democrática:</strong> participação da sociedade, prestação de contas e <strong>conselhos deliberativos permanentes em todas as unidades escolares</strong>, formados por estudantes, professores, pais e funcionários.</span></li>
+          <li><span class="art">Art. 202</span><span>Conselho Municipal de Educação — órgão normativo, consultivo e deliberativo.</span></li>
+          <li><span class="art hot">Art. 203</span><span><strong>Decore este número.</strong> Santos aplica no mínimo <strong>30% da receita de impostos</strong> na manutenção e no desenvolvimento do ensino. O mínimo da Constituição Federal para municípios é 25% — a banca adora essa diferença.</span></li>
+          <li><span class="art">Art. 205</span><span>Ensino religioso: disciplina de <strong>matrícula facultativa</strong>, em horário normal.</span></li>
+          <li><span class="art">Art. 226–230</span><span>A <strong>família é o espaço preferencial</strong> de atendimento da criança, do adolescente e do idoso. O Município garante centro de recebimento e encaminhamento de denúncias de violência contra crianças e adolescentes, inclusive no âmbito familiar, e mantém o <strong>Conselho Municipal dos Direitos da Criança e do Adolescente (CMDCA)</strong>.</span></li>
+        </ul>
+      </div>
+
+      <!-- 4623 -->
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Lei 4.623/1984 — Estatuto dos Funcionários Públicos Municipais de Santos</h3>
+          <span class="eyebrow">municipal</span>
+        </div>
+        <p class="fine">A lei que vai reger a vida funcional dela se passar. É a mais cobrada das municipais, e a mais decoreba.</p>
+        <ul class="flat">
+          <li><span class="art">Art. 12</span><span><strong>Oito formas de provimento:</strong> nomeação, promoção, acesso, transferência, reintegração, readmissão, reversão e aproveitamento.</span></li>
+          <li><span class="art">Art. 13</span><span>Requisitos: ser brasileiro, 18 anos, gozo dos direitos políticos, quite com obrigações militares, boa conduta, boa saúde, habilitação profissional e <strong>aprovação prévia em concurso</strong>.</span></li>
+          <li><span class="art">Art. 22</span><span>Estabilidade após <strong>2 anos</strong> de exercício, pelo texto do Estatuto. <em>Atenção:</em> a Constituição Federal, após a Emenda 19/1998, prevê 3 anos. Se a questão citar o Estatuto, responda 2; se citar a Constituição, 3.</span></li>
+          <li><span class="art hot">Art. 28–29</span><span><strong>Posse em 30 dias</strong> contados da publicação do ato de provimento, prorrogáveis por igual período. Não tomando posse no prazo, <strong>o ato de provimento é tornado sem efeito</strong>.</span></li>
+          <li><span class="art hot">Art. 52</span><span><strong>Exercício em 30 dias</strong> contados da posse, prorrogáveis por até mais 30. Quem não entra em exercício no prazo é <strong>exonerado</strong>.</span></li>
+          <li><span class="art">Art. 54</span><span>Interromper o exercício por <strong>mais de 30 dias consecutivos</strong> sem motivo justificado é <strong>abandono de cargo</strong>.</span></li>
+        </ul>
+        <hr>
+        <h4>Art. 222 — os doze deveres do funcionário</h4>
+        <ol class="clean">
+          <li>Ser <strong>assíduo e pontual</strong>;</li>
+          <li>Cumprir as ordens superiores, <strong>representando quando forem manifestamente ilegais</strong>;</li>
+          <li>Desempenhar com <strong>zelo e presteza</strong> os trabalhos;</li>
+          <li>Guardar <strong>sigilo</strong> sobre assuntos da Administração;</li>
+          <li>Tratar com <strong>urbanidade</strong> os colegas e o público em geral;</li>
+          <li>Residir no Município ou, mediante autorização, em localidade próxima;</li>
+          <li>Manter atualizada a declaração de família, residência e domicílio;</li>
+          <li>Zelar pela economia do material e pela conservação do que estiver sob sua guarda;</li>
+          <li>Apresentar-se convenientemente trajado ou com o uniforme determinado;</li>
+          <li>Cooperar e manter espírito de solidariedade com os colegas;</li>
+          <li>Estar em dia com leis, regulamentos, instruções e ordens de serviço;</li>
+          <li>Proceder, pública e particularmente, de forma que <strong>dignifique a função pública</strong>.</li>
+        </ol>
+        <p class="fine">O inciso II é o mais cobrado: a ordem se cumpre, <strong>mas ordem manifestamente ilegal se representa</strong> — não se cumpre calado, nem simplesmente se recusa.</p>
+        <hr>
+        <h4>Art. 223 — proibições (as que mais caem)</h4>
+        <ul class="clean">
+          <li>Referir-se <strong>depreciativamente</strong> às autoridades e aos atos da Administração, por qualquer meio de divulgação;</li>
+          <li><strong>Retirar documento ou objeto</strong> da unidade sem prévia permissão;</li>
+          <li><strong>Valer-se da condição de funcionário</strong> para obter proveito pessoal;</li>
+          <li>Entreter-se, no horário de trabalho, em conversas, leituras ou atividades estranhas ao serviço;</li>
+          <li><strong>Empregar material do serviço público para fins particulares</strong>;</li>
+          <li>Fazer circular <strong>rifas ou listas de donativos</strong> no local de trabalho;</li>
+          <li>Receber estipêndios de fornecedores ou entidades fiscalizadas;</li>
+          <li>Exercer comércio entre colegas no local de trabalho.</li>
+        </ul>
+        <hr>
+        <h4>Art. 228 — as seis penas disciplinares</h4>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Pena</th><th>Quando se aplica</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Repreensão</strong></td><td>Por escrito, em caso de indisciplina ou descumprimento dos deveres. Havendo <strong>dolo ou má-fé</strong>, sobe para suspensão.</td></tr>
+              <tr><td><strong>Suspensão</strong></td><td>Máximo de <strong>90 dias</strong>. Aplicada à violação das proibições e à reincidência em falta já punida com repreensão. O suspenso perde todos os direitos e vantagens do período.</td></tr>
+              <tr><td><strong>Multa</strong></td><td>Prevista no rol de penas do artigo 228.</td></tr>
+              <tr><td><strong>Demissão</strong></td><td>Abandono de cargo (mais de 30 dias consecutivos); faltas sem justa causa por mais de <strong>60 dias interpolados</strong> no ano; procedimento irregular grave; acumulação proibida com má-fé; ofensas físicas em serviço; ineficiência.</td></tr>
+              <tr><td><strong>Demissão a bem do serviço público</strong></td><td>Incontinência pública e escandalosa; crime contra a Administração; revelar segredo dolosamente; insubordinação grave; lesar o patrimônio público; <strong>receber propina</strong>; pedir empréstimo a quem tem interesse na repartição; conceder vantagem ilícita; advocacia administrativa.</td></tr>
+              <tr><td><strong>Cassação de aposentadoria ou disponibilidade</strong></td><td>Falta grave praticada em atividade, apurada em até 180 dias após a aposentadoria; aceitar ilegalmente cargo público; praticar usura.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="flat" style="margin-top:2px">
+          <li><span class="art">Art. 224 e 227</span><span>O funcionário responde <strong>civil, penal e administrativamente</strong>, e as três esferas são <strong>independentes</strong> entre si.</span></li>
+          <li><span class="art">Art. 241</span><span>Quem aplica: <strong>o Prefeito</strong> (demissão, multa e suspensão acima de 30 dias); <strong>Secretários</strong> (até 30 dias); <strong>Chefes de Departamento</strong> (até 15 dias); <strong>demais chefias</strong> (repreensão e suspensão até 5 dias).</span></li>
+          <li><span class="art">Art. 243</span><span>Prescrição: <strong>2 anos</strong> para repreensão, multa e suspensão; <strong>5 anos</strong> para as demais faltas.</span></li>
+        </ul>
+      </div>
+
+      <!-- LC 1253 -->
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Lei Complementar 1.253/2024 — organização da Administração de Santos</h3>
+          <span class="eyebrow">municipal</span>
+        </div>
+        <ul class="flat">
+          <li><span class="art">Art. 3º</span><span>Conceitos: <strong>órgão</strong> (centro de competências, sem personalidade própria); <strong>entidade</strong> (pessoa jurídica criada por lei ou autorização, atua de forma descentralizada); <strong>unidade administrativa</strong>; <strong>autoridade</strong> (agente com poder de decisão).</span></li>
+          <li><span class="art">Art. 4º</span><span><strong>Administração direta:</strong> Gabinete do Prefeito, Gabinete do Vice-Prefeito, Secretarias Municipais, Procuradoria Geral do Município e Ouvidoria, Transparência e Controle.</span></li>
+          <li><span class="art">Art. 18</span><span>A estrutura básica tem <strong>21 órgãos</strong>. A <strong>Secretaria Municipal de Educação</strong> é o inciso VI. Vale saber que existem também a Secretaria das Prefeituras Regionais, a de Desenvolvimento Social, a de Segurança e a da Mulher, da Cidadania, da Diversidade e dos Direitos Humanos.</span></li>
+          <li><span class="art">Art. 19–20</span><span><strong>Administração indireta:</strong> autarquias, fundações públicas, empresas públicas, sociedades de economia mista e consórcios públicos. Todas sujeitas à <strong>supervisão do Chefe do Poder Executivo</strong>.</span></li>
+          <li><span class="art">Art. 31</span><span>Cabe à Secretaria de Educação garantir a universalização dos níveis de ensino sob responsabilidade do Município e os direitos de aprendizagem estabelecidos no <strong>Currículo Santista</strong>, e gerenciar os equipamentos públicos de educação.</span></li>
+        </ul>
+      </div>
+
+      <!-- ECA -->
+      <div class="card rule-hot">
+        <div class="card-top">
+          <h3>Lei 8.069/1990 — Estatuto da Criança e do Adolescente</h3>
+          <span class="eyebrow" style="color:var(--alert)">a mais importante</span>
+        </div>
+        <ul class="flat">
+          <li><span class="art hot">Art. 2º</span><span><strong>Criança:</strong> até 12 anos <strong>incompletos</strong>. <strong>Adolescente:</strong> entre 12 e 18 anos. Cai quase sempre.</span></li>
+          <li><span class="art hot">Art. 4º</span><span><strong>Prioridade absoluta</strong>, que se traduz em: primazia de receber proteção e socorro; precedência de atendimento nos serviços públicos; preferência na formulação de políticas; destinação privilegiada de recursos.</span></li>
+          <li><span class="art hot">Art. 5º</span><span>Nenhuma criança ou adolescente será objeto de <strong>negligência, discriminação, exploração, violência, crueldade e opressão</strong> — decore esta lista de seis; ela reaparece no edital palavra por palavra.</span></li>
+          <li><span class="art">Art. 13</span><span>Casos de <strong>suspeita ou confirmação</strong> de castigo físico, tratamento cruel ou degradante e maus-tratos são obrigatoriamente comunicados ao <strong>Conselho Tutelar</strong>. Suspeita já basta — não é preciso ter certeza.</span></li>
+          <li><span class="art">Art. 18-A</span><span>Direito de ser educado <strong>sem uso de castigo físico ou tratamento cruel ou degradante</strong>.</span></li>
+          <li><span class="art">Art. 53</span><span>Direito à educação, incluindo: igualdade de condições de acesso e permanência; <strong>direito de ser respeitado por seus educadores</strong>; direito de contestar critérios avaliativos; direito de organização e participação em entidades estudantis; escola pública e gratuita próxima da residência.</span></li>
+          <li><span class="art hot">Art. 56</span><span>Os dirigentes de estabelecimentos de ensino fundamental comunicarão ao <strong>Conselho Tutelar</strong>: <strong>I</strong> maus-tratos envolvendo alunos; <strong>II</strong> reiteração de faltas injustificadas e evasão escolar, esgotados os recursos escolares; <strong>III</strong> elevados níveis de repetência.</span></li>
+          <li><span class="art">Art. 70 e 245</span><span>É <strong>dever de todos</strong> prevenir a ocorrência de ameaça ou violação de direitos. Deixar de comunicar maus-tratos é infração punida.</span></li>
+        </ul>
+        <div class="note">
+          <span class="eyebrow">Conselho Tutelar × Direção da escola</span>
+          <p>Na prática do inspetor: a comunicação sobe pela <strong>direção da unidade</strong>, que aciona o Conselho Tutelar. Se a alternativa disser que o inspetor deve “resolver com a família” ou “aguardar confirmar”, está errada. Se disser que ele comunica à gestão para o encaminhamento devido, está certa.</p>
+        </div>
+      </div>
+
+      <!-- LBI -->
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Lei 13.146/2015 — Lei Brasileira de Inclusão</h3>
+          <span class="eyebrow">federal</span>
+        </div>
+        <ul class="flat">
+          <li><span class="art">Conceito</span><span>Pessoa com deficiência é a que tem <strong>impedimento de longo prazo</strong> de natureza física, mental, intelectual ou sensorial que, <strong>em interação com uma ou mais barreiras</strong>, pode obstruir sua participação plena e efetiva na sociedade em igualdade de condições. A deficiência está na interação com a barreira, não só na pessoa.</span></li>
+          <li><span class="art hot">Barreiras</span><span>São <strong>seis tipos</strong>: <strong>urbanísticas</strong>, <strong>arquitetônicas</strong>, <strong>nos transportes</strong>, <strong>nas comunicações e na informação</strong>, <strong>atitudinais</strong> e <strong>tecnológicas</strong>. A barreira atitudinal é a do preconceito — a mais cobrada no contexto escolar.</span></li>
+          <li><span class="art">Conceitos</span><span><strong>Acessibilidade</strong>, <strong>desenho universal</strong> (serve a todos sem adaptação), <strong>tecnologia assistiva</strong>, <strong>adaptações razoáveis</strong>, <strong>atendente pessoal</strong> e <strong>acompanhante</strong>.</span></li>
+          <li><span class="art">Educação</span><span>Direito a <strong>sistema educacional inclusivo em todos os níveis</strong>, com aprendizado ao longo da vida. É <strong>vedado cobrar valor adicional</strong> de aluno com deficiência por causa da matrícula ou do apoio.</span></li>
+          <li><span class="art">Dever</span><span>É dever <strong>do Estado, da sociedade e da família</strong> assegurar os direitos da pessoa com deficiência — com prioridade.</span></li>
+        </ul>
+      </div>
+
+      <!-- 14811 -->
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Lei 14.811/2024 — violência contra crianças e <em>bullying</em></h3>
+          <span class="eyebrow">federal</span>
+        </div>
+        <ul class="clean">
+          <li>Instituiu a <strong>Política Nacional de Prevenção e Enfrentamento da Violência contra Crianças e Adolescentes</strong>, com foco em estabelecimentos educacionais e similares.</li>
+          <li>Tornou <strong>crime</strong> a intimidação sistemática (<em>bullying</em>): intimidar de forma <strong>intencional e repetitiva</strong>, individualmente ou em grupo, por violência física ou psicológica, mediante humilhação, intimidação ou discriminação — pena de multa, se o fato não constituir crime mais grave.</li>
+          <li><strong>Cyberbullying</strong>, praticado por rede de computadores, rede social, aplicativo, jogo eletrônico ou qualquer meio digital: <strong>reclusão de 2 a 4 anos e multa</strong> — pena bem maior que a do <em>bullying</em> presencial.</li>
+          <li>Incluiu no rol dos <strong>crimes hediondos</strong> o induzimento ao suicídio ou à automutilação contra criança ou adolescente e o sequestro de menores.</li>
+          <li>Criou o cadastro nacional de pessoas condenadas por crimes contra criança e adolescente e impôs às escolas o dever de adotar medidas de prevenção e notificação.</li>
+        </ul>
+        <p class="fine">Complementa a Lei 13.185/2015, que já classificava o <em>bullying</em> em verbal, moral, sexual, social, psicológico, físico, material e virtual.</p>
+      </div>
+
+      <!-- Atendimento -->
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Lei 13.460/2017 — direitos do usuário de serviços públicos</h3>
+          <span class="eyebrow">federal</span>
+        </div>
+        <ul class="clean">
+          <li>Diretrizes do bom atendimento: <strong>atendimento por ordem de chegada</strong>; igualdade de tratamento; cumprimento de prazos; <strong>urbanidade, respeito, acessibilidade e cortesia</strong>; instalações limpas, sinalizadas e acessíveis; <strong>eliminação de formalidades desnecessárias</strong>; <strong>linguagem simples e compreensível</strong>; vedação de exigir prova de fato já comprovado.</li>
+          <li><strong>Carta de Serviços ao Usuário:</strong> documento que informa quais serviços o órgão oferece, como acessá-los e quais os compromissos de prazo e qualidade.</li>
+          <li>Manifestações do usuário: <strong>reclamação, denúncia, sugestão, elogio e solicitação</strong>, recebidas pela <strong>ouvidoria</strong>, que responde em <strong>30 dias, prorrogáveis por mais 30</strong>.</li>
+          <li>O usuário também tem deveres: agir com <strong>boa-fé</strong>, prestar informações, colaborar e <strong>preservar o patrimônio público</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Lei 10.048/2000 — atendimento prioritário</h3>
+          <span class="eyebrow">federal</span>
+        </div>
+        <p>Têm direito a <strong>atendimento prioritário, imediato e diferenciado</strong>: <strong>pessoas com deficiência</strong>, <strong>idosos com 60 anos ou mais</strong>, <strong>gestantes</strong>, <strong>lactantes</strong>, <strong>pessoas com criança de colo</strong>, <strong>pessoas obesas</strong> e <strong>doadores de sangue</strong>.</p>
+        <p class="fine">Entre os próprios prioritários, a preferência é de quem tem <strong>80 anos ou mais</strong>. Prioridade não é “furar fila quando dá” — é dever do serviço público.</p>
+      </div>
+
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Lei 12.527/2011 — Acesso à Informação</h3>
+          <span class="eyebrow">federal</span>
+        </div>
+        <ul class="clean">
+          <li><strong>Publicidade é a regra; sigilo, a exceção.</strong> Frase literal de prova.</li>
+          <li><strong>Transparência ativa:</strong> o órgão publica por conta própria (portal, site, mural). <strong>Transparência passiva:</strong> publica em resposta a um pedido.</li>
+          <li>O pedido não exige justificativa. A resposta deve ser <strong>imediata</strong> se disponível; senão, em até <strong>20 dias, prorrogáveis por mais 10</strong>.</li>
+          <li>Graus de sigilo: <strong>ultrassecreta (25 anos), secreta (15 anos), reservada (5 anos)</strong>.</li>
+          <li><strong>Informações pessoais</strong> têm acesso restrito por <strong>100 anos</strong>, independentemente de classificação — é o que protege os dados dos alunos.</li>
+        </ul>
+      </div>
+
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Lei 13.709/2018 — LGPD</h3>
+          <span class="eyebrow">federal</span>
+        </div>
+        <ul class="clean">
+          <li><strong>Dado pessoal:</strong> informação que identifica ou pode identificar alguém. <strong>Dado pessoal sensível:</strong> origem racial ou étnica, convicção religiosa, opinião política, filiação sindical ou a organização religiosa, filosófica ou política, e dado referente à <strong>saúde, à vida sexual, genético ou biométrico</strong>.</li>
+          <li>Papéis: <strong>titular</strong> (a quem o dado pertence), <strong>controlador</strong>, <strong>operador</strong>, <strong>encarregado</strong> e a <strong>ANPD</strong>.</li>
+          <li>Princípios mais cobrados: <strong>finalidade, adequação, necessidade</strong> (usar o mínimo de dado indispensável), transparência, segurança, prevenção, não discriminação e responsabilização.</li>
+          <li><strong>Dados de crianças e adolescentes</strong> são tratados no seu <strong>melhor interesse</strong>; os de criança exigem consentimento específico e em destaque de um dos pais ou do responsável legal.</li>
+          <li>Na escola isso significa: não repassar telefone, endereço, foto ou informação de saúde de aluno a quem não é da unidade; não deixar lista de alunos exposta; não fotografar aluno para uso pessoal ou rede social.</li>
+        </ul>
+      </div>
+
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Lei 14.129/2021 — Governo Digital</h3>
+          <span class="eyebrow">federal</span>
+        </div>
+        <p>Cobrada em noções. Princípios: <strong>desburocratização, autosserviço, atendimento multicanal, presunção de boa-fé</strong> do cidadão e uso de meios eletrônicos. Ponto mais cobrado: o cidadão <strong>não é obrigado a apresentar documento que o próprio Poder Público já possui</strong>.</p>
+      </div>
+
+      <div class="card rule">
+        <div class="card-top">
+          <h3>Conduta e princípios do servidor público</h3>
+          <span class="eyebrow">síntese</span>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Princípio</th><th>O que significa na escola</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Legalidade</strong></td><td>Só fazer o que a lei autoriza. Não basta não ser proibido.</td></tr>
+              <tr><td><strong>Impessoalidade</strong></td><td>Tratar todos os alunos e famílias igualmente, sem favorecer conhecido nem prejudicar desafeto.</td></tr>
+              <tr><td><strong>Moralidade</strong></td><td>Agir com honestidade e boa-fé, além da letra da lei.</td></tr>
+              <tr><td><strong>Publicidade</strong></td><td>Os atos são transparentes — salvo o que é sigiloso por lei, como dados de aluno.</td></tr>
+              <tr><td><strong>Eficiência</strong></td><td>Fazer bem-feito, no prazo, com o menor desperdício.</td></tr>
+              <tr><td><strong>Interesse público</strong></td><td>Acrescentado pela Lei Orgânica de Santos: o interesse da coletividade vem antes do particular.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="note warn">
+        <span class="eyebrow">Cuidado com as versões das leis municipais</span>
+        <p>O edital manda considerar a legislação <strong>com as alterações vigentes até 17/07/2026</strong>. O texto consolidado do Estatuto disponível no portal da Prefeitura traz revisão até novembro de 2001, e pode haver alterações posteriores. Vale conferir a versão atual em <span class="mono">egov.santos.sp.gov.br/legis</span> antes de decorar prazos e números.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INFORMÁTICA ============ -->
+  <section id="informatica">
+    <div class="block-head">
+      <h2>Informática, Comunicação e Rotinas Escolares</h2>
+      <div class="pts">12<small>pontos · 6 questões</small></div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <h3>Windows</h3>
+        <ul class="clean">
+          <li>Área de trabalho, janelas, menus, <strong>pastas e arquivos</strong>, atalhos, pesquisa, organização de diretórios.</li>
+          <li>Copiar, mover, renomear e excluir. <strong>Excluir vai para a Lixeira</strong>; <code>Shift + Delete</code> apaga em definitivo.</li>
+          <li>Armazenamento local (disco, pen drive) × <strong>em nuvem</strong> (OneDrive, Google Drive): a nuvem permite acessar de outro computador e não se perde se a máquina quebrar.</li>
+          <li>Atalhos: <code>Ctrl+C</code> copiar, <code>Ctrl+X</code> recortar, <code>Ctrl+V</code> colar, <code>Ctrl+Z</code> desfazer, <code>Ctrl+S</code> salvar, <code>Ctrl+P</code> imprimir, <code>Ctrl+F</code> localizar, <code>Ctrl+A</code> selecionar tudo.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Editor de textos</h3>
+        <p>Criar, editar, formatar e revisar documentos simples: fontes, parágrafos, <strong>alinhamento</strong> (esquerda, centralizado, direita, justificado), espaçamento, listas, tabelas, verificação ortográfica.</p>
+        <p class="fine"><strong>Salvar</strong> grava no formato do editor; <strong>Salvar como</strong> cria outra cópia ou muda o formato; <strong>exportar para PDF</strong> gera um arquivo que não se edita — o formato certo para enviar comunicado pronto.</p>
+      </div>
+
+      <div class="card rule">
+        <h3>Planilhas — as fórmulas que caem</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Fórmula</th><th>O que faz</th><th>Exemplo</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">=SOMA()</td><td>Soma um intervalo</td><td class="mono">=SOMA(A1:A30)</td></tr>
+              <tr><td class="mono">=MÉDIA()</td><td>Média aritmética</td><td class="mono">=MÉDIA(B2:B10)</td></tr>
+              <tr><td class="mono">=MÁXIMO()</td><td>Maior valor</td><td class="mono">=MÁXIMO(C2:C40)</td></tr>
+              <tr><td class="mono">=MÍNIMO()</td><td>Menor valor</td><td class="mono">=MÍNIMO(C2:C40)</td></tr>
+              <tr><td class="mono">=CONT.NÚM()</td><td>Conta células com número</td><td class="mono">=CONT.NÚM(A1:A50)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="clean">
+          <li>Toda fórmula começa com <strong>=</strong>. <code>A1:A30</code> é um <strong>intervalo</strong>; <code>A1;A30</code> são duas células soltas.</li>
+          <li><strong>Coluna</strong> é vertical e tem letra; <strong>linha</strong> é horizontal e tem número; o cruzamento é a <strong>célula</strong> (A1).</li>
+          <li>Porcentagem: para saber 15% de uma célula, <code>=A1*15%</code> ou <code>=A1*0,15</code>.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Internet, e-mail e segurança</h3>
+        <ul class="clean">
+          <li>Navegação, pesquisa, <strong>sites oficiais</strong> (terminados em <code>.gov.br</code> para órgãos públicos), download, anexos.</li>
+          <li>E-mail: <strong>Para</strong> (destinatário), <strong>Cc</strong> (cópia, todos veem), <strong>Cco</strong> (cópia oculta, os destinatários não se veem — o certo ao mandar comunicado para muitas famílias), <strong>Responder</strong>, <strong>Responder a todos</strong> e <strong>Encaminhar</strong>.</li>
+          <li><strong><em>Phishing</em></strong>: mensagem falsa que se passa por banco, órgão ou colega para roubar senha ou dado. Sinais: urgência exagerada, erro de português, link estranho, pedido de senha. <strong>Nunca clicar, nunca responder, avisar o setor responsável.</strong></li>
+          <li><strong>Malware</strong> é o nome geral de programa malicioso; <strong>vírus</strong> é um tipo dele; <strong><em>ransomware</em></strong> sequestra arquivos e pede resgate.</li>
+          <li>Senha forte: longa, com letras, números e símbolos, <strong>não compartilhada</strong> e diferente para cada sistema. <strong>Backup</strong> é cópia de segurança — a única defesa que funciona depois do estrago.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Rotinas escolares e comunicação</h3>
+        <ul class="clean">
+          <li>Atendimento presencial, telefônico e eletrônico; recepção e orientação de alunos, famílias, visitantes e servidores.</li>
+          <li>Registro e encaminhamento de solicitações; recebimento e transmissão de recados.</li>
+          <li><strong>Controle de entrada, saída e circulação de pessoas.</strong></li>
+          <li>Preenchimento de formulários, planilhas, cadastros, listas, comunicados e <strong>registros de ocorrência</strong>.</li>
+        </ul>
+        <p class="fine">Ao telefone: identificar a escola e a si mesmo, ouvir, anotar (quem ligou, para quem, assunto, telefone, data e hora), confirmar o recado repetindo, encaminhar. Não passar informação de aluno por telefone sem confirmar quem está do outro lado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PORTUGUÊS ============ -->
+  <section id="portugues">
+    <div class="block-head">
+      <h2>Língua Portuguesa</h2>
+      <div class="pts">10<small>pontos · 10 questões</small></div>
+    </div>
+
+    <div class="stack">
+      <div class="note">
+        <span class="eyebrow">O que este edital NÃO cobra</span>
+        <p>O programa de Inspetor de Alunos <strong>não inclui crase, regência nem colocação pronominal</strong> — que aparecem em outros cargos do mesmo edital. Não gaste tempo com eles. O peso da matéria é 1: o objetivo aqui é acertar o que é fácil e não travar.</p>
+      </div>
+
+      <div class="card rule">
+        <h3>Interpretação de texto — a maior fatia</h3>
+        <ul class="clean">
+          <li><strong>Ler a pergunta antes do texto.</strong> Saber o que se procura muda a leitura.</li>
+          <li>A resposta certa está <strong>no texto</strong>, não na opinião de quem lê. Informação <strong>explícita</strong> está escrita; <strong>implícita</strong> se deduz do que está escrito — mas ainda se apoia nele.</li>
+          <li>Desconfie de alternativa com <strong>“sempre”, “nunca”, “todos”, “nenhum”, “apenas”</strong>: o exagero costuma ser o erro.</li>
+          <li>Cuidado com a alternativa <strong>verdadeira, mas que não está no texto</strong>. É a pegadinha mais comum.</li>
+          <li><strong>Gêneros do dia a dia escolar</strong> caem muito neste cargo: aviso, comunicado, bilhete, e-mail, formulário, instrução, regra de convivência, cartaz, placa, <strong>registro de ocorrência</strong>. Saber para que serve cada um e que linguagem usa já responde a questão.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Conectivos — o que cada um sinaliza</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Relação</th><th>Conectivos</th></tr></thead>
+            <tbody>
+              <tr><td>Causa</td><td>porque, pois, já que, uma vez que, como</td></tr>
+              <tr><td>Consequência</td><td>portanto, logo, por isso, de modo que, assim</td></tr>
+              <tr><td>Oposição</td><td>mas, porém, contudo, todavia, entretanto, no entanto</td></tr>
+              <tr><td>Finalidade</td><td>para, a fim de, para que</td></tr>
+              <tr><td>Condição</td><td>se, caso, desde que, contanto que</td></tr>
+              <tr><td>Tempo</td><td>quando, enquanto, assim que, logo que</td></tr>
+              <tr><td>Comparação</td><td>como, tal qual, assim como, mais que</td></tr>
+              <tr><td>Adição</td><td>e, também, além disso, ademais</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine"><strong>Coesão</strong> é o encaixe das palavras e frases (conectivos, pronomes que substituem termos já ditos). <strong>Coerência</strong> é o sentido geral fazer sentido. Um texto pode ser coeso e incoerente.</p>
+      </div>
+
+      <div class="card">
+        <h3>Gramática — o essencial</h3>
+        <ul class="clean">
+          <li><strong>Concordância verbal:</strong> o verbo concorda com o sujeito. <em>Os alunos chegaram</em> (não “chegou”). Cuidado com sujeito distante do verbo — ache o sujeito perguntando “quem?” ao verbo.</li>
+          <li><strong>Concordância nominal:</strong> artigo, adjetivo e numeral concordam com o substantivo. <em>Muitos alunos atrasados</em>.</li>
+          <li><strong>Vírgula:</strong> separa itens de enumeração, isola o vocativo (<em>Alunos, entrem em fila</em>), isola explicações e marca termo deslocado da ordem direta (<em>Na entrada, o inspetor organiza a fila</em>). <strong>Nunca separa sujeito de verbo nem verbo de complemento.</strong></li>
+          <li><strong>Ordem direta:</strong> sujeito → verbo → complemento. Reescrever em ordem direta é um pedido frequente.</li>
+          <li><strong>Acentuação:</strong> oxítonas terminadas em a(s), e(s), o(s), em(ens); todas as paroxítonas que <em>não</em> terminam nessas letras; <strong>todas as proparoxítonas</strong>. Hiato: <em>saída, país, juízo</em>.</li>
+          <li><strong>Maiúsculas:</strong> início de frase, nomes próprios, nomes de instituição (<em>Secretaria Municipal de Educação</em>). Cargos genéricos vão em minúscula (<em>o inspetor de alunos</em>).</li>
+          <li><strong>Reescrita mantendo o sentido:</strong> troque o conectivo por outro da mesma relação e verifique se a frase continua dizendo a mesma coisa — a maior armadilha é trocar oposição por causa.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MATEMÁTICA ============ -->
+  <section id="matematica">
+    <div class="block-head">
+      <h2>Matemática</h2>
+      <div class="pts">6<small>pontos · 6 questões</small></div>
+    </div>
+
+    <div class="stack">
+      <p class="fine">A matéria de menor peso da prova. Vale garantir o básico e não perder tempo — mas as questões são aplicadas ao dia a dia da escola (contagem de alunos, filas, horários, distribuição de materiais, conferência de listas), o que costuma facilitar.</p>
+
+      <div class="card rule">
+        <h3>Regra de três simples</h3>
+        <p>O conteúdo que mais aparece. Monte duas colunas, veja se a relação é direta ou inversa e multiplique em cruz.</p>
+        <p><strong>Direta</strong> (aumenta um, aumenta o outro): 3 caixas para 60 alunos; quantas para 100? <span class="mono">3/60 = x/100 → x = 5 caixas.</span></p>
+        <p><strong>Inversa</strong> (aumenta um, diminui o outro): 4 inspetores organizam a fila em 30 min; 6 inspetores em quanto tempo? <span class="mono">4 × 30 = 6 × x → x = 20 min.</span></p>
+      </div>
+
+      <div class="card">
+        <h3>Porcentagem</h3>
+        <ul class="clean">
+          <li><strong>Achar a porcentagem de um valor:</strong> multiplique pelo decimal. 20% de 350 alunos = <span class="mono">350 × 0,20 = 70</span>.</li>
+          <li><strong>Achar quantos por cento é:</strong> divida e multiplique por 100. 70 de 350 = <span class="mono">70 ÷ 350 = 0,20 = 20%</span>.</li>
+          <li><strong>Acréscimo:</strong> multiplique por 1 + a taxa (aumento de 12% → <span class="mono">× 1,12</span>). <strong>Desconto:</strong> por 1 − a taxa (desconto de 15% → <span class="mono">× 0,85</span>).</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Conversões que caem</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Grandeza</th><th>Equivalências</th></tr></thead>
+            <tbody>
+              <tr><td>Comprimento</td><td>1 km = 1.000 m · 1 m = 100 cm · 1 cm = 10 mm</td></tr>
+              <tr><td>Massa</td><td>1 t = 1.000 kg · 1 kg = 1.000 g</td></tr>
+              <tr><td>Capacidade</td><td>1 L = 1.000 mL · 1 m³ = 1.000 L</td></tr>
+              <tr><td>Tempo</td><td>1 h = 60 min · 1 min = 60 s · 1 dia = 24 h</td></tr>
+              <tr><td>Área</td><td>1 m² = 10.000 cm² (o quadrado dobra o número de zeros)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine">Nas contas de tempo, converta tudo para minutos antes de somar. 2h15 + 1h50 → 135 + 110 = 245 min = <strong>4h05</strong>.</p>
+      </div>
+
+      <div class="card">
+        <h3>O resto do básico</h3>
+        <ul class="clean">
+          <li><strong>Média aritmética:</strong> some tudo e divida pela quantidade de valores.</li>
+          <li><strong>Frações:</strong> para somar, iguale os denominadores. <span class="mono">1/2 + 1/4 = 2/4 + 1/4 = 3/4</span>. Fração vira decimal dividindo em cima por embaixo.</li>
+          <li><strong>Expressões numéricas:</strong> primeiro parênteses, depois multiplicação e divisão, por último soma e subtração.</li>
+          <li><strong>Tabelas e gráficos:</strong> ler primeiro o título e a legenda, depois o que a pergunta pede. A pegadinha costuma estar na unidade (mil? %? por turma?).</li>
+          <li><strong>Sistema monetário:</strong> cuidado com centavos e com troco em problemas de compra de material.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIA DA PROVA ============ -->
+  <section id="prova">
+    <div class="block-head">
+      <h2>Datas e dia da prova</h2>
+      <div class="pts">11/10<small>domingo</small></div>
+    </div>
+
+    <div class="stack">
+      <div class="tw">
+        <table>
+          <thead><tr><th>Data</th><th>O que acontece</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">04/09/2026</td><td>Divulgação dos inscritos e do resultado dos pedidos de PCD, pessoa negra ou parda e condição especial. <strong>Conferir se a inscrição consta.</strong></td></tr>
+            <tr><td class="mono">09 e 10/09</td><td>Prazo de recurso contra indeferimento de inscrição — só pela aba “recursos” na Área do Candidato.</td></tr>
+            <tr><td class="mono">18/09</td><td>Resultado dos recursos.</td></tr>
+            <tr><td class="mono">02/10</td><td><strong>Convocação para a prova: sai o local e o horário.</strong> Não é enviado por e-mail — é preciso consultar o site do IBAM e o Diário Oficial de Santos.</td></tr>
+            <tr><td class="mono">11/10</td><td><strong>Prova objetiva.</strong></td></tr>
+            <tr><td class="mono">14/10</td><td>Divulgação dos gabaritos.</td></tr>
+            <tr><td class="mono">15 e 16/10</td><td>Recursos contra o gabarito.</td></tr>
+            <tr><td class="mono">17/11</td><td>Resultado dos recursos e notas das provas objetivas.</td></tr>
+            <tr><td class="mono">04/12</td><td>Classificação preliminar.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">O cronograma é estimativo e pode mudar. O acompanhamento é responsabilidade da candidata, pelo site <span class="mono">ibamsp-concursos.org.br</span> e pelo Diário Oficial do Município de Santos.</p>
+
+      <div class="grid2">
+        <div class="card rule">
+          <h3>Levar</h3>
+          <ul class="check">
+            <li><strong>Documento oficial com foto, original</strong> — RG, CIN, CNH, carteira de conselho de classe, reservista, CTPS ou passaporte. Dentro da validade (a CNH é a exceção).</li>
+            <li>Caneta esferográfica de <strong>tinta preta ou azul</strong> (leve duas).</li>
+            <li>Cartão de convocação impresso e comprovante de pagamento (aconselhável).</li>
+            <li>Água e um lanche leve.</li>
+          </ul>
+        </div>
+        <div class="card rule-hot">
+          <h3>Não vale</h3>
+          <ul class="check">
+            <li><strong>Cópia, foto, print ou PDF do documento.</strong> Documento digital só nos aplicativos oficiais do órgão emissor.</li>
+            <li>Celular, <em>smartwatch</em>, calculadora, tablet ou qualquer aparelho eletrônico — <strong>mesmo desligado e lacrado no envelope, se emitir som é eliminação</strong>.</li>
+            <li>Boné, gorro, óculos escuros ou protetor auricular sem justificativa médica.</li>
+            <li>Chegar depois do fechamento dos portões. <strong>Não há segunda chamada, por motivo nenhum.</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Como funciona o tempo</h3>
+        <ul class="clean">
+          <li>Chegar com <strong>60 minutos de antecedência</strong>. A prova é num domingo — conferir antes a linha de ônibus e o horário aos domingos.</li>
+          <li><strong>3h30</strong> de duração, já incluído o preenchimento da folha de respostas.</li>
+          <li>Só é permitido <strong>sair da sala depois de 1h45</strong> (metade do tempo), e sem levar o caderno de questões.</li>
+          <li>O caderno de questões só pode ser levado nos <strong>30 minutos finais</strong>.</li>
+          <li>Os <strong>três últimos</strong> candidatos saem juntos.</li>
+          <li>Sair antes da hora ou não devolver o material <strong>anula a prova</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <span class="eyebrow">Na hora de responder</span>
+        <p>Marcar a folha de respostas <strong>a cada bloco terminado</strong>, não tudo no fim — folha de respostas em branco no minuto final é o erro mais caro que existe. Questão difícil se pula e se volta depois; e como não há desconto por erro, <strong>nenhuma alternativa fica em branco</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="eyebrow">Fontes</span>
+    <p class="fine">Todo o conteúdo de prova, pesos, datas e regras vem do <strong>Edital nº 73/2026 – SEPLA-RH</strong> da Prefeitura Municipal de Santos (IBAM). Os pontos de legislação municipal foram extraídos dos textos oficiais publicados no portal Legis da Prefeitura: <strong>Lei Orgânica do Município de Santos</strong> (consolidada em 10/11/2022), <strong>Lei 4.623/1984</strong> (consolidada em 08/11/2001) e <strong>Lei Complementar 1.253/2024</strong>. Os pontos de legislação federal seguem os textos vigentes das leis citadas.</p>
+    <p class="fine">Este caderno é um apoio de estudo e não substitui a leitura do edital e das leis. Onde houver divergência, vale o texto oficial.</p>
+  </footer>
+
+</div>
+</body>
+</html>

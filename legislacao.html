@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Reta final: os sete pontos de Legislação que mais caem, explicados um a um, com treino.">
+<meta name="theme-color" content="#14574A">
+<title>Reta Final de Legislação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="./prova.css">
+<style>
+  .ponto { scroll-margin-top: 16px; }
+  .ponto-num {
+    font-family: "IBM Plex Mono", monospace; font-size: .7rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--alert);
+  }
+  .pergunta {
+    font-family: Newsreader, Georgia, serif; font-size: 1.1rem; line-height: 1.45;
+    color: var(--ink-2); font-style: italic;
+  }
+  .resposta {
+    background: var(--accent-w); border: 1px solid var(--accent);
+    border-radius: 3px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .resposta .r-label {
+    font-family: "IBM Plex Mono", monospace; font-size: .66rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+  }
+  .resposta .r-txt { font-size: 1.04rem; font-weight: 600; color: var(--ink); }
+  .lei {
+    border-left: 3px solid var(--line-2); padding: 2px 0 2px 14px;
+    font-family: Newsreader, Georgia, serif; font-size: 1rem; line-height: 1.5; color: var(--ink-2);
+  }
+  .lei cite { display: block; font-family: "IBM Plex Mono", monospace; font-size: .68rem;
+    font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin-top: 6px; }
+  .hook {
+    background: var(--sunk); border: 1px dashed var(--line-2); border-radius: 3px;
+    padding: 12px 15px; font-size: .97rem;
+  }
+  .hook b { color: var(--accent); }
+  .armadilhas { display: flex; flex-direction: column; gap: 7px; margin: 0; padding: 0; list-style: none; }
+  .armadilhas li { display: flex; gap: 9px; align-items: flex-start; font-size: .95rem; }
+  .armadilhas li::before {
+    content: "✗"; flex: 0 0 auto; color: var(--alert); font-weight: 700; margin-top: 1px;
+  }
+  .cola { display: flex; flex-direction: column; gap: 0; }
+  .cola-linha {
+    display: grid; grid-template-columns: 1fr; gap: 2px;
+    padding: 11px 0; border-bottom: 1px solid var(--line);
+  }
+  .cola-linha:last-child { border-bottom: 0; }
+  .cola-q { font-size: .92rem; color: var(--ink-2); }
+  .cola-r { font-size: 1rem; font-weight: 600; }
+  @media (min-width: 620px) {
+    .cola-linha { grid-template-columns: 1fr 1fr; gap: 16px; align-items: baseline; }
+  }
+  .alerta-data {
+    background: var(--alert); color: #fff; border-radius: 3px;
+    padding: 13px 16px; display: flex; flex-direction: column; gap: 4px;
+  }
+  .alerta-data .ad-t { font-family: "IBM Plex Mono", monospace; font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+  .alerta-data .ad-m { font-size: 1.02rem; font-weight: 600; }
+  .alerta-data a { color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="mast">
+    <span class="eyebrow">Concurso de Inspetor de Alunos · Santos 2026</span>
+    <h1>Reta Final de Legislação</h1>
+    <p class="lede">Os sete pontos que você anotou, explicados um a um: a resposta, o que a lei diz, as pegadinhas e um jeito de lembrar. No fim, 14 questões de treino e uma cola para reler no sábado à noite.</p>
+    <nav class="kit" aria-label="Material de estudo">
+      <span class="kit-label">Kit de estudo</span>
+      <a href="./index.html">Início</a>
+      <a href="./revisao.html">Voltando a Estudar</a>
+      <a href="./caderno.html">Caderno</a>
+      <a href="./simulado.html">Simulado 1</a>
+      <a href="./simulado2.html">Simulado 2</a>
+      <a href="./treino.html">Treino dos erros</a>
+      <span class="atual">Reta final</span>
+    </nav>
+  </header>
+
+  <div style="padding-top:30px; display:flex; flex-direction:column; gap:16px;">
+    <div class="alerta-data">
+      <span class="ad-t">Faltam 2 dias</span>
+      <span class="ad-m">A prova é domingo, 11 de outubro, e os portões fecham no horário.</span>
+      <span style="font-size:.88rem; opacity:.9">Confira hoje o local e o horário no site do IBAM e leve documento oficial com foto <strong>original</strong> e caneta preta ou azul.</span>
+    </div>
+
+    <div class="card rule-hot">
+      <h3>Por que só Legislação agora</h3>
+      <p>Legislação vale <strong>32 dos 100 pontos</strong> em apenas 8 questões. Cada uma delas vale o mesmo que quatro questões de Português. A dois dias da prova, acertar três questões a mais aqui rende mais do que qualquer outra coisa que dê para estudar.</p>
+      <p class="fine">Os sete pontos abaixo são exatamente os que você anotou. O oitavo tema do bloco — acesso à informação e proteção de dados — está resumido no fim.</p>
+    </div>
+  </div>
+
+  <!-- ====================== PONTO 1 ====================== -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Ponto 1 · Lei Orgânica de Santos</span>
+      <h2>Por que o Município se responsabiliza prioritariamente</h2>
+    </div>
+    <div class="stack">
+      <p class="pergunta">“Conforme a Lei Orgânica do Município de Santos, o Município responsabiliza-se prioritariamente por…”</p>
+
+      <div class="resposta">
+        <span class="r-label">Resposta</span>
+        <span class="r-txt">Educação infantil — em creches e pré-escolas — e ensino fundamental.</span>
+      </div>
+
+      <div class="lei">
+        “O Município responsabilizar-se-á prioritariamente pela educação infantil em creches e pré-escolas, e, da mesma forma, pelo ensino fundamental, inclusive para os que a ele não tiverem acesso na idade própria.”
+        <cite>Lei Orgânica do Município de Santos, art. 197</cite>
+      </div>
+
+      <div class="hook">
+        <b>Para lembrar:</b> o Município cuida dos <b>pequenos</b> — creche, pré-escola e fundamental. O <b>ensino médio é do Estado</b> e o <b>superior é da União</b>. Sempre que a alternativa colocar médio ou superior como responsabilidade do Município, está errada.
+      </div>
+
+      <h4>Armadilhas</h4>
+      <ul class="armadilhas">
+        <li>“Ensino médio e ensino superior” — nenhum dos dois é do Município.</li>
+        <li>“Apenas creches” — o fundamental também é, e com a mesma prioridade.</li>
+        <li>“Educação de jovens e adultos” — o artigo fala em atender também “os que não tiveram acesso na idade própria”, mas a responsabilidade nomeada é a educação infantil e o fundamental.</li>
+      </ul>
+
+      <div class="card">
+        <h4>Dois detalhes do mesmo artigo que também caem</h4>
+        <ul class="clean">
+          <li>A matrícula é feita <strong>preferencialmente na escola municipal mais próxima da residência</strong>, priorizando os alunos com deficiência.</li>
+          <li>O sistema municipal mantém <strong>classes no período noturno</strong>, preferencialmente para alunos trabalhadores.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== PONTO 2 ====================== -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Ponto 2 · Lei Orgânica de Santos</span>
+      <h2>O que a gestão democrática do ensino prevê</h2>
+    </div>
+    <div class="stack">
+      <p class="pergunta">“Lei Orgânica de Santos: a gestão democrática do ensino público municipal prevê…”</p>
+
+      <div class="resposta">
+        <span class="r-label">Resposta</span>
+        <span class="r-txt">Conselhos deliberativos permanentes em todas as unidades escolares, formados por estudantes, professores, pais e funcionários.</span>
+      </div>
+
+      <div class="lei">
+        “A gestão democrática do ensino público municipal atenderá às seguintes diretrizes: […] instituição de conselhos deliberativos, em caráter permanente, em todas as unidades escolares, formados por estudantes, professores, pais e funcionários, com o objetivo de acompanhar o nível pedagógico da escola e extinguir toda e qualquer discriminação ou estereotipia no sistema regular de ensino público municipal.”
+        <cite>Lei Orgânica do Município de Santos, art. 199</cite>
+      </div>
+
+      <div class="hook">
+        <b>Para lembrar:</b> são <b>quatro cadeiras</b> no conselho — aluno, professor, pai e <b>funcionário</b>. O inspetor de alunos entra justamente como funcionário: ele tem cadeira nesse conselho. Alternativa que deixe algum dos quatro de fora está errada.
+      </div>
+
+      <h4>As cinco diretrizes do artigo</h4>
+      <ol class="clean">
+        <li>Participação da sociedade na <strong>formulação e execução</strong> da política educacional;</li>
+        <li><strong>Prestação de contas</strong> à sociedade sobre o uso dos recursos da educação;</li>
+        <li><strong>Conselhos deliberativos permanentes</strong> em todas as unidades escolares;</li>
+        <li>Preservação da <strong>memória social</strong>, usando museus, arquivos e monumentos como recursos educacionais;</li>
+        <li>Atividades curriculares interdisciplinares de valorização do <strong>patrimônio cultural</strong>.</li>
+      </ol>
+
+      <h4>Armadilhas</h4>
+      <ul class="armadilhas">
+        <li>“Apenas os professores participam das decisões” — são quatro segmentos.</li>
+        <li>“Diretores escolhidos exclusivamente por concurso” — não é diretriz da gestão democrática.</li>
+        <li>“As famílias não participam da política educacional” — participam, é a primeira diretriz.</li>
+        <li>Conselho “consultivo” — o texto diz <strong>deliberativo</strong>, que decide, e <strong>permanente</strong>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====================== PONTO 3 ====================== -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Ponto 3 · Estatuto dos Funcionários de Santos</span>
+      <h2>Diante de uma ordem manifestamente ilegal</h2>
+    </div>
+    <div class="stack">
+      <p class="pergunta">“Estatuto dos funcionários públicos municipais de Santos: diante de uma ordem superior manifestamente ilegal, o servidor deve…”</p>
+
+      <div class="resposta">
+        <span class="r-label">Resposta</span>
+        <span class="r-txt">Cumprir as ordens superiores, representando quando forem manifestamente ilegais.</span>
+      </div>
+
+      <div class="lei">
+        “São deveres do funcionário: […] <strong>cumprir as ordens superiores, representando quando forem manifestamente ilegais</strong>.”
+        <cite>Lei 4.623/1984, art. 222, inciso II</cite>
+      </div>
+
+      <div class="hook">
+        <b>Para lembrar:</b> nem obedece calado, nem simplesmente se recusa — ele <b>representa</b>. Representar é <b>registrar formalmente</b> a ilegalidade à autoridade competente, por escrito. É o caminho do meio, e é sempre esse o caminho que a banca quer.
+      </div>
+
+      <h4>Armadilhas</h4>
+      <ul class="armadilhas">
+        <li>“Cumprir sem qualquer ressalva, em razão da hierarquia” — a hierarquia não cobre ordem ilegal.</li>
+        <li>“Recusar-se e comunicar diretamente o Ministério Público” — pula a via interna; não é o que o Estatuto manda.</li>
+        <li>“Pedir exoneração” — nunca é a resposta.</li>
+        <li>“Desobedecer em silêncio” — sem representar, não há registro algum.</li>
+      </ul>
+
+      <div class="card">
+        <h4>Os outros deveres do art. 222 que costumam aparecer juntos</h4>
+        <p>Ser <strong>assíduo e pontual</strong>; desempenhar com <strong>zelo e presteza</strong>; guardar <strong>sigilo</strong> sobre os assuntos da Administração; tratar com <strong>urbanidade</strong> colegas e público; <strong>zelar pela economia</strong> do material e pela conservação do que estiver sob sua guarda; apresentar-se <strong>convenientemente trajado</strong> ou com o uniforme determinado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== PONTO 4 ====================== -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Ponto 4 · Estatuto dos Funcionários de Santos</span>
+      <h2>A pena de suspensão</h2>
+    </div>
+    <div class="stack">
+      <p class="pergunta">“De acordo com o Estatuto dos funcionários públicos de Santos, a pena de suspensão…”</p>
+
+      <div class="resposta">
+        <span class="r-label">Resposta</span>
+        <span class="r-txt">Não excederá 90 dias. Aplica-se à violação das proibições do Estatuto e à reincidência em falta já punida com repreensão.</span>
+      </div>
+
+      <div class="lei">
+        “A pena de suspensão, que não excederá a 90 (noventa) dias, será aplicada, igualmente, à violação das proibições consignadas neste Estatuto, bem como a reincidência em falta já punida com a repreensão.”
+        <cite>Lei 4.623/1984, art. 231</cite>
+      </div>
+
+      <div class="lei">
+        “O funcionário suspenso perderá, durante o período de cumprimento da suspensão, todos os direitos e vantagens decorrentes do exercício do cargo.”
+        <cite>Lei 4.623/1984, art. 232</cite>
+      </div>
+
+      <div class="hook">
+        <b>Para lembrar três números:</b> <b>90</b> é o teto da suspensão. <b>30</b> é o limite dos Secretários — acima disso só o Prefeito. E são <b>6</b> as penas no total.
+      </div>
+
+      <h4>As seis penas, na ordem do art. 228</h4>
+      <ol class="clean">
+        <li><strong>Repreensão</strong> — por escrito, em caso de indisciplina ou descumprimento de dever.</li>
+        <li><strong>Suspensão</strong> — até 90 dias.</li>
+        <li><strong>Multa</strong>.</li>
+        <li><strong>Demissão</strong>.</li>
+        <li><strong>Demissão a bem do serviço público</strong>.</li>
+        <li><strong>Cassação de aposentadoria ou da disponibilidade</strong>.</li>
+      </ol>
+
+      <h4>Armadilhas</h4>
+      <ul class="armadilhas">
+        <li>“Não pode exceder 30 dias” — 30 é o limite de quem <em>aplica</em> (Secretários), não o teto da pena.</li>
+        <li>“Advertência” — o Estatuto de Santos usa <strong>repreensão</strong>; advertência não está no rol.</li>
+        <li>“Exoneração” — não é pena disciplinar.</li>
+        <li>“O suspenso recebe vencimentos normalmente” — perde todos os direitos e vantagens do período.</li>
+      </ul>
+
+      <div class="card">
+        <h4>Quem aplica cada pena (art. 241)</h4>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Autoridade</th><th>Até</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Prefeito</strong></td><td>Demissão, multa e suspensão <strong>acima de 30 dias</strong></td></tr>
+              <tr><td>Secretários Municipais</td><td>Suspensão até <strong>30 dias</strong></td></tr>
+              <tr><td>Chefes de Departamento</td><td>Suspensão até <strong>15 dias</strong></td></tr>
+              <tr><td>Demais chefias</td><td>Repreensão e suspensão até <strong>5 dias</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine">Prescrição: <strong>2 anos</strong> para repreensão, multa e suspensão; <strong>5 anos</strong> para as demais faltas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== PONTO 5 ====================== -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Ponto 5 · Estatuto da Criança e do Adolescente</span>
+      <h2>Os direitos que o ECA assegura ao aluno</h2>
+    </div>
+    <div class="stack">
+      <p class="pergunta">“O Estatuto da Criança e do Adolescente assegura ao aluno, entre outros direitos…”</p>
+
+      <div class="resposta">
+        <span class="r-label">Resposta</span>
+        <span class="r-txt">Ser respeitado por seus educadores — e contestar critérios avaliativos, podendo recorrer às instâncias escolares superiores.</span>
+      </div>
+
+      <div class="lei">
+        “A criança e o adolescente têm direito à educação […] assegurando-se-lhes: <strong>I</strong> — igualdade de condições para o acesso e permanência na escola; <strong>II</strong> — direito de ser respeitado por seus educadores; <strong>III</strong> — direito de contestar critérios avaliativos, podendo recorrer às instâncias escolares superiores; <strong>IV</strong> — direito de organização e participação em entidades estudantis; <strong>V</strong> — acesso à escola pública e gratuita próxima de sua residência.”
+        <cite>Lei 8.069/1990, art. 53</cite>
+      </div>
+
+      <div class="hook">
+        <b>Para lembrar os cinco:</b> <b>igualdade</b> de acesso, ser <b>respeitado</b>, <b>contestar</b> nota, se <b>organizar</b> em grêmio, escola <b>perto de casa</b>.
+      </div>
+
+      <h4>Armadilhas</h4>
+      <ul class="armadilhas">
+        <li>“Escolher seus professores” — não existe esse direito.</li>
+        <li>“Ter a nota alterada sem critério” — <strong>contestar não é mudar</strong>: o aluno questiona e recorre, a escola decide.</li>
+        <li>“Ser aprovado independentemente da frequência” — não existe.</li>
+        <li>“Faltar com justificativa dos colegas” — não existe.</li>
+      </ul>
+
+      <div class="card">
+        <h4>O parágrafo que fala dos pais</h4>
+        <p>Os pais ou responsáveis têm direito de <strong>ter ciência do processo pedagógico</strong> e de <strong>participar da definição das propostas educacionais</strong>. Repare como isso conversa com a gestão democrática do Ponto 2.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== PONTO 6 ====================== -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Ponto 6 · Estatuto da Criança e do Adolescente</span>
+      <h2>Suspeita de maus-tratos: a comunicação</h2>
+    </div>
+    <div class="stack">
+      <p class="pergunta">“Segundo o ECA, diante da suspeita de maus-tratos contra o aluno, a comunicação…”</p>
+
+      <div class="resposta">
+        <span class="r-label">Resposta</span>
+        <span class="r-txt">É obrigatória ao Conselho Tutelar — e a suspeita já basta, não é preciso confirmar nada.</span>
+      </div>
+
+      <div class="lei">
+        “Os casos de <strong>suspeita ou confirmação</strong> de castigo físico, de tratamento cruel ou degradante e de maus-tratos contra criança ou adolescente serão <strong>obrigatoriamente comunicados ao Conselho Tutelar</strong> da respectiva localidade, sem prejuízo de outras providências legais.”
+        <cite>Lei 8.069/1990, art. 13</cite>
+      </div>
+
+      <div class="hook">
+        <b>Para lembrar:</b> a palavra-chave é <b>SUSPEITA</b>. Esperar ter certeza é <b>omissão</b> — e omitir é punido. Quem comunica não acusa ninguém: apenas aciona quem tem competência para apurar.
+      </div>
+
+      <h4>Armadilhas</h4>
+      <ul class="armadilhas">
+        <li>“Só após a confirmação dos fatos” — errado: a suspeita basta.</li>
+        <li>“É facultativa, a critério da escola” — é <strong>obrigatória</strong>.</li>
+        <li>“Apenas à família do aluno” — quando a suspeita recai sobre a família, avisá-la pode agravar o risco.</li>
+        <li>“Aguardar novos episódios para ter certeza” — é a definição de omissão.</li>
+      </ul>
+
+      <div class="card rule-hot">
+        <h4>O que o inspetor faz na prática</h4>
+        <p>Acolhe o aluno, <strong>não interroga</strong>, não pede detalhes, não faz a criança repetir a história para várias pessoas, <strong>não confronta a família</strong> — e comunica imediatamente a <strong>direção da unidade</strong>, que aciona o Conselho Tutelar. Evitar que o aluno recontre tudo várias vezes se chama <strong>evitar a revitimização</strong>.</p>
+      </div>
+
+      <div class="card">
+        <h4>O art. 56, que vem junto nas provas</h4>
+        <p>Os dirigentes de estabelecimentos de ensino fundamental comunicarão ao Conselho Tutelar:</p>
+        <ol class="clean">
+          <li>Maus-tratos envolvendo alunos;</li>
+          <li><strong>Reiteração de faltas injustificadas e evasão escolar</strong>, esgotados os recursos escolares;</li>
+          <li>Elevados níveis de repetência.</li>
+        </ol>
+        <p class="fine">Deixar de comunicar maus-tratos é infração punida com multa, que <strong>dobra na reincidência</strong> (art. 245).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== PONTO 7 ====================== -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Ponto 7 · Lei 14.811/2024</span>
+      <h2><em>Bullying</em> e <em>cyberbullying</em></h2>
+    </div>
+    <div class="stack">
+      <p class="pergunta">“Conforme a Lei 14.811/2024, a intimidação sistemática praticada por rede social, aplicativo ou jogo eletrônico…”</p>
+
+      <div class="resposta">
+        <span class="r-label">Resposta</span>
+        <span class="r-txt">É o cyberbullying, punido com reclusão de 2 a 4 anos e multa — pena bem maior que a do bullying presencial.</span>
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr><th>Conduta</th><th>Como a lei define</th><th>Pena</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Bullying</strong><br>(presencial)</td>
+              <td>Intimidar sistematicamente, individualmente ou em grupo, mediante violência física ou psicológica, de modo <strong>intencional e repetitivo</strong>, por intimidação, humilhação ou discriminação</td>
+              <td><strong>Multa</strong>, se não constituir crime mais grave</td>
+            </tr>
+            <tr>
+              <td><strong>Cyberbullying</strong><br>(virtual)</td>
+              <td>A mesma conduta por rede de computadores, rede social, <strong>aplicativos, jogos eletrônicos</strong> ou qualquer outro meio digital</td>
+              <td><strong>Reclusão de 2 a 4 anos e multa</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hook">
+        <b>Para lembrar:</b> presencial = <b>multa</b>. Virtual = <b>cadeia, de 2 a 4 anos</b>. O digital pesa mais porque não apaga, se espalha e alcança a vítima dentro de casa.
+      </div>
+
+      <h4>Os dois elementos que definem o <em>bullying</em></h4>
+      <p><strong>Intencional</strong> e <strong>repetitivo</strong>. Uma briga isolada entre dois alunos em pé de igualdade não é <em>bullying</em> — mas também não se ignora. O que caracteriza é a repetição contra alguém em posição desigual.</p>
+
+      <h4>Armadilhas</h4>
+      <ul class="armadilhas">
+        <li>“Não é crime, é só infração escolar” — passou a ser crime com esta lei.</li>
+        <li>“Tem a mesma pena do presencial” — a do virtual é muito maior.</li>
+        <li>“Só é punido se a vítima for maior de idade” — não há essa exigência.</li>
+        <li>“Brincadeira de criança” — a lei não usa esse critério em momento nenhum.</li>
+      </ul>
+
+      <div class="card">
+        <h4>O que mais a Lei 14.811/2024 trouxe</h4>
+        <ul class="clean">
+          <li>A <strong>Política Nacional de Prevenção e Enfrentamento da Violência contra Crianças e Adolescentes</strong>, com foco em estabelecimentos de ensino.</li>
+          <li>Incluiu entre os <strong>crimes hediondos</strong> o induzimento ao suicídio ou à automutilação contra criança ou adolescente e o sequestro de menor.</li>
+          <li>Criou o <strong>cadastro nacional</strong> de pessoas condenadas por crimes contra criança e adolescente.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== PONTO 8 ====================== -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Ponto 8 · o que falta do bloco</span>
+      <h2>Acesso à informação e dados na escola</h2>
+    </div>
+    <div class="stack">
+      <p class="fine">Este é o oitavo tema do bloco de Legislação, que você não anotou. Vai resumido, para não ficar buraco.</p>
+      <div class="card rule">
+        <ul class="clean">
+          <li><strong>Lei de Acesso à Informação (12.527/2011):</strong> a <strong>publicidade é a regra, o sigilo é a exceção</strong>. Mas as <strong>informações pessoais</strong> têm acesso restrito por <strong>100 anos</strong>, independentemente de classificação — é o que protege os dados dos alunos.</li>
+          <li><strong>LGPD (13.709/2018):</strong> alcança <strong>sim</strong> os órgãos públicos. Dados de <strong>saúde</strong> são <strong>dados pessoais sensíveis</strong>, com proteção reforçada. Dados de criança são tratados no seu <strong>melhor interesse</strong>.</li>
+          <li><strong>Na prática:</strong> não repassar telefone, endereço, foto ou informação de saúde de aluno a quem não é da unidade; não comentar ocorrência de um aluno com o responsável de outro; não postar foto de aluno.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== TREINO ====================== -->
+  <section style="padding-top:60px">
+    <div class="sec-head">
+      <div class="bar" style="background:var(--alert)"></div>
+      <span class="eyebrow">Agora treine</span>
+      <h2>14 questões sobre esses sete pontos</h2>
+    </div>
+    <p>Duas de cada ponto, com peso 4 como na prova. O placar no fim mostra qual dos sete ainda não entrou.</p>
+  </section>
+
+  <main id="prova"></main>
+
+  <section id="resultado" aria-live="polite"></section>
+
+  <!-- ====================== COLA ====================== -->
+  <section style="padding-top:60px">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Para reler no sábado à noite</span>
+      <h2>A cola dos sete pontos</h2>
+    </div>
+    <div class="card">
+      <div class="cola">
+        <div class="cola-linha">
+          <span class="cola-q">Município responsabiliza-se prioritariamente por…</span>
+          <span class="cola-r">Educação infantil (creche e pré-escola) + ensino fundamental</span>
+        </div>
+        <div class="cola-linha">
+          <span class="cola-q">Gestão democrática do ensino prevê…</span>
+          <span class="cola-r">Conselhos deliberativos permanentes em toda unidade: aluno, professor, pai e funcionário</span>
+        </div>
+        <div class="cola-linha">
+          <span class="cola-q">Ordem manifestamente ilegal: o servidor deve…</span>
+          <span class="cola-r">Cumprir, <em>representando</em> a ilegalidade</span>
+        </div>
+        <div class="cola-linha">
+          <span class="cola-q">Pena de suspensão…</span>
+          <span class="cola-r">Teto de 90 dias; perde direitos e vantagens no período</span>
+        </div>
+        <div class="cola-linha">
+          <span class="cola-q">ECA assegura ao aluno…</span>
+          <span class="cola-r">Ser respeitado pelos educadores e contestar critérios avaliativos</span>
+        </div>
+        <div class="cola-linha">
+          <span class="cola-q">Suspeita de maus-tratos…</span>
+          <span class="cola-r">Comunicação obrigatória ao Conselho Tutelar — a suspeita já basta</span>
+        </div>
+        <div class="cola-linha">
+          <span class="cola-q">Cyberbullying (rede social, app, jogo)…</span>
+          <span class="cola-r">Reclusão de 2 a 4 anos e multa (presencial é só multa)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:16px">
+      <span class="eyebrow">Se tudo mais falhar na hora da prova</span>
+      <p>Nas questões de Legislação e de Conhecimentos Específicos, a alternativa certa quase sempre é a que <strong>protege o aluno</strong>, <strong>comunica a quem é de direito</strong> e <strong>registra por escrito</strong>. A errada é a que ignora, resolve sozinho, usa força, expõe o aluno ou espera piorar.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span class="eyebrow">Sobre este material</span>
+    <p class="fine">Textos de lei transcritos da Lei Orgânica do Município de Santos (consolidada em 10/11/2022) e da Lei 4.623/1984, ambas do portal Legis da Prefeitura, e das Leis federais 8.069/1990 e 14.811/2024. Material de apoio: onde houver divergência, vale o texto oficial.</p>
+  </footer>
+
+</div>
+
+<div class="barra">
+  <div class="barra-inner">
+    <div class="prog">
+      <span class="prog-txt" id="progTxt">carregando…</span>
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+    <button class="ghost" id="btnLimpar" type="button">Recomeçar</button>
+    <button id="btnCorrigir" type="button" disabled>Corrigir treino</button>
+  </div>
+</div>
+
+<script src="./motor.js"></script>
+<script>
+(function () {
+  var P = [
+    { nome: "Ponto 1 · Responsabilidade do Município", qs: [
+      { e: "Segundo a Lei Orgânica de Santos, cabe prioritariamente ao Município manter:",
+        a: ["O ensino médio e a educação profissional.",
+            "A educação infantil, em creches e pré-escolas, e o ensino fundamental.",
+            "O ensino superior em universidade municipal.",
+            "Apenas as creches municipais."],
+        c: 1,
+        m: "Art. 197. O Município cuida dos pequenos: <b>creche, pré-escola e fundamental</b>. Ensino médio é do Estado e superior é da União. A (D) erra por excluir o fundamental, que tem a mesma prioridade." },
+      { e: "Ainda conforme a Lei Orgânica de Santos, sobre a matrícula na rede municipal é correto afirmar que:",
+        a: ["O aluno é matriculado na escola de melhor desempenho da região.",
+            "A distribuição das vagas é feita exclusivamente por sorteio.",
+            "O Município procede preferencialmente à matrícula na escola mais próxima da residência, priorizando alunos com deficiência.",
+            "Alunos trabalhadores não podem estudar no período noturno."],
+        c: 2,
+        m: "Art. 197, § 2º. O mesmo artigo garante <b>classes no período noturno, preferencialmente para alunos trabalhadores</b> — o que elimina a (D)." }
+    ]},
+
+    { nome: "Ponto 2 · Gestão democrática do ensino", qs: [
+      { e: "Os conselhos deliberativos previstos na gestão democrática do ensino municipal de Santos são formados por:",
+        a: ["Estudantes, professores, pais e funcionários.",
+            "Apenas diretores e professores.",
+            "Professores e pais, somente.",
+            "Representantes indicados pela Secretaria de Educação."],
+        c: 0,
+        m: "Art. 199. São <b>quatro segmentos</b>, e o inspetor de alunos entra como <b>funcionário</b>. Qualquer alternativa que deixe um dos quatro de fora está errada." },
+      { e: "São diretrizes da gestão democrática do ensino público municipal de Santos, EXCETO:",
+        a: ["Participação da sociedade na formulação e execução da política educacional.",
+            "Prestação de contas à sociedade sobre os recursos destinados à educação.",
+            "Escolha dos diretores de escola por indicação exclusiva do Prefeito.",
+            "Instituição de conselhos deliberativos em caráter permanente."],
+        c: 2,
+        m: "Atenção ao <b>EXCETO</b>: a questão pede a alternativa <b>falsa</b>. Escolha de diretores por indicação não é diretriz de gestão democrática — seria o contrário dela." }
+    ]},
+
+    { nome: "Ponto 3 · Ordem manifestamente ilegal", qs: [
+      { e: "Recebendo de um superior uma ordem manifestamente ilegal, o servidor municipal de Santos deve:",
+        a: ["Cumprir a ordem, representando quanto à ilegalidade.",
+            "Cumpri-la sem qualquer ressalva, em razão da hierarquia.",
+            "Ignorá-la e seguir o trabalho sem comunicar nada.",
+            "Abandonar o posto de trabalho até que a ordem seja revogada."],
+        c: 0,
+        m: "Art. 222, II. O caminho do meio: nem obedecer calado, nem simplesmente recusar. <b>Representar</b> é o verbo da lei." },
+      { e: "No Estatuto dos Funcionários de Santos, “representar” diante de uma ordem ilegal significa:",
+        a: ["Processar judicialmente o superior hierárquico.",
+            "Registrar formalmente a ilegalidade à autoridade competente.",
+            "Levar o caso à imprensa.",
+            "Solicitar transferência para outro setor."],
+        c: 1,
+        m: "Representar é um ato <b>interno e formal</b>: deixar registrado, por escrito, que a ordem é ilegal. Não é processo, não é denúncia pública, não é fuga." }
+    ]},
+
+    { nome: "Ponto 4 · Pena de suspensão", qs: [
+      { e: "A pena de suspensão prevista no Estatuto dos Funcionários de Santos não excederá:",
+        a: ["30 dias.", "60 dias.", "90 dias.", "180 dias."],
+        c: 2,
+        m: "Art. 231: o teto é <b>90 dias</b>. Não confunda com os <b>30 dias</b>, que são o limite de quem <i>aplica</i> a pena — acima disso, só o Prefeito." },
+      { e: "Durante o cumprimento da suspensão, o funcionário:",
+        a: ["Recebe normalmente seus vencimentos.",
+            "Recebe metade dos vencimentos.",
+            "É transferido temporariamente para outra unidade.",
+            "Perde todos os direitos e vantagens decorrentes do exercício do cargo."],
+        c: 3,
+        m: "Art. 232, e é literal: <b>todos</b> os direitos e vantagens do período." }
+    ]},
+
+    { nome: "Ponto 5 · Direitos do aluno no ECA", qs: [
+      { e: "Entre os direitos assegurados ao aluno pelo art. 53 do ECA está o de:",
+        a: ["Escolher os professores de cada disciplina.",
+            "Ser respeitado por seus educadores.",
+            "Ser aprovado independentemente da frequência.",
+            "Faltar às aulas mediante justificativa dos colegas."],
+        c: 1,
+        m: "Art. 53, II. Os cinco direitos: igualdade de acesso e permanência, ser respeitado pelos educadores, contestar critérios avaliativos, organizar-se em entidades estudantis e escola pública próxima de casa." },
+      { e: "Ainda segundo o art. 53 do ECA, o aluno tem direito de contestar critérios avaliativos:",
+        a: ["Somente por meio dos pais e em juízo.",
+            "Apenas ao final do ano letivo.",
+            "Desde que já tenha nota acima da média.",
+            "Podendo recorrer às instâncias escolares superiores."],
+        c: 3,
+        m: "Contestar <b>não é mudar a nota</b>: o aluno questiona e pode recorrer dentro da escola; quem decide continua sendo a instituição." }
+    ]},
+
+    { nome: "Ponto 6 · Suspeita de maus-tratos", qs: [
+      { e: "Diante da suspeita de maus-tratos contra um aluno, o ECA determina que a comunicação:",
+        a: ["Só ocorra depois de confirmados os fatos.",
+            "Seja obrigatoriamente feita ao Conselho Tutelar, bastando a suspeita.",
+            "Seja dirigida apenas aos pais ou responsáveis do aluno.",
+            "Fique a critério do diretor da escola."],
+        c: 1,
+        m: "Art. 13: a lei fala em <b>suspeita ou confirmação</b>. Esperar certeza é omissão — e omitir é punido com multa (art. 245)." },
+      { e: "Além dos maus-tratos, o ECA obriga os dirigentes de estabelecimentos de ensino fundamental a comunicar ao Conselho Tutelar:",
+        a: ["A troca de professores no meio do ano letivo.",
+            "A mudança de endereço das famílias.",
+            "A reiteração de faltas injustificadas e a evasão escolar, esgotados os recursos escolares.",
+            "O resultado das avaliações bimestrais."],
+        c: 2,
+        m: "Art. 56, II. A falta reiterada é tratada como possível <b>violação de direito</b> do aluno, não como caso de punição. O inciso III acrescenta os elevados níveis de repetência." }
+    ]},
+
+    { nome: "Ponto 7 · Bullying e cyberbullying", qs: [
+      { e: "Conforme a Lei 14.811/2024, a intimidação sistemática praticada por rede social, aplicativo ou jogo eletrônico é punida com:",
+        a: ["Advertência escolar e encaminhamento ao conselho de classe.",
+            "Multa, apenas.",
+            "Detenção de 6 meses a 1 ano.",
+            "Reclusão de 2 a 4 anos e multa."],
+        c: 3,
+        m: "É o <b>cyberbullying</b>. A pena do virtual é muito maior que a do presencial — decore o par: presencial <b>multa</b>, virtual <b>2 a 4 anos</b>." },
+      { e: "O bullying praticado presencialmente, quando a conduta não constitui crime mais grave, é punido com:",
+        a: ["Multa.",
+            "Reclusão de 2 a 4 anos.",
+            "Prisão simples de 1 a 3 meses.",
+            "Apenas medida socioeducativa, em qualquer caso."],
+        c: 0,
+        m: "A ressalva “se a conduta não constituir crime mais grave” aparece nas duas modalidades: havendo lesão corporal ou ameaça, por exemplo, responde pelo crime mais grave." }
+    ]}
+  ];
+
+  var grupos = P.map(function (p, i) {
+    return {
+      nome: p.nome, peso: 4,
+      questoes: p.qs.map(function (q, j) {
+        return { id: "lg-" + i + "-" + j, e: q.e, a: q.a, c: q.c, m: q.m };
+      })
+    };
+  });
+
+  MOTOR.iniciar({
+    chave: "legislacao-reta-final-v1",
+    alvo: "prova",
+    grupos: grupos,
+    rotulos: { titulo: "Resultado do treino de Legislação" },
+    veredito: function (nota100, acertos, total, placar) {
+      var fracos = placar.filter(function (b) { return b.acertos < b.q; })
+                         .map(function (b) { return b.nome.replace(/^Ponto \d+ · /, ""); });
+      if (!fracos.length) {
+        return { titulo: "Os sete pontos estão firmes.",
+                 texto: "Acertou tudo. Releia a cola no fim desta página no sábado à noite e não estude conteúdo novo — a partir daqui o ganho está em descansar e chegar cedo no domingo." };
+      }
+      if (acertos >= total * 0.7) {
+        return { titulo: "Acertou " + acertos + " de " + total + ".",
+                 texto: "Falta fechar: " + fracos.join(", ") + ". Volte só nesses trechos acima, releia o texto da lei e o quadro de armadilhas, e refaça o treino." };
+      }
+      return { titulo: "Acertou " + acertos + " de " + total + ".",
+               texto: "Ainda está solto em: " + fracos.join(", ") + ". Em vez de refazer o treino agora, leia a explicação desses pontos em voz alta uma vez, feche a página e tente dizer a resposta de cabeça. Depois volte e refaça." };
+    }
+  });
+})();
+</script>
+</body>
+</html>

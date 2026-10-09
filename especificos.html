@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Reta final: os oito temas de Conhecimentos Específicos, o bloco de 40 pontos, com a conduta certa em cada situação e 16 questões de treino.">
+<meta name="theme-color" content="#14574A">
+<title>Reta Final de Específicos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="./prova.css">
+<style>
+  .ponto { scroll-margin-top: 16px; }
+  .ponto-num {
+    font-family: "IBM Plex Mono", monospace; font-size: .7rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--alert);
+  }
+  .regra {
+    background: var(--accent-w); border: 1px solid var(--accent);
+    border-radius: 3px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .regra .r-label {
+    font-family: "IBM Plex Mono", monospace; font-size: .66rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+  }
+  .regra .r-txt { font-size: 1.04rem; font-weight: 600; color: var(--ink); }
+
+  .passos { counter-reset: p; display: flex; flex-direction: column; gap: 0; margin: 0; padding: 0; list-style: none; }
+  .passos li {
+    counter-increment: p; display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 0; border-bottom: 1px solid var(--line); font-size: .98rem;
+  }
+  .passos li:last-child { border-bottom: 0; }
+  .passos li::before {
+    content: counter(p); flex: 0 0 auto;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--accent); color: var(--surface);
+    font-family: "IBM Plex Mono", monospace; font-size: .72rem; font-weight: 600;
+    display: grid; place-items: center; margin-top: 1px;
+  }
+
+  .faznaofaz { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 620px) { .faznaofaz { grid-template-columns: 1fr 1fr; } }
+  .col {
+    border: 1px solid var(--line); border-radius: 3px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .col.sim { border-left: 3px solid var(--accent); background: var(--surface); }
+  .col.nao { border-left: 3px solid var(--alert); background: var(--alert-w); }
+  .col h4 { margin: 0; font-size: .74rem; font-family: "IBM Plex Mono", monospace;
+    letter-spacing: .12em; text-transform: uppercase; }
+  .col.sim h4 { color: var(--accent); }
+  .col.nao h4 { color: var(--alert); }
+  .col ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 6px; font-size: .95rem; }
+
+  .armadilhas { display: flex; flex-direction: column; gap: 7px; margin: 0; padding: 0; list-style: none; }
+  .armadilhas li { display: flex; gap: 9px; align-items: flex-start; font-size: .95rem; }
+  .armadilhas li::before { content: "✗"; flex: 0 0 auto; color: var(--alert); font-weight: 700; margin-top: 1px; }
+
+  .cola { display: flex; flex-direction: column; gap: 0; }
+  .cola-linha { display: grid; grid-template-columns: 1fr; gap: 2px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .cola-linha:last-child { border-bottom: 0; }
+  .cola-q { font-size: .92rem; color: var(--ink-2); }
+  .cola-r { font-size: 1rem; font-weight: 600; }
+  @media (min-width: 620px) { .cola-linha { grid-template-columns: 1fr 1fr; gap: 16px; align-items: baseline; } }
+
+  .alerta-data { background: var(--alert); color: #fff; border-radius: 3px; padding: 13px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .alerta-data .ad-t { font-family: "IBM Plex Mono", monospace; font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+  .alerta-data .ad-m { font-size: 1.02rem; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="mast">
+    <span class="eyebrow">Concurso de Inspetor de Alunos · Santos 2026</span>
+    <h1>Reta Final de Específicos</h1>
+    <p class="lede">O maior bloco da prova: <strong>40 dos 100 pontos</strong> em 10 questões. Quase todas descrevem uma situação na escola e perguntam o que o inspetor deve fazer. Aqui estão os oito temas, com a conduta certa, as armadilhas e 16 questões de treino.</p>
+    <nav class="kit" aria-label="Material de estudo">
+      <span class="kit-label">Kit de estudo</span>
+      <a href="./index.html">Início</a>
+      <a href="./revisao.html">Voltando a Estudar</a>
+      <a href="./caderno.html">Caderno</a>
+      <a href="./simulado.html">Simulado 1</a>
+      <a href="./simulado2.html">Simulado 2</a>
+      <a href="./treino.html">Treino dos erros</a>
+      <a href="./legislacao.html">Legislação</a>
+      <span class="atual">Específicos</span>
+    </nav>
+  </header>
+
+  <div style="padding-top:30px; display:flex; flex-direction:column; gap:16px;">
+    <div class="alerta-data">
+      <span class="ad-t">Faltam 2 dias</span>
+      <span class="ad-m">A prova é domingo, 11 de outubro, e os portões fecham no horário.</span>
+    </div>
+
+    <div class="card rule-hot">
+      <span class="eyebrow" style="color:var(--alert)">A chave de ouro</span>
+      <h3>Quatro filtros que resolvem quase toda questão deste bloco</h3>
+      <p>Você não precisa decorar situação por situação. Antes de escolher, passe as alternativas por estes filtros — eles eliminam as erradas sozinhos.</p>
+      <ul class="armadilhas">
+        <li>Usa <strong>força física, grito, castigo, apelido, ironia</strong> ou expõe o aluno na frente dos outros.</li>
+        <li>Faz o inspetor <strong>resolver sozinho</strong> o que é da direção, do professor, da saúde ou do Conselho Tutelar.</li>
+        <li><strong>Ignora, deixa para lá ou espera piorar</strong> para ter certeza.</li>
+        <li>Conta a terceiros <strong>informação sobre aluno, família ou servidor</strong>.</li>
+      </ul>
+      <div class="regra" style="margin-top:4px">
+        <span class="r-label">E a resposta certa quase sempre é</span>
+        <span class="r-txt">Observar → intervir com calma e sem julgar → acolher ou separar → comunicar a equipe gestora → registrar por escrito.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TEMA 1 ============ -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Tema 1</span>
+      <h2>Controle de acesso e saída de aluno</h2>
+    </div>
+    <div class="stack">
+      <div class="regra">
+        <span class="r-label">Regra de ouro</span>
+        <span class="r-txt">Identificar, registrar e encaminhar. Ninguém circula sozinho pela escola, e aluno só sai com quem está <em>formalmente autorizado</em>.</span>
+      </div>
+      <p>A atribuição do cargo diz, com todas as letras, “<strong>impedindo o trânsito de estranhos pelo recinto</strong>”. É a única parte escrita como proibição — por isso cai tanto.</p>
+      <div class="faznaofaz">
+        <div class="col sim">
+          <h4>Conduta certa</h4>
+          <ul>
+            <li>Identificar toda pessoa que entra: familiares, fornecedores, prestadores, visitantes.</li>
+            <li>Registrar a entrada e <strong>encaminhar ao setor competente</strong>.</li>
+            <li>Na dúvida sobre quem busca o aluno, <strong>não liberar</strong> e chamar a direção.</li>
+            <li>Diante de pessoa alterada: manter distância, não revidar, acionar a direção.</li>
+          </ul>
+        </div>
+        <div class="col nao">
+          <h4>Nunca</h4>
+          <ul>
+            <li>Liberar o aluno “porque é parente” ou porque ele confirmou.</li>
+            <li>Aceitar autorização por telefone ou mensagem no celular.</li>
+            <li>Deixar visitante circular sozinho até achar a sala.</li>
+            <li>Enfrentar ou retirar alguém à força — o inspetor não é agente de segurança pública.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEMA 2 ============ -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Tema 2 · o mais pegadinha</span>
+      <h2>Primeiros cuidados e os limites da atuação</h2>
+    </div>
+    <div class="stack">
+      <div class="regra">
+        <span class="r-label">Regra de ouro</span>
+        <span class="r-txt">O edital fala em “noções de primeiros cuidados” e, na mesma frase, em “<strong>limites</strong> da atuação do Inspetor de Alunos”. A banca cobra o limite, não a técnica.</span>
+      </div>
+      <div class="faznaofaz">
+        <div class="col sim">
+          <h4>Faz</h4>
+          <ul>
+            <li>Identificar mal-estar, queda, ferimento, desmaio, engasgo, convulsão.</li>
+            <li><strong>Acionar imediatamente</strong> a equipe responsável.</li>
+            <li>Permanecer com o aluno e afastar as outras crianças.</li>
+            <li>Preservar o local, comunicar a direção e registrar.</li>
+          </ul>
+        </div>
+        <div class="col nao">
+          <h4>Não faz</h4>
+          <ul>
+            <li>Dar remédio — <strong>nem analgésico, nem o que a família autorizou</strong>.</li>
+            <li>Dar água ou comida a quem passou mal.</li>
+            <li><strong>Mover aluno que caiu ou bateu a cabeça.</strong></li>
+            <li>Conter quem está em convulsão ou pôr objeto na boca.</li>
+            <li>Levar o aluno ao hospital por conta própria.</li>
+            <li>Avisar a família antes da direção.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card rule-hot">
+        <h4>Convulsão, passo a passo</h4>
+        <ol class="passos">
+          <li>Proteger a cabeça e afastar objetos ao redor.</li>
+          <li>Não conter os movimentos e <strong>não colocar nada na boca</strong>.</li>
+          <li>Virar de lado, se possível, e afrouxar roupas no pescoço.</li>
+          <li>Cronometrar a duração e acionar socorro.</li>
+          <li>Nada por via oral até a recuperação completa da consciência.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEMA 3 ============ -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Tema 3</span>
+      <h2>Conflito entre alunos</h2>
+    </div>
+    <div class="stack">
+      <div class="regra">
+        <span class="r-label">Regra de ouro</span>
+        <span class="r-txt">O edital chama de <strong>intervenção inicial</strong>. O inspetor faz o primeiro atendimento; a decisão disciplinar é da equipe gestora.</span>
+      </div>
+      <ol class="passos">
+        <li><strong>Separar sem agredir</strong> e com calma.</li>
+        <li>Afastar a plateia — brigas crescem com público.</li>
+        <li>Ouvir <strong>cada um separadamente</strong>, sem tomar partido.</li>
+        <li>Encaminhar à coordenação ou direção.</li>
+        <li>Registrar a ocorrência por escrito.</li>
+      </ol>
+      <h4>Armadilhas</h4>
+      <ul class="armadilhas">
+        <li>Gritar ou advertir os dois na frente dos colegas — expõe os alunos.</li>
+        <li>“Aguardar que resolvam sozinhos, para não interferir.”</li>
+        <li>Aplicar suspensão ou advertência formal — <strong>não é do inspetor</strong>.</li>
+        <li>Interrogar os envolvidos em público, de uma vez só.</li>
+      </ul>
+      <p class="fine">Palavras do edital que costumam ser a alternativa certa: postura <strong>preventiva, educativa, respeitosa e não discriminatória</strong>.</p>
+    </div>
+  </section>
+
+  <!-- ============ TEMA 4 ============ -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Tema 4</span>
+      <h2>Bullying, violência e proteção integral</h2>
+    </div>
+    <div class="stack">
+      <div class="regra">
+        <span class="r-label">Regra de ouro</span>
+        <span class="r-txt">Acolher a vítima, <strong>não expor</strong>, registrar e comunicar a gestão. Na suspeita de violência, a <strong>suspeita já basta</strong> para comunicar.</span>
+      </div>
+      <h4>Sinais que o inspetor deve saber identificar</h4>
+      <p>Isolamento, medo de ir a certo lugar da escola, choro frequente, queda repentina de comportamento, marcas, material ou roupa sempre danificados, conflitos que se repetem sempre com as mesmas pessoas.</p>
+      <div class="faznaofaz">
+        <div class="col sim">
+          <h4>Conduta certa</h4>
+          <ul>
+            <li>Escutar sem interromper, sem pedir detalhes e sem repetir a pergunta.</li>
+            <li>Não fazer o aluno recontar para várias pessoas — isso se chama <strong>evitar a revitimização</strong>.</li>
+            <li>Registrar o relato e comunicar a equipe gestora.</li>
+            <li>Comunicar suspeita de maus-tratos à direção, que aciona o <strong>Conselho Tutelar</strong>.</li>
+          </ul>
+        </div>
+        <div class="col nao">
+          <h4>Nunca</h4>
+          <ul>
+            <li>Mandar a vítima ignorar ou dizer que é “brincadeira de criança”.</li>
+            <li>Reunir vítima e autores para “se entenderem” e pedir desculpas.</li>
+            <li>Esperar novos episódios para ter certeza.</li>
+            <li>Interrogar o aluno ou confrontar a família.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="fine"><strong>Bullying</strong> é intencional e repetitivo, contra alguém em posição desigual. Briga isolada entre iguais não é bullying — mas também não se ignora. <strong>Cyberbullying</strong> é o mesmo por rede social, aplicativo ou jogo, e é punido com mais rigor.</p>
+    </div>
+  </section>
+
+  <!-- ============ TEMA 5 ============ -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Tema 5</span>
+      <h2>Atendimento, comunicação e sigilo</h2>
+    </div>
+    <div class="stack">
+      <div class="regra">
+        <span class="r-label">Regra de ouro</span>
+        <span class="r-txt">O inspetor <strong>orienta e encaminha</strong>. Informação sobre nota, matrícula, ocorrência ou vida escolar é da secretaria e da direção.</span>
+      </div>
+      <div class="faznaofaz">
+        <div class="col sim">
+          <h4>Conduta certa</h4>
+          <ul>
+            <li>Comunicação clara, objetiva, cordial e respeitosa.</li>
+            <li><strong>Escuta ativa</strong>: deixar falar, olhar, não interromper, confirmar o que entendeu.</li>
+            <li>Recado anotado: quem ligou, para quem, assunto, contato, data e hora.</li>
+            <li>Confirmar o recado repetindo antes de encerrar.</li>
+          </ul>
+        </div>
+        <div class="col nao">
+          <h4>Nunca</h4>
+          <ul>
+            <li>Dar telefone ou endereço de família a quem quer que seja.</li>
+            <li>Falar de ocorrência de um aluno com o responsável de outro.</li>
+            <li>Comentar no corredor ou postar foto de aluno.</li>
+            <li>Guardar recado de memória.</li>
+            <li>Negar que um fato aconteceu — o certo é não tratar do assunto e encaminhar.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEMA 6 ============ -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Tema 6</span>
+      <h2>Inclusão e acessibilidade</h2>
+    </div>
+    <div class="stack">
+      <div class="regra">
+        <span class="r-label">Regra de ouro</span>
+        <span class="r-txt">A ajuda é <strong>oferecida, nunca imposta</strong>. Perguntar antes de ajudar é a resposta certa quase sempre.</span>
+      </div>
+      <p>A barreira mais cobrada é a <strong>atitudinal</strong>: a que é feita de preconceito, superproteção e infantilização. As outras cinco da Lei 13.146/2015 são urbanísticas, arquitetônicas, nos transportes, nas comunicações e na informação, e tecnológicas.</p>
+      <div class="faznaofaz">
+        <div class="col sim">
+          <h4>Conduta certa</h4>
+          <ul>
+            <li>Perguntar de que forma pode ajudar.</li>
+            <li>Com aluno cego: <strong>oferecer o próprio braço para que ele se apoie</strong> e avisar de degraus e obstáculos.</li>
+            <li>Falar <strong>com o aluno</strong>, não com o acompanhante.</li>
+            <li>Apoiar também quem está em condição temporária: muleta, gesso, pós-cirurgia.</li>
+          </ul>
+        </div>
+        <div class="col nao">
+          <h4>Nunca</h4>
+          <ul>
+            <li>Empurrar cadeira de rodas sem pedir licença.</li>
+            <li>Segurar o braço da pessoa cega e conduzi-la.</li>
+            <li>Mandar o aluno ficar na sala no intervalo “por segurança”.</li>
+            <li>Exigir que a família providencie acompanhante particular.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEMA 7 ============ -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Tema 7</span>
+      <h2>Registro de ocorrência</h2>
+    </div>
+    <div class="stack">
+      <div class="regra">
+        <span class="r-label">Regra de ouro</span>
+        <span class="r-txt">Descrever, não julgar. Só <strong>fato</strong>: data, hora, local, quem estava, o que aconteceu e a providência tomada.</span>
+      </div>
+      <div class="faznaofaz">
+        <div class="col nao">
+          <h4>Errado</h4>
+          <ul>
+            <li>“O aluno João, que vive causando confusão, arrumou mais uma briga por implicância.”</li>
+            <li>“Houve uma briga feia, com alunos muito agressivos e sem educação.”</li>
+            <li>“Parece que brigaram, mas ninguém sabe direito.”</li>
+          </ul>
+        </div>
+        <div class="col sim">
+          <h4>Certo</h4>
+          <ul>
+            <li>“Às 10h15, no pátio, durante o intervalo, os alunos J. S. e P. M. envolveram-se em discussão seguida de empurrões, sendo separados e encaminhados à coordenação.”</li>
+          </ul>
+        </div>
+      </div>
+      <p class="fine">Sem adjetivo, sem julgamento de caráter, sem suposição de intenção, sem “parece que”. O que não foi visto, não se escreve.</p>
+    </div>
+  </section>
+
+  <!-- ============ TEMA 8 ============ -->
+  <section class="ponto" style="padding-top:52px">
+    <div class="sec-head">
+      <span class="ponto-num">Tema 8</span>
+      <h2>Atribuições e postura profissional</h2>
+    </div>
+    <div class="stack">
+      <div class="regra">
+        <span class="r-label">Decore esta frase — é o texto do edital</span>
+        <span class="r-txt">“Observar os alunos em todas as dependências da escola, orientando-os, organizando-os, impedindo o trânsito de estranhos pelo recinto, mantendo ordem e disciplina.”</span>
+      </div>
+      <div class="faznaofaz">
+        <div class="col sim">
+          <h4>É do inspetor</h4>
+          <ul>
+            <li>Observar, orientar e organizar alunos em todos os espaços.</li>
+            <li>Organizar filas, horários, intervalos, entrada e saída de turnos.</li>
+            <li>Controlar entrada, saída e circulação de pessoas.</li>
+            <li>Registros simples: comunicados, ocorrências, listas, relatórios básicos.</li>
+            <li>Comunicar problemas de manutenção, limpeza e segurança.</li>
+          </ul>
+        </div>
+        <div class="col nao">
+          <h4>Não é do inspetor</h4>
+          <ul>
+            <li>Dar aula ou reforço, acompanhar rendimento pedagógico — é do <strong>professor</strong>.</li>
+            <li>Aplicar punição, suspender, decidir disciplina — é da <strong>gestão</strong>.</li>
+            <li>Matrícula, histórico, arquivo — é do <strong>secretário de unidade escolar</strong>.</li>
+            <li>Medicar ou avaliar saúde — é da <strong>equipe de saúde</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <p>A postura esperada, na lista do edital: <strong>assiduidade · pontualidade · discrição · urbanidade · responsabilidade · ética · respeito à hierarquia · trabalho em equipe · cumprimento das normas internas · proteção de dados pessoais · sigilo funcional</strong>.</p>
+    </div>
+  </section>
+
+  <!-- ============ TREINO ============ -->
+  <section style="padding-top:60px">
+    <div class="sec-head">
+      <div class="bar" style="background:var(--alert)"></div>
+      <span class="eyebrow">Agora treine</span>
+      <h2>16 questões sobre esses oito temas</h2>
+    </div>
+    <p>Duas de cada tema, com peso 4 como na prova. O placar no fim mostra qual tema ainda não entrou.</p>
+  </section>
+
+  <main id="prova"></main>
+
+  <section id="resultado" aria-live="polite"></section>
+
+  <!-- ============ COLA ============ -->
+  <section style="padding-top:60px">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Para reler no sábado à noite</span>
+      <h2>A cola dos oito temas</h2>
+    </div>
+    <div class="card">
+      <div class="cola">
+        <div class="cola-linha"><span class="cola-q">Alguém quer levar o aluno</span><span class="cola-r">Só com autorização formal registrada. Na dúvida, direção</span></div>
+        <div class="cola-linha"><span class="cola-q">Aluno caiu / passou mal</span><span class="cola-r">Não mover, não medicar, não dar água. Acionar e ficar junto</span></div>
+        <div class="cola-linha"><span class="cola-q">Convulsão</span><span class="cola-r">Proteger a cabeça, não conter, nada na boca, chamar socorro</span></div>
+        <div class="cola-linha"><span class="cola-q">Briga no pátio</span><span class="cola-r">Separar sem agredir, afastar a plateia, ouvir separados, encaminhar</span></div>
+        <div class="cola-linha"><span class="cola-q">Bullying ou violência</span><span class="cola-r">Acolher, não expor, registrar, comunicar. Suspeita já basta</span></div>
+        <div class="cola-linha"><span class="cola-q">Pedem informação de aluno</span><span class="cola-r">Não informar e encaminhar à secretaria ou direção</span></div>
+        <div class="cola-linha"><span class="cola-q">Aluno com deficiência</span><span class="cola-r">Perguntar antes de ajudar. Ele se apoia em você, não o contrário</span></div>
+        <div class="cola-linha"><span class="cola-q">Registro de ocorrência</span><span class="cola-r">Fato, hora, local, envolvidos, providência. Zero adjetivo</span></div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:16px">
+      <span class="eyebrow">Se travar na hora da prova</span>
+      <p>A alternativa certa é quase sempre a que <strong>protege o aluno</strong>, <strong>comunica a quem é de direito</strong> e <strong>registra por escrito</strong>. A errada é a que ignora, resolve sozinho, usa força, expõe o aluno ou espera piorar.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span class="eyebrow">Sobre este material</span>
+    <p class="fine">Temas e redações extraídos do conteúdo programático de Conhecimentos Específicos do <strong>Edital nº 73/2026 – SEPLA-RH</strong> da Prefeitura de Santos, combinados com o ECA (Lei 8.069/1990) e a Lei Brasileira de Inclusão (Lei 13.146/2015). Material de apoio: onde houver divergência, vale o texto oficial.</p>
+  </footer>
+
+</div>
+
+<div class="barra">
+  <div class="barra-inner">
+    <div class="prog">
+      <span class="prog-txt" id="progTxt">carregando…</span>
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+    <button class="ghost" id="btnLimpar" type="button">Recomeçar</button>
+    <button id="btnCorrigir" type="button" disabled>Corrigir treino</button>
+  </div>
+</div>
+
+<script src="./motor.js"></script>
+<script>
+(function () {
+  var T = [
+    { nome: "Tema 1 · Controle de acesso", qs: [
+      { e: "Um entregador chega ao portão com uma encomenda para a secretaria. O inspetor deve:",
+        a: ["Deixar que procure sozinho a secretaria, já que conhece o caminho.",
+            "Recusar a entrada e pedir que volte outro dia.",
+            "Identificar a pessoa, registrar a entrada e encaminhá-la à secretaria.",
+            "Receber a encomenda e entregá-la no fim do turno."],
+        c: 2,
+        m: "Controle de acesso é <b>identificar, registrar e encaminhar</b> — nem barrar todo mundo, nem liberar a circulação. Ninguém de fora anda sozinho pela escola." },
+      { e: "A avó de um aluno, que não consta na ficha de autorização, pede para buscá-lo mais cedo. O inspetor deve:",
+        a: ["Não liberar e encaminhar imediatamente o caso à direção.",
+            "Liberar, por se tratar de familiar próximo.",
+            "Liberar se o aluno reconhecer a avó.",
+            "Ligar para a mãe e liberar se ela autorizar pelo telefone."],
+        c: 0,
+        m: "A saída depende de <b>autorização formal registrada</b>. Parentesco, reconhecimento pelo aluno e autorização verbal por telefone não substituem o registro — e a exceção é decidida pela gestão, não pelo inspetor." }
+    ]},
+
+    { nome: "Tema 2 · Primeiros cuidados e limites", qs: [
+      { e: "Um aluno tropeça na quadra, bate a cabeça e fica no chão, consciente mas queixando-se de dor. O inspetor deve:",
+        a: ["Ajudá-lo a levantar e levá-lo à sala para descansar.",
+            "Dar um analgésico e observar por alguns minutos.",
+            "Levá-lo ao pronto-socorro no próprio carro.",
+            "Não movimentar o aluno, permanecer com ele, afastar os colegas e acionar imediatamente a equipe responsável."],
+        c: 3,
+        m: "Depois de uma pancada na cabeça, <b>mover a vítima pode agravar a lesão</b>. Medicar e transportar por conta própria estão fora dos limites de atuação — e é justamente o limite que o edital manda cobrar." },
+      { e: "Um aluno apresenta convulsão durante o intervalo. A conduta correta é:",
+        a: ["Segurar firmemente os braços e as pernas até a crise passar.",
+            "Proteger a cabeça, afastar objetos, não conter os movimentos e acionar socorro.",
+            "Colocar um pano na boca para evitar que morda a língua.",
+            "Dar água assim que os movimentos cessarem."],
+        c: 1,
+        m: "Conter os movimentos e pôr objeto na boca são condutas antigas e <b>perigosas</b>. Nada por via oral até a recuperação completa da consciência — o que elimina a (D)." }
+    ]},
+
+    { nome: "Tema 3 · Conflito entre alunos", qs: [
+      { e: "Dois alunos começam a se empurrar no corredor, cercados por colegas. A primeira providência do inspetor é:",
+        a: ["Aplicar advertência aos dois na frente da turma.",
+            "Esperar que se cansem, para não se envolver.",
+            "Separar os alunos sem agressão e afastar os colegas que assistem.",
+            "Levar os dois juntos à direção e deixá-los explicar ao mesmo tempo."],
+        c: 2,
+        m: "Primeiro <b>cessar o conflito e dispersar a plateia</b> — brigas crescem com público. Só depois vem ouvir cada um separadamente e encaminhar. Advertir é da gestão, não do inspetor." },
+      { e: "Após separar os alunos envolvidos em um desentendimento, o inspetor deve:",
+        a: ["Ouvir cada um separadamente, encaminhar à equipe gestora e registrar a ocorrência.",
+            "Decidir quem começou e aplicar a punição cabível.",
+            "Pedir que se abracem e considerem o assunto encerrado.",
+            "Comunicar diretamente os responsáveis pelos alunos."],
+        c: 0,
+        m: "O edital chama isso de <b>intervenção inicial</b>: o inspetor atende e encaminha; quem decide a medida disciplinar e quem fala com as famílias é a gestão." }
+    ]},
+
+    { nome: "Tema 4 · Bullying e proteção integral", qs: [
+      { e: "Um aluno conta ao inspetor que vem sendo chamado por apelidos humilhantes todos os dias por um grupo de colegas. O inspetor deve:",
+        a: ["Orientar o aluno a não ligar, pois são brincadeiras da idade.",
+            "Chamar o grupo e o aluno para uma conversa conjunta e pedir desculpas.",
+            "Advertir os colegas e considerar o caso resolvido.",
+            "Acolher o aluno, registrar o relato e comunicar a equipe gestora, sem expô-lo."],
+        c: 3,
+        m: "A repetição e a intenção caracterizam <b>bullying</b>. Mandar ignorar minimiza a violência, e juntar vítima e autores para “se entenderem” é <b>revitimizar</b>." },
+      { e: "O inspetor percebe hematomas em um aluno, que demonstra medo ao falar da família. A conduta correta é:",
+        a: ["Perguntar em detalhes o que aconteceu em casa até esclarecer os fatos.",
+            "Comunicar o fato à direção, sem interrogar o aluno, para o devido encaminhamento.",
+            "Aguardar novos sinais para ter certeza antes de comunicar.",
+            "Conversar com os responsáveis na hora da saída."],
+        c: 1,
+        m: "O ECA exige a comunicação diante da <b>suspeita</b> — esperar é omissão, punida por lei. Interrogar o aluno e confrontar a família revitimizam e podem atrapalhar a apuração." }
+    ]},
+
+    { nome: "Tema 5 · Atendimento e sigilo", qs: [
+      { e: "Uma mãe pergunta ao inspetor por que o filho de outra família foi chamado à coordenação. O inspetor deve:",
+        a: ["Contar, pois o fato aconteceu no pátio, à vista de todos.",
+            "Contar apenas se as crianças forem da mesma turma.",
+            "Informar que não pode tratar de assunto referente a outro aluno e orientar que procure a direção.",
+            "Dizer que não houve nenhuma ocorrência."],
+        c: 2,
+        m: "Sigilo funcional e proteção de dados. Atenção à diferença entre (C) e (D): <b>negar o fato é faltar com a verdade</b>; o correto é não tratar do assunto e encaminhar. Acontecer em local movimentado não torna a informação pública." },
+      { e: "Ao atender um telefonema e anotar um recado para a coordenação, o inspetor deve registrar:",
+        a: ["Apenas o nome de quem ligou.",
+            "O recado e sua opinião sobre a urgência do assunto.",
+            "Somente o assunto, para não expor dados.",
+            "Quem ligou, para quem, o assunto, um contato e a data e a hora."],
+        c: 3,
+        m: "Recado é <b>registro, não interpretação</b>. Opinião pessoal não entra em registro nenhum — vale a mesma regra do registro de ocorrência." }
+    ]},
+
+    { nome: "Tema 6 · Inclusão e acessibilidade", qs: [
+      { e: "Para acompanhar um aluno cego até o refeitório, o inspetor deve:",
+        a: ["Oferecer o próprio braço para que o aluno se apoie e avisar sobre degraus e obstáculos.",
+            "Segurar o aluno pelo braço e conduzi-lo com firmeza.",
+            "Empurrá-lo levemente pelos ombros para indicar a direção.",
+            "Pedir que um colega o leve."],
+        c: 0,
+        m: "Quem se apoia é a pessoa com deficiência — <b>nunca o contrário</b>. A ajuda é oferecida, e avisar de obstáculos faz parte dela. Segurar, empurrar ou delegar a um colega são barreiras atitudinais." },
+      { e: "Um servidor se dirige apenas ao acompanhante de uma aluna com deficiência, em vez de falar com ela. Essa conduta configura barreira:",
+        a: ["Arquitetônica.", "Atitudinal.", "Tecnológica.", "Urbanística."],
+        c: 1,
+        m: "Barreira <b>atitudinal</b> é a que nasce de comportamento e preconceito — é a mais cobrada no contexto escolar. As seis da Lei 13.146/2015: urbanísticas, arquitetônicas, nos transportes, nas comunicações e na informação, atitudinais e tecnológicas." }
+    ]},
+
+    { nome: "Tema 7 · Registro de ocorrência", qs: [
+      { e: "Assinale o trecho de registro de ocorrência redigido corretamente:",
+        a: ["O aluno é muito mal-educado e vive atrapalhando a aula.",
+            "Parece que houve um desentendimento, mas ninguém soube explicar.",
+            "A turma inteira estava agitada e sem respeito pelos funcionários.",
+            "Às 14h20, na quadra, durante a aula de educação física, o aluno R. L. afastou-se do grupo e foi orientado a retornar, o que ocorreu em seguida."],
+        c: 3,
+        m: "Registro descreve <b>fato</b>: hora, local, envolvidos, o que houve e a providência. As outras três trazem julgamento de caráter, suposição e generalização." },
+      { e: "Em um registro de ocorrência, NÃO deve constar:",
+        a: ["O horário exato do fato.",
+            "O local onde ocorreu.",
+            "A opinião do inspetor sobre a índole dos envolvidos.",
+            "A providência adotada no momento."],
+        c: 2,
+        m: "Atenção ao <b>NÃO</b> do enunciado. Opinião, adjetivo e suposição de intenção ficam de fora; data, hora, local, envolvidos e providência são justamente o que deve constar." }
+    ]},
+
+    { nome: "Tema 8 · Atribuições e postura", qs: [
+      { e: "Conforme o edital, constitui atribuição do Inspetor de Alunos:",
+        a: ["Observar os alunos em todas as dependências da escola, orientando-os e organizando-os, impedindo o trânsito de estranhos e mantendo ordem e disciplina.",
+            "Ministrar aulas de reforço aos alunos com dificuldade.",
+            "Efetuar matrículas e emitir históricos escolares.",
+            "Aplicar suspensões aos alunos que descumprirem as normas."],
+        c: 0,
+        m: "É a redação literal do Anexo I do edital. (B) é do professor, (C) do secretário de unidade escolar e (D) da equipe gestora — todos cargos ou funções diferentes." },
+      { e: "Sobre a postura funcional do Inspetor de Alunos, é correto afirmar que:",
+        a: ["O uso do uniforme determinado fica a critério do servidor.",
+            "Assiduidade, pontualidade, discrição, urbanidade e sigilo funcional integram os deveres do cargo.",
+            "Comentar ocorrências com outros responsáveis demonstra transparência.",
+            "Atrasos são tolerados desde que as tarefas sejam cumpridas."],
+        c: 1,
+        m: "Todos constam da lista do edital e se repetem no art. 222 do Estatuto de Santos, que também exige apresentar-se com o <b>uniforme determinado</b> — o que elimina a (A)." }
+    ]}
+  ];
+
+  var grupos = T.map(function (t, i) {
+    return {
+      nome: t.nome, peso: 4,
+      questoes: t.qs.map(function (q, j) {
+        return { id: "ce-" + i + "-" + j, e: q.e, a: q.a, c: q.c, m: q.m };
+      })
+    };
+  });
+
+  MOTOR.iniciar({
+    chave: "especificos-reta-final-v1",
+    alvo: "prova",
+    grupos: grupos,
+    rotulos: { titulo: "Resultado do treino de Específicos" },
+    veredito: function (nota100, acertos, total, placar) {
+      var fracos = placar.filter(function (b) { return b.acertos < b.q; })
+                         .map(function (b) { return b.nome.replace(/^Tema \d+ · /, ""); });
+      if (!fracos.length) {
+        return { titulo: "Os oito temas estão firmes.",
+                 texto: "Acertou tudo. Releia a cola no fim desta página no sábado à noite e pare de estudar conteúdo novo — daqui para frente o ganho está em descansar e chegar cedo no domingo." };
+      }
+      if (acertos >= total * 0.75) {
+        return { titulo: "Acertou " + acertos + " de " + total + ".",
+                 texto: "Falta fechar: " + fracos.join(", ") + ". Volte só nesses blocos acima, releia o quadro de “nunca” e refaça o treino." };
+      }
+      return { titulo: "Acertou " + acertos + " de " + total + ".",
+               texto: "Ainda está solto em: " + fracos.join(", ") + ". Antes de refazer, releia a <strong>chave de ouro</strong> no começo da página: quatro filtros que eliminam a alternativa errada mesmo quando você não lembra da situação específica." };
+    }
+  });
+})();
+</script>
+</body>
+</html>

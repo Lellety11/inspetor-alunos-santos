@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Registre as respostas marcadas na prova e confira com o gabarito oficial, com a nota já calculada pelos pesos reais.">
+<meta name="theme-color" content="#14574A">
+<title>Conferir o Gabarito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="./prova.css">
+<style>
+  textarea {
+    width: 100%; min-height: 96px; resize: vertical;
+    font-family: "IBM Plex Mono", monospace; font-size: .92rem; line-height: 1.5;
+    background: var(--surface); color: var(--ink);
+    border: 1px solid var(--line-2); border-radius: 3px; padding: 11px 13px;
+  }
+  textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  label.campo { display: flex; flex-direction: column; gap: 7px; }
+  label.campo .lbl {
+    font-family: "IBM Plex Mono", monospace; font-size: .68rem; font-weight: 600;
+    letter-spacing: .11em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .duas { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 680px) { .duas { grid-template-columns: 1fr 1fr; } }
+
+  select {
+    font-family: "Public Sans", system-ui, sans-serif; font-size: .9rem;
+    background: var(--surface); color: var(--ink);
+    border: 1px solid var(--line-2); border-radius: 3px; padding: 7px 9px; width: 100%;
+  }
+  .ordem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .ordem-item { display: flex; flex-direction: column; gap: 4px; }
+  .ordem-item span {
+    font-family: "IBM Plex Mono", monospace; font-size: .66rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+  }
+
+  /* grade das 40 questões */
+  .grade { display: flex; flex-direction: column; gap: 0; }
+  .linha {
+    display: grid; grid-template-columns: 34px 1fr; gap: 10px;
+    padding: 9px 0; border-bottom: 1px solid var(--line); align-items: center;
+  }
+  .linha:last-child { border-bottom: 0; }
+  .linha.sep-bloco { border-top: 2px solid var(--line-2); padding-top: 14px; margin-top: 4px; }
+  .lin-n {
+    font-family: "IBM Plex Mono", monospace; font-size: .76rem; font-weight: 600;
+    color: var(--ink-2); background: var(--sunk); border: 1px solid var(--line);
+    border-radius: 2px; padding: 3px 0; text-align: center; font-variant-numeric: tabular-nums;
+  }
+  .linha.ok   .lin-n { color: var(--good); background: var(--good-w); border-color: var(--good); }
+  .linha.erro .lin-n { color: var(--alert); background: var(--alert-w); border-color: var(--alert); }
+  .lin-corpo { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+  .par { display: flex; align-items: center; gap: 6px; }
+  .par > b {
+    font-family: "IBM Plex Mono", monospace; font-size: .62rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); min-width: 42px;
+  }
+  .opts { display: flex; gap: 3px; }
+  .opts button {
+    width: 30px; height: 30px; padding: 0; border-radius: 3px;
+    font-family: "IBM Plex Mono", monospace; font-size: .76rem; font-weight: 600;
+    background: var(--surface); color: var(--ink-3); border: 1px solid var(--line);
+  }
+  .opts button:hover { border-color: var(--line-2); color: var(--ink); background: var(--sunk); }
+  .opts button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+  .opts.gab button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .opts button.anul { width: 34px; font-size: .62rem; }
+  .bloco-chip {
+    font-family: "IBM Plex Mono", monospace; font-size: .6rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3);
+    border: 1px solid var(--line); border-radius: 100px; padding: 2px 8px; white-space: nowrap;
+  }
+  .bloco-chip.p4 { color: var(--alert); border-color: var(--alert); }
+  .bloco-chip.p2 { color: var(--accent); border-color: var(--accent); }
+
+  .placar-nota {
+    font-family: "IBM Plex Mono", monospace; font-size: 3.1rem; font-weight: 600;
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .placar-nota.pass { color: var(--good); }
+  .placar-nota.fail { color: var(--alert); }
+  .acoes { display: flex; flex-wrap: wrap; gap: 10px; }
+  pre.resumo {
+    background: var(--sunk); border: 1px solid var(--line); border-radius: 3px;
+    padding: 14px 16px; overflow-x: auto; margin: 0;
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; line-height: 1.55;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .aviso-vazio { color: var(--ink-2); font-size: .95rem; }
+
+  @media (max-width: 560px) {
+    .opts { gap: 5px; }
+    .opts button { width: 38px; height: 40px; font-size: .82rem; }
+    .opts button.anul { width: 44px; font-size: .6rem; }
+    .lin-corpo { gap: 8px 12px; }
+    .par > b { min-width: 0; }
+    .linha { grid-template-columns: 30px 1fr; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="mast">
+    <span class="eyebrow">Concurso de Inspetor de Alunos · Santos 2026</span>
+    <h1>Conferir o Gabarito</h1>
+    <p class="lede">Registre aqui as respostas que ela marcou na prova. Quando o gabarito sair, cole ao lado e a nota aparece já calculada pelos pesos reais — e sai um resumo pronto para me enviar.</p>
+    <nav class="kit" aria-label="Material de estudo">
+      <span class="kit-label">Kit de estudo</span>
+      <a href="./index.html">Início</a>
+      <span class="atual">Conferir</span>
+      <a href="./revisao.html">Voltando a Estudar</a>
+      <a href="./caderno.html">Caderno</a>
+      <a href="./simulado.html">Simulado 1</a>
+      <a href="./simulado2.html">Simulado 2</a>
+      <a href="./treino.html">Treino dos erros</a>
+      <a href="./legislacao.html">Legislação</a>
+      <a href="./especificos.html">Específicos</a>
+    </nav>
+  </header>
+
+  <div style="padding-top:32px; display:flex; flex-direction:column; gap:16px;">
+    <div class="card rule">
+      <h3>Como usar</h3>
+      <ol style="margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:6px;">
+        <li><strong>Hoje:</strong> preencha as respostas dela no campo da esquerda. Pode colar uma sequência de letras ou tocar nas opções da lista abaixo.</li>
+        <li><strong>Quando o gabarito sair</strong> — previsto para <strong>14/10</strong>, no site do IBAM — cole no campo da direita.</li>
+        <li>A nota aparece sozinha, com o placar por matéria.</li>
+        <li>No fim, use <strong>Copiar resumo</strong> e me mande: com ele eu vejo exatamente o que ela errou.</li>
+      </ol>
+      <p class="fine">Tudo fica salvo neste aparelho. Nada é enviado a lugar nenhum.</p>
+    </div>
+
+    <div class="duas">
+      <label class="campo">
+        <span class="lbl">Respostas dela</span>
+        <textarea id="txtMinhas" placeholder="Cole aqui. Aceita qualquer formato:&#10;ABCDACBD...&#10;ou&#10;1-A 2-B 3-C 4-D"></textarea>
+      </label>
+      <label class="campo">
+        <span class="lbl">Gabarito oficial · sai em 14/10</span>
+        <textarea id="txtGabarito" placeholder="Cole o gabarito do IBAM quando sair.&#10;Use X para questão anulada."></textarea>
+      </label>
+    </div>
+
+    <div class="card">
+      <h4 style="margin:0">Ordem dos blocos na prova</h4>
+      <p class="fine">O padrão abaixo segue a tabela do edital. Se o caderno dela veio em outra ordem, ajuste aqui — isso muda o cálculo, porque cada bloco tem um peso diferente.</p>
+      <div class="ordem-grid" id="ordemGrid"></div>
+    </div>
+  </div>
+
+  <section style="padding-top:46px">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">As 40 questões</span>
+      <h2>Conferência questão a questão</h2>
+    </div>
+    <div class="card"><div class="grade" id="grade"></div></div>
+  </section>
+
+  <section style="padding-top:46px">
+    <div class="sec-head">
+      <div class="bar" style="background:var(--alert)"></div>
+      <span class="eyebrow">Resultado</span>
+      <h2>A nota pelos pesos reais</h2>
+    </div>
+    <div id="placar"></div>
+  </section>
+
+  <section style="padding-top:40px">
+    <div class="sec-head">
+      <div class="bar"></div>
+      <span class="eyebrow">Para me enviar</span>
+      <h2>Resumo</h2>
+    </div>
+    <div class="card">
+      <div class="acoes">
+        <button id="btnCopiar" type="button">Copiar resumo</button>
+        <button class="ghost" id="btnLimpar" type="button">Apagar tudo</button>
+      </div>
+      <pre class="resumo" id="resumo">—</pre>
+      <p class="fine">Cole esse texto na nossa conversa. Com ele eu monto um material em cima do que ela errou de verdade.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span class="eyebrow">Lembrete</span>
+    <p class="fine">O cálculo aqui é uma conferência pessoal, não o resultado oficial. A nota oficial sai em <strong>17/11</strong> e a classificação em <strong>04/12</strong>, conforme o cronograma do edital, que é estimativo. Questões anuladas pela banca contam ponto para todos os candidatos — marque-as com X no gabarito.</p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var BLOCOS = [
+    { id: "port", nome: "Língua Portuguesa",                          curto: "Português",   n: 10, peso: 1 },
+    { id: "mat",  nome: "Matemática",                                  curto: "Matemática",  n: 6,  peso: 1 },
+    { id: "leg",  nome: "Legislação e Atendimento Escolar",            curto: "Legislação",  n: 8,  peso: 4 },
+    { id: "info", nome: "Informática e Rotinas Escolares",             curto: "Informática", n: 6,  peso: 2 },
+    { id: "esp",  nome: "Conhecimentos Específicos",                   curto: "Específicos", n: 10, peso: 4 }
+  ];
+  var CHAVE = "conferencia-gabarito-v1";
+  var LETRAS = ["A", "B", "C", "D"];
+  var TOTAL = 40;
+
+  var estado = { minhas: new Array(TOTAL).fill(null), gabarito: new Array(TOTAL).fill(null),
+                 ordem: BLOCOS.map(function (b) { return b.id; }) };
+
+  function salvar() {
+    try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) { /* ignorado */ }
+  }
+  function carregar() {
+    try {
+      var d = JSON.parse(localStorage.getItem(CHAVE) || "null");
+      if (!d) return;
+      if (Array.isArray(d.minhas) && d.minhas.length === TOTAL) estado.minhas = d.minhas;
+      if (Array.isArray(d.gabarito) && d.gabarito.length === TOTAL) estado.gabarito = d.gabarito;
+      if (Array.isArray(d.ordem) && d.ordem.length === BLOCOS.length) estado.ordem = d.ordem;
+    } catch (e) { /* ignorado */ }
+  }
+
+  /* ---------- leitura de texto colado ---------- */
+  function interpretar(txt) {
+    var out = new Array(TOTAL).fill(null);
+    if (!txt) return out;
+    var t = txt.toUpperCase();
+
+    if (/\d/.test(t)) {                       // formato "1-A  2) B  03. C"
+      var re = /(\d{1,2})\s*[-–—.)\]:º°]*\s*([ABCDX*])(?![A-Z])/g, m, achou = 0;
+      while ((m = re.exec(t)) !== null) {
+        var n = parseInt(m[1], 10);
+        if (n >= 1 && n <= TOTAL) { out[n - 1] = m[2] === "*" ? "X" : m[2]; achou++; }
+      }
+      if (achou >= 5) return out;
+      out = new Array(TOTAL).fill(null);
+    }
+    var letras = t.match(/[ABCDX*]/g) || [];  // formato "ABCDACBD..."
+    letras.slice(0, TOTAL).forEach(function (l, i) { out[i] = l === "*" ? "X" : l; });
+    return out;
+  }
+
+  function paraTexto(arr) {
+    return arr.map(function (v, i) { return (i + 1) + "-" + (v || "?"); }).join(" ");
+  }
+
+  /* ---------- mapa questão → bloco ---------- */
+  function mapa() {
+    var m = [], n = 1;
+    estado.ordem.forEach(function (id) {
+      var b = BLOCOS.filter(function (x) { return x.id === id; })[0];
+      for (var i = 0; i < b.n; i++) { m.push({ bloco: b, primeira: i === 0, num: n++ }); }
+    });
+    return m;
+  }
+
+  /* ---------- controles de ordem ---------- */
+  function desenharOrdem() {
+    var alvo = document.getElementById("ordemGrid");
+    alvo.innerHTML = estado.ordem.map(function (id, pos) {
+      var opts = BLOCOS.map(function (b) {
+        return '<option value="' + b.id + '"' + (b.id === id ? " selected" : "") + ">" +
+               b.curto + " (" + b.n + "q, peso " + b.peso + ")</option>";
+      }).join("");
+      return '<div class="ordem-item"><span>' + (pos + 1) + "º bloco</span>" +
+             '<select data-pos="' + pos + '">' + opts + "</select></div>";
+    }).join("");
+
+    alvo.querySelectorAll("select").forEach(function (sel) {
+      sel.addEventListener("change", function () {
+        var pos = Number(sel.dataset.pos), novo = sel.value;
+        var antigo = estado.ordem[pos];
+        var ondeEstava = estado.ordem.indexOf(novo);
+        estado.ordem[pos] = novo;
+        if (ondeEstava !== -1 && ondeEstava !== pos) estado.ordem[ondeEstava] = antigo;
+        salvar(); desenharOrdem(); desenharGrade(); calcular();
+      });
+    });
+  }
+
+  /* ---------- grade das 40 ---------- */
+  function desenharGrade() {
+    var m = mapa();
+    document.getElementById("grade").innerHTML = m.map(function (q, i) {
+      var cls = "linha";
+      var min = estado.minhas[i], gab = estado.gabarito[i];
+      if (min && gab) cls += (gab === "X" || min === gab) ? " ok" : " erro";
+      if (q.primeira && i > 0) cls += " sep-bloco";
+      var pesoCls = q.bloco.peso === 4 ? " p4" : (q.bloco.peso === 2 ? " p2" : "");
+
+      function botoes(tipo, valor, extraAnul) {
+        var b = LETRAS.map(function (L) {
+          return '<button type="button" data-tipo="' + tipo + '" data-i="' + i + '" data-v="' + L +
+                 '" aria-pressed="' + (valor === L) + '" aria-label="Questão ' + (i + 1) + ' ' + tipo + ' ' + L + '">' + L + "</button>";
+        }).join("");
+        if (extraAnul) {
+          b += '<button type="button" class="anul" data-tipo="' + tipo + '" data-i="' + i +
+               '" data-v="X" aria-pressed="' + (valor === "X") + '" aria-label="Questão ' + (i + 1) + ' anulada">ANUL</button>';
+        }
+        return b;
+      }
+
+      return '<div class="' + cls + '">' +
+               '<div class="lin-n">' + (q.num < 10 ? "0" + q.num : q.num) + "</div>" +
+               '<div class="lin-corpo">' +
+                 '<span class="bloco-chip' + pesoCls + '">' + q.bloco.curto + " ×" + q.bloco.peso + "</span>" +
+                 '<span class="par"><b>Dela</b><span class="opts">' + botoes("minha", estado.minhas[i], false) + "</span></span>" +
+                 '<span class="par"><b>Gabarito</b><span class="opts gab">' + botoes("gab", estado.gabarito[i], true) + "</span></span>" +
+               "</div>" +
+             "</div>";
+    }).join("");
+  }
+
+  document.getElementById("grade").addEventListener("click", function (ev) {
+    var b = ev.target.closest("button[data-tipo]");
+    if (!b) return;
+    var i = Number(b.dataset.i), v = b.dataset.v;
+    var arr = b.dataset.tipo === "minha" ? estado.minhas : estado.gabarito;
+    arr[i] = (arr[i] === v) ? null : v;          // tocar de novo desmarca
+    salvar(); sincronizarCampos(); desenharGrade(); calcular();
+  });
+
+  /* ---------- campos de texto ---------- */
+  var txtM = document.getElementById("txtMinhas"), txtG = document.getElementById("txtGabarito");
+  var editandoCampo = false;
+
+  txtM.addEventListener("input", function () {
+    editandoCampo = true; estado.minhas = interpretar(txtM.value);
+    salvar(); desenharGrade(); calcular(); editandoCampo = false;
+  });
+  txtG.addEventListener("input", function () {
+    editandoCampo = true; estado.gabarito = interpretar(txtG.value);
+    salvar(); desenharGrade(); calcular(); editandoCampo = false;
+  });
+
+  function sincronizarCampos() {
+    if (editandoCampo) return;
+    if (estado.minhas.some(Boolean)) txtM.value = paraTexto(estado.minhas);
+    if (estado.gabarito.some(Boolean)) txtG.value = paraTexto(estado.gabarito);
+  }
+
+  /* ---------- cálculo ---------- */
+  function calcular() {
+    var m = mapa();
+    var porBloco = {}, respondidas = 0, gabPreenchido = 0;
+    BLOCOS.forEach(function (b) { porBloco[b.id] = { b: b, acertos: 0, erradas: [], brancos: 0, anuladas: 0, conferidas: 0 }; });
+
+    m.forEach(function (q, i) {
+      var min = estado.minhas[i], gab = estado.gabarito[i];
+      if (min) respondidas++;
+      if (gab) gabPreenchido++;
+      if (!gab) return;
+      var r = porBloco[q.bloco.id];
+      r.conferidas++;
+      if (gab === "X") { r.anuladas++; r.acertos++; return; }
+      if (!min) { r.brancos++; r.erradas.push(q.num); return; }
+      if (min === gab) r.acertos++; else r.erradas.push(q.num);
+    });
+
+    var alvo = document.getElementById("placar");
+
+    if (!gabPreenchido) {
+      alvo.innerHTML =
+        '<div class="card">' +
+          '<p class="aviso-vazio"><strong>' + respondidas + " de 40</strong> respostas dela registradas. " +
+          "Assim que o gabarito sair, em <strong>14/10</strong>, cole no campo da direita e a nota aparece aqui.</p>" +
+          (respondidas === TOTAL ? '<p class="fine">As 40 já estão registradas.</p>'
+                                 : '<p class="fine">Faltam ' + (TOTAL - respondidas) + ". Dá para completar depois.</p>") +
+        "</div>";
+      resumoTexto(porBloco, 0, 0, respondidas, gabPreenchido);
+      return;
+    }
+
+    var pontos = 0, maximo = 0, acertos = 0, anuladas = 0;
+    var linhas = BLOCOS.map(function (b) {
+      var r = porBloco[b.id];
+      pontos += r.acertos * b.peso;
+      maximo += b.n * b.peso;
+      acertos += r.acertos;
+      anuladas += r.anuladas;
+      var destaque = (b.peso === 4 && r.conferidas && r.acertos / b.n < 0.6) ? ' style="font-weight:600"' : "";
+      return "<tr" + destaque + "><td>" + b.nome + "</td>" +
+             '<td class="num">' + r.acertos + "/" + b.n + "</td>" +
+             '<td class="num">' + b.peso + "</td>" +
+             '<td class="num">' + (r.acertos * b.peso) + " / " + (b.n * b.peso) + "</td></tr>";
+    }).join("");
+
+    var passou = pontos >= 50;
+    var parcial = gabPreenchido < TOTAL;
+    var esp = porBloco.esp;
+
+    alvo.innerHTML =
+      '<div class="score-card">' +
+        (parcial ? '<span class="eyebrow" style="color:var(--alert)">Parcial — ' + gabPreenchido + " de 40 do gabarito preenchidas</span>"
+                 : '<span class="eyebrow">Conferência completa</span>') +
+        '<div class="score-top">' +
+          '<span class="placar-nota ' + (passou ? "pass" : "fail") + '">' + pontos +
+            '<span style="font-size:1.1rem;color:var(--ink-3)"> / 100</span></span>' +
+          '<span class="score-sub">' + acertos + " de 40 questões certas" +
+            (anuladas ? "<br>" + anuladas + (anuladas === 1 ? " anulada contou" : " anuladas contaram") + " a favor" : "") +
+            "<br>mínimo para habilitação: <strong>50 pontos</strong></span>" +
+        "</div>" +
+        '<p class="veredito">' + (passou ? "Acima do mínimo de habilitação." : "Abaixo do mínimo de habilitação.") + "</p>" +
+        '<p class="fine">' + (passou
+          ? "Passar dos 50 pontos evita a eliminação, mas ainda é preciso estar entre os <strong>220 primeiros</strong> da lista geral. A classificação preliminar sai em 04/12."
+          : "São necessários 50 dos 100 pontos para não ser eliminada. Vale conferir se a ordem dos blocos acima bate com a do caderno dela — ela muda o cálculo.") +
+        "</p>" +
+        '<div class="tw"><table><thead><tr><th>Bloco</th><th class="num">Acertos</th>' +
+          '<th class="num">Peso</th><th class="num">Pontos</th></tr></thead><tbody>' + linhas +
+          '<tr class="total"><td>Total</td><td class="num">' + acertos + "/40</td>" +
+          '<td class="num">—</td><td class="num">' + pontos + " / 100</td></tr>" +
+        "</tbody></table></div>" +
+        '<div class="note"><span class="eyebrow">Critério de desempate</span><p>O segundo critério de desempate é a <strong>maior nota em Conhecimentos Específicos</strong>. Aqui: <strong>' +
+          esp.acertos + " de 10 (" + (esp.acertos * 4) + " pontos)</strong>.</p></div>" +
+      "</div>";
+
+    resumoTexto(porBloco, pontos, acertos, respondidas, gabPreenchido);
+  }
+
+  /* ---------- resumo copiável ---------- */
+  function resumoTexto(porBloco, pontos, acertos, respondidas, gabPreenchido) {
+    var L = [];
+    L.push("CONFERÊNCIA DA PROVA — Inspetor de Alunos, Santos (11/10/2026)");
+    L.push("Ordem dos blocos: " + estado.ordem.map(function (id) {
+      return BLOCOS.filter(function (b) { return b.id === id; })[0].curto;
+    }).join(" > "));
+    L.push("");
+    L.push("Respostas dela: " + paraTexto(estado.minhas));
+    if (gabPreenchido) L.push("Gabarito:       " + paraTexto(estado.gabarito));
+    L.push("");
+
+    if (!gabPreenchido) {
+      L.push(respondidas + "/40 respostas registradas. Gabarito ainda não preenchido.");
+    } else {
+      L.push("NOTA: " + pontos + "/100  (" + acertos + "/40 acertos)" +
+             (gabPreenchido < TOTAL ? "  [parcial: " + gabPreenchido + "/40 conferidas]" : ""));
+      L.push("");
+      BLOCOS.forEach(function (b) {
+        var r = porBloco[b.id];
+        L.push("- " + b.curto + " (peso " + b.peso + "): " + r.acertos + "/" + b.n +
+               " = " + (r.acertos * b.peso) + " pts" +
+               (r.erradas.length ? "  | errou as questões " + r.erradas.join(", ") : "") +
+               (r.anuladas ? "  | " + r.anuladas + " anulada(s)" : ""));
+      });
+    }
+    document.getElementById("resumo").textContent = L.join("\n");
+  }
+
+  document.getElementById("btnCopiar").addEventListener("click", function () {
+    var t = document.getElementById("resumo").textContent;
+    var btn = this;
+    function feedback(ok) {
+      btn.textContent = ok ? "Copiado" : "Selecione e copie à mão";
+      setTimeout(function () { btn.textContent = "Copiar resumo"; }, 2200);
+    }
+    try {
+      navigator.clipboard.writeText(t).then(function () { feedback(true); }, function () { feedback(false); });
+    } catch (e) { feedback(false); }
+  });
+
+  document.getElementById("btnLimpar").addEventListener("click", function () {
+    if (!confirm("Apagar as respostas e o gabarito registrados?")) return;
+    estado.minhas = new Array(TOTAL).fill(null);
+    estado.gabarito = new Array(TOTAL).fill(null);
+    try { localStorage.removeItem(CHAVE); } catch (e) { /* ignorado */ }
+    txtM.value = ""; txtG.value = "";
+    desenharGrade(); calcular();
+  });
+
+  carregar();
+  desenharOrdem();
+  sincronizarCampos();
+  desenharGrade();
+  calcular();
+})();
+</script>
+</body>
+</html>

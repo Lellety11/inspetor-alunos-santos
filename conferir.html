@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Registre as respostas marcadas na prova e confira com o gabarito oficial, com a nota já calculada pelos pesos reais.">
+<meta name="description" content="Confira a prova com o gabarito pessoal da Área do Candidato e veja a nota calculada pelos pesos reais.">
 <meta name="theme-color" content="#14574A">
 <title>Conferir o Gabarito</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="./prova.css">
 <style>
   textarea {
-    width: 100%; min-height: 96px; resize: vertical;
+    width: 100%; min-height: 92px; resize: vertical;
     font-family: "IBM Plex Mono", monospace; font-size: .92rem; line-height: 1.5;
     background: var(--surface); color: var(--ink);
     border: 1px solid var(--line-2); border-radius: 3px; padding: 11px 13px;
@@ -27,25 +27,32 @@
   @media (min-width: 680px) { .duas { grid-template-columns: 1fr 1fr; } }
 
   select {
-    font-family: "Public Sans", system-ui, sans-serif; font-size: .9rem;
+    font-family: "Public Sans", system-ui, sans-serif; font-size: .88rem;
     background: var(--surface); color: var(--ink);
-    border: 1px solid var(--line-2); border-radius: 3px; padding: 7px 9px; width: 100%;
+    border: 1px solid var(--line-2); border-radius: 3px; padding: 6px 8px; max-width: 100%;
   }
-  .ordem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-  .ordem-item { display: flex; flex-direction: column; gap: 4px; }
-  .ordem-item span {
-    font-family: "IBM Plex Mono", monospace; font-size: .66rem; font-weight: 600;
+  .rapido { display: grid; grid-template-columns: repeat(auto-fit, minmax(146px, 1fr)); gap: 10px; }
+  .rapido-item { display: flex; flex-direction: column; gap: 4px; }
+  .rapido-item span {
+    font-family: "IBM Plex Mono", monospace; font-size: .64rem; font-weight: 600;
     letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
   }
+  .rapido-item select { width: 100%; }
 
-  /* grade das 40 questões */
+  .contagem-blocos { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cb {
+    font-family: "IBM Plex Mono", monospace; font-size: .68rem; font-weight: 600;
+    border: 1px solid var(--line-2); border-radius: 100px; padding: 3px 10px; color: var(--ink-2);
+  }
+  .cb.ok  { color: var(--accent); border-color: var(--accent); background: var(--accent-w); }
+  .cb.bad { color: var(--alert); border-color: var(--alert); background: var(--alert-w); }
+
   .grade { display: flex; flex-direction: column; gap: 0; }
   .linha {
     display: grid; grid-template-columns: 34px 1fr; gap: 10px;
-    padding: 9px 0; border-bottom: 1px solid var(--line); align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--line); align-items: center;
   }
   .linha:last-child { border-bottom: 0; }
-  .linha.sep-bloco { border-top: 2px solid var(--line-2); padding-top: 14px; margin-top: 4px; }
   .lin-n {
     font-family: "IBM Plex Mono", monospace; font-size: .76rem; font-weight: 600;
     color: var(--ink-2); background: var(--sunk); border: 1px solid var(--line);
@@ -53,11 +60,11 @@
   }
   .linha.ok   .lin-n { color: var(--good); background: var(--good-w); border-color: var(--good); }
   .linha.erro .lin-n { color: var(--alert); background: var(--alert-w); border-color: var(--alert); }
-  .lin-corpo { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+  .lin-corpo { display: flex; flex-wrap: wrap; gap: 7px 14px; align-items: center; }
   .par { display: flex; align-items: center; gap: 6px; }
   .par > b {
     font-family: "IBM Plex Mono", monospace; font-size: .62rem; font-weight: 600;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); min-width: 42px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3);
   }
   .opts { display: flex; gap: 3px; }
   .opts button {
@@ -69,13 +76,7 @@
   .opts button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--paper); }
   .opts.gab button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
   .opts button.anul { width: 34px; font-size: .62rem; }
-  .bloco-chip {
-    font-family: "IBM Plex Mono", monospace; font-size: .6rem; font-weight: 600;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3);
-    border: 1px solid var(--line); border-radius: 100px; padding: 2px 8px; white-space: nowrap;
-  }
-  .bloco-chip.p4 { color: var(--alert); border-color: var(--alert); }
-  .bloco-chip.p2 { color: var(--accent); border-color: var(--accent); }
+  select.mat { font-size: .74rem; padding: 4px 6px; }
 
   .placar-nota {
     font-family: "IBM Plex Mono", monospace; font-size: 3.1rem; font-weight: 600;
@@ -91,14 +92,20 @@
     white-space: pre-wrap; word-break: break-word;
   }
   .aviso-vazio { color: var(--ink-2); font-size: .95rem; }
+  .urgente {
+    background: var(--alert); color: #fff; border-radius: 3px; padding: 14px 17px;
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .urgente .u-t { font-family: "IBM Plex Mono", monospace; font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .88; }
+  .urgente .u-m { font-size: 1.04rem; font-weight: 600; }
+  .urgente a { color: #fff; }
 
   @media (max-width: 560px) {
     .opts { gap: 5px; }
     .opts button { width: 38px; height: 40px; font-size: .82rem; }
     .opts button.anul { width: 44px; font-size: .6rem; }
-    .lin-corpo { gap: 8px 12px; }
-    .par > b { min-width: 0; }
     .linha { grid-template-columns: 30px 1fr; gap: 8px; }
+    select.mat { width: 100%; }
   }
 </style>
 </head>
@@ -109,7 +116,7 @@
   <header class="mast">
     <span class="eyebrow">Concurso de Inspetor de Alunos · Santos 2026</span>
     <h1>Conferir o Gabarito</h1>
-    <p class="lede">Registre aqui as respostas que ela marcou na prova. Quando o gabarito sair, cole ao lado e a nota aparece já calculada pelos pesos reais — e sai um resumo pronto para me enviar.</p>
+    <p class="lede">A prova foi <strong>randomizada</strong>: cada candidato recebeu as questões e as alternativas em ordem embaralhada. Por isso não existe um gabarito único — o dela está na Área do Candidato, e é esse que precisa ser usado aqui.</p>
     <nav class="kit" aria-label="Material de estudo">
       <span class="kit-label">Kit de estudo</span>
       <a href="./index.html">Início</a>
@@ -124,37 +131,46 @@
     </nav>
   </header>
 
-  <div style="padding-top:32px; display:flex; flex-direction:column; gap:16px;">
+  <div style="padding-top:30px; display:flex; flex-direction:column; gap:16px;">
+
+    <div class="urgente">
+      <span class="u-t">Prazo de recurso</span>
+      <span class="u-m">Recurso contra o gabarito: 15 e 16 de outubro, até 23h59.</span>
+      <span style="font-size:.9rem; opacity:.93">Só pela aba “recursos” em <strong>ibamsp-concursos.org.br/login</strong>. Depois desse prazo não há mais como contestar.</span>
+    </div>
+
     <div class="card rule">
-      <h3>Como usar</h3>
-      <ol style="margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:6px;">
-        <li><strong>Hoje:</strong> preencha as respostas dela no campo da esquerda. Pode colar uma sequência de letras ou tocar nas opções da lista abaixo.</li>
-        <li><strong>Quando o gabarito sair</strong> — previsto para <strong>14/10</strong>, no site do IBAM — cole no campo da direita.</li>
-        <li>A nota aparece sozinha, com o placar por matéria.</li>
-        <li>No fim, use <strong>Copiar resumo</strong> e me mande: com ele eu vejo exatamente o que ela errou.</li>
+      <h3>Como pegar o gabarito dela</h3>
+      <ol style="margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:7px;">
+        <li>Entrar na <strong>Área do Candidato</strong> do IBAM com CPF, senha e data de nascimento.</li>
+        <li>Desde <strong>14/10 às 18h</strong> estão disponíveis lá três coisas: o <strong>caderno de questões dela</strong>, o <strong>gabarito daquele caderno</strong> e a <strong>folha de respostas</strong>.</li>
+        <li>Cole as respostas dela e o gabarito nos campos abaixo.</li>
+        <li>Olhando o caderno, marque a <strong>matéria de cada questão</strong> na lista — sem isso a nota não sai certa, porque cada matéria tem um peso diferente.</li>
       </ol>
-      <p class="fine">Tudo fica salvo neste aparelho. Nada é enviado a lugar nenhum.</p>
+      <p class="fine">Tudo fica salvo neste aparelho. Nada é enviado para lugar nenhum.</p>
     </div>
 
     <div class="duas">
       <label class="campo">
         <span class="lbl">Respostas dela</span>
-        <textarea id="txtMinhas" placeholder="Cole aqui. Aceita qualquer formato:&#10;ABCDACBD...&#10;ou&#10;1-A 2-B 3-C 4-D"></textarea>
+        <textarea id="txtMinhas" placeholder="Cole aqui. Aceita qualquer formato:&#10;CAADDBCCAB...&#10;ou&#10;1-C 2-A 3-A 4-D"></textarea>
       </label>
       <label class="campo">
-        <span class="lbl">Gabarito oficial · sai em 14/10</span>
-        <textarea id="txtGabarito" placeholder="Cole o gabarito do IBAM quando sair.&#10;Use X para questão anulada."></textarea>
+        <span class="lbl">Gabarito do caderno dela</span>
+        <textarea id="txtGabarito" placeholder="Cole o gabarito da Área do Candidato.&#10;Use X para questão anulada."></textarea>
       </label>
     </div>
 
     <div class="card">
-      <h4 style="margin:0">Ordem dos blocos na prova</h4>
-      <p class="fine">O padrão abaixo segue a tabela do edital. Se o caderno dela veio em outra ordem, ajuste aqui — isso muda o cálculo, porque cada bloco tem um peso diferente.</p>
-      <div class="ordem-grid" id="ordemGrid"></div>
+      <h4 style="margin:0">Matéria de cada questão</h4>
+      <p class="fine">Como a prova é embaralhada, as matérias não vêm necessariamente em sequência. Se no caderno dela elas <em>estiverem</em> agrupadas, use o preenchimento rápido abaixo e depois ajuste o que estiver fora. Caso contrário, marque questão a questão na lista.</p>
+      <div class="rapido" id="rapido"></div>
+      <div class="contagem-blocos" id="contagem"></div>
+      <p class="fine" id="avisoContagem"></p>
     </div>
   </div>
 
-  <section style="padding-top:46px">
+  <section style="padding-top:44px">
     <div class="sec-head">
       <div class="bar"></div>
       <span class="eyebrow">As 40 questões</span>
@@ -163,7 +179,7 @@
     <div class="card"><div class="grade" id="grade"></div></div>
   </section>
 
-  <section style="padding-top:46px">
+  <section style="padding-top:44px">
     <div class="sec-head">
       <div class="bar" style="background:var(--alert)"></div>
       <span class="eyebrow">Resultado</span>
@@ -184,13 +200,13 @@
         <button class="ghost" id="btnLimpar" type="button">Apagar tudo</button>
       </div>
       <pre class="resumo" id="resumo">—</pre>
-      <p class="fine">Cole esse texto na nossa conversa. Com ele eu monto um material em cima do que ela errou de verdade.</p>
+      <p class="fine">Cole esse texto na nossa conversa para eu analisar o que ela errou.</p>
     </div>
   </section>
 
   <footer>
     <span class="eyebrow">Lembrete</span>
-    <p class="fine">O cálculo aqui é uma conferência pessoal, não o resultado oficial. A nota oficial sai em <strong>17/11</strong> e a classificação em <strong>04/12</strong>, conforme o cronograma do edital, que é estimativo. Questões anuladas pela banca contam ponto para todos os candidatos — marque-as com X no gabarito.</p>
+    <p class="fine">Esta é uma conferência pessoal, não o resultado oficial. A <strong>nota oficial</strong> sai em 17/11 e a <strong>classificação</strong> em 04/12, conforme o cronograma do edital, que é estimativo. Questões anuladas pela banca contam ponto para todos — marque-as com X no gabarito.</p>
   </footer>
 
 </div>
@@ -200,30 +216,40 @@
   "use strict";
 
   var BLOCOS = [
-    { id: "port", nome: "Língua Portuguesa",                          curto: "Português",   n: 10, peso: 1 },
-    { id: "mat",  nome: "Matemática",                                  curto: "Matemática",  n: 6,  peso: 1 },
-    { id: "leg",  nome: "Legislação e Atendimento Escolar",            curto: "Legislação",  n: 8,  peso: 4 },
-    { id: "info", nome: "Informática e Rotinas Escolares",             curto: "Informática", n: 6,  peso: 2 },
-    { id: "esp",  nome: "Conhecimentos Específicos",                   curto: "Específicos", n: 10, peso: 4 }
+    { id: "port", nome: "Língua Portuguesa",                curto: "Português",   n: 10, peso: 1 },
+    { id: "mat",  nome: "Matemática",                        curto: "Matemática",  n: 6,  peso: 1 },
+    { id: "leg",  nome: "Legislação e Atendimento Escolar",  curto: "Legislação",  n: 8,  peso: 4 },
+    { id: "info", nome: "Informática e Rotinas Escolares",   curto: "Informática", n: 6,  peso: 2 },
+    { id: "esp",  nome: "Conhecimentos Específicos",         curto: "Específicos", n: 10, peso: 4 }
   ];
-  var CHAVE = "conferencia-gabarito-v1";
+  var porId = {};
+  BLOCOS.forEach(function (b) { porId[b.id] = b; });
+
+  var CHAVE = "conferencia-gabarito-v2";
   var LETRAS = ["A", "B", "C", "D"];
   var TOTAL = 40;
 
-  var estado = { minhas: new Array(TOTAL).fill(null), gabarito: new Array(TOTAL).fill(null),
-                 ordem: BLOCOS.map(function (b) { return b.id; }) };
-
-  function salvar() {
-    try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) { /* ignorado */ }
+  function sequencia(ordem) {          // ordem = [ids] -> 40 ids, na contagem do edital
+    var out = [];
+    ordem.forEach(function (id) { for (var i = 0; i < porId[id].n; i++) out.push(id); });
+    return out;
   }
+
+  var estado = {
+    minhas: new Array(TOTAL).fill(null),
+    gabarito: new Array(TOTAL).fill(null),
+    blocos: sequencia(BLOCOS.map(function (b) { return b.id; }))
+  };
+
+  function salvar() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {} }
   function carregar() {
     try {
       var d = JSON.parse(localStorage.getItem(CHAVE) || "null");
       if (!d) return;
       if (Array.isArray(d.minhas) && d.minhas.length === TOTAL) estado.minhas = d.minhas;
       if (Array.isArray(d.gabarito) && d.gabarito.length === TOTAL) estado.gabarito = d.gabarito;
-      if (Array.isArray(d.ordem) && d.ordem.length === BLOCOS.length) estado.ordem = d.ordem;
-    } catch (e) { /* ignorado */ }
+      if (Array.isArray(d.blocos) && d.blocos.length === TOTAL) estado.blocos = d.blocos;
+    } catch (e) {}
   }
 
   /* ---------- leitura de texto colado ---------- */
@@ -231,8 +257,7 @@
     var out = new Array(TOTAL).fill(null);
     if (!txt) return out;
     var t = txt.toUpperCase();
-
-    if (/\d/.test(t)) {                       // formato "1-A  2) B  03. C"
+    if (/\d/.test(t)) {
       var re = /(\d{1,2})\s*[-–—.)\]:º°]*\s*([ABCDX*])(?![A-Z])/g, m, achou = 0;
       while ((m = re.exec(t)) !== null) {
         var n = parseInt(m[1], 10);
@@ -241,161 +266,168 @@
       if (achou >= 5) return out;
       out = new Array(TOTAL).fill(null);
     }
-    var letras = t.match(/[ABCDX*]/g) || [];  // formato "ABCDACBD..."
-    letras.slice(0, TOTAL).forEach(function (l, i) { out[i] = l === "*" ? "X" : l; });
+    (t.match(/[ABCDX*]/g) || []).slice(0, TOTAL).forEach(function (l, i) {
+      out[i] = l === "*" ? "X" : l;
+    });
     return out;
   }
-
   function paraTexto(arr) {
     return arr.map(function (v, i) { return (i + 1) + "-" + (v || "?"); }).join(" ");
   }
 
-  /* ---------- mapa questão → bloco ---------- */
-  function mapa() {
-    var m = [], n = 1;
-    estado.ordem.forEach(function (id) {
-      var b = BLOCOS.filter(function (x) { return x.id === id; })[0];
-      for (var i = 0; i < b.n; i++) { m.push({ bloco: b, primeira: i === 0, num: n++ }); }
-    });
-    return m;
-  }
+  /* ---------- preenchimento rápido ---------- */
+  var ordemRapida = BLOCOS.map(function (b) { return b.id; });
 
-  /* ---------- controles de ordem ---------- */
-  function desenharOrdem() {
-    var alvo = document.getElementById("ordemGrid");
-    alvo.innerHTML = estado.ordem.map(function (id, pos) {
+  function desenharRapido() {
+    document.getElementById("rapido").innerHTML = ordemRapida.map(function (id, pos) {
       var opts = BLOCOS.map(function (b) {
         return '<option value="' + b.id + '"' + (b.id === id ? " selected" : "") + ">" +
-               b.curto + " (" + b.n + "q, peso " + b.peso + ")</option>";
+               b.curto + " (" + b.n + "q)</option>";
       }).join("");
-      return '<div class="ordem-item"><span>' + (pos + 1) + "º bloco</span>" +
+      return '<div class="rapido-item"><span>' + (pos + 1) + "º grupo</span>" +
              '<select data-pos="' + pos + '">' + opts + "</select></div>";
-    }).join("");
+    }).join("") +
+    '<div class="rapido-item"><span>&nbsp;</span><button type="button" id="btnAplicar">Aplicar à lista</button></div>';
 
-    alvo.querySelectorAll("select").forEach(function (sel) {
+    document.querySelectorAll("#rapido select").forEach(function (sel) {
       sel.addEventListener("change", function () {
-        var pos = Number(sel.dataset.pos), novo = sel.value;
-        var antigo = estado.ordem[pos];
-        var ondeEstava = estado.ordem.indexOf(novo);
-        estado.ordem[pos] = novo;
-        if (ondeEstava !== -1 && ondeEstava !== pos) estado.ordem[ondeEstava] = antigo;
-        salvar(); desenharOrdem(); desenharGrade(); calcular();
+        var pos = Number(sel.dataset.pos), novo = sel.value, antigo = ordemRapida[pos];
+        var onde = ordemRapida.indexOf(novo);
+        ordemRapida[pos] = novo;
+        if (onde !== -1 && onde !== pos) ordemRapida[onde] = antigo;
+        desenharRapido();
       });
+    });
+    document.getElementById("btnAplicar").addEventListener("click", function () {
+      estado.blocos = sequencia(ordemRapida);
+      salvar(); desenharGrade(); calcular();
     });
   }
 
-  /* ---------- grade das 40 ---------- */
+  /* ---------- contagem por bloco ---------- */
+  function desenharContagem() {
+    var cont = {};
+    BLOCOS.forEach(function (b) { cont[b.id] = 0; });
+    estado.blocos.forEach(function (id) { if (cont[id] !== undefined) cont[id]++; });
+    var tudoCerto = BLOCOS.every(function (b) { return cont[b.id] === b.n; });
+
+    document.getElementById("contagem").innerHTML = BLOCOS.map(function (b) {
+      var ok = cont[b.id] === b.n;
+      return '<span class="cb ' + (ok ? "ok" : "bad") + '">' + b.curto + ": " + cont[b.id] + "/" + b.n + "</span>";
+    }).join("");
+
+    document.getElementById("avisoContagem").textContent = tudoCerto
+      ? "As quantidades batem com o edital."
+      : "As quantidades ainda não batem com o edital (10 de Português, 6 de Matemática, 8 de Legislação, 6 de Informática e 10 de Específicos). A nota abaixo só fica correta quando bater.";
+  }
+
+  /* ---------- grade ---------- */
   function desenharGrade() {
-    var m = mapa();
-    document.getElementById("grade").innerHTML = m.map(function (q, i) {
+    document.getElementById("grade").innerHTML = estado.blocos.map(function (bid, i) {
+      var b = porId[bid] || BLOCOS[0];
       var cls = "linha";
       var min = estado.minhas[i], gab = estado.gabarito[i];
       if (min && gab) cls += (gab === "X" || min === gab) ? " ok" : " erro";
-      if (q.primeira && i > 0) cls += " sep-bloco";
-      var pesoCls = q.bloco.peso === 4 ? " p4" : (q.bloco.peso === 2 ? " p2" : "");
 
-      function botoes(tipo, valor, extraAnul) {
-        var b = LETRAS.map(function (L) {
+      function botoes(tipo, valor, anul) {
+        var h = LETRAS.map(function (L) {
           return '<button type="button" data-tipo="' + tipo + '" data-i="' + i + '" data-v="' + L +
-                 '" aria-pressed="' + (valor === L) + '" aria-label="Questão ' + (i + 1) + ' ' + tipo + ' ' + L + '">' + L + "</button>";
+                 '" aria-pressed="' + (valor === L) + '" aria-label="Questão ' + (i + 1) + " " + tipo + " " + L + '">' + L + "</button>";
         }).join("");
-        if (extraAnul) {
-          b += '<button type="button" class="anul" data-tipo="' + tipo + '" data-i="' + i +
-               '" data-v="X" aria-pressed="' + (valor === "X") + '" aria-label="Questão ' + (i + 1) + ' anulada">ANUL</button>';
-        }
-        return b;
+        if (anul) h += '<button type="button" class="anul" data-tipo="' + tipo + '" data-i="' + i +
+                       '" data-v="X" aria-pressed="' + (valor === "X") + '" aria-label="Questão ' + (i + 1) + ' anulada">ANUL</button>';
+        return h;
       }
+      var selMat = '<select class="mat" data-i="' + i + '" aria-label="Matéria da questão ' + (i + 1) + '">' +
+        BLOCOS.map(function (x) {
+          return '<option value="' + x.id + '"' + (x.id === bid ? " selected" : "") + ">" +
+                 x.curto + " ×" + x.peso + "</option>";
+        }).join("") + "</select>";
 
       return '<div class="' + cls + '">' +
-               '<div class="lin-n">' + (q.num < 10 ? "0" + q.num : q.num) + "</div>" +
-               '<div class="lin-corpo">' +
-                 '<span class="bloco-chip' + pesoCls + '">' + q.bloco.curto + " ×" + q.bloco.peso + "</span>" +
-                 '<span class="par"><b>Dela</b><span class="opts">' + botoes("minha", estado.minhas[i], false) + "</span></span>" +
-                 '<span class="par"><b>Gabarito</b><span class="opts gab">' + botoes("gab", estado.gabarito[i], true) + "</span></span>" +
-               "</div>" +
-             "</div>";
+               '<div class="lin-n">' + (i + 1 < 10 ? "0" + (i + 1) : i + 1) + "</div>" +
+               '<div class="lin-corpo">' + selMat +
+                 '<span class="par"><b>Dela</b><span class="opts">' + botoes("minha", min, false) + "</span></span>" +
+                 '<span class="par"><b>Gabarito</b><span class="opts gab">' + botoes("gab", gab, true) + "</span></span>" +
+               "</div></div>";
     }).join("");
   }
 
-  document.getElementById("grade").addEventListener("click", function (ev) {
+  var grade = document.getElementById("grade");
+  grade.addEventListener("click", function (ev) {
     var b = ev.target.closest("button[data-tipo]");
     if (!b) return;
     var i = Number(b.dataset.i), v = b.dataset.v;
     var arr = b.dataset.tipo === "minha" ? estado.minhas : estado.gabarito;
-    arr[i] = (arr[i] === v) ? null : v;          // tocar de novo desmarca
-    salvar(); sincronizarCampos(); desenharGrade(); calcular();
+    arr[i] = (arr[i] === v) ? null : v;
+    salvar(); sincronizar(); desenharGrade(); calcular();
+  });
+  grade.addEventListener("change", function (ev) {
+    var s = ev.target.closest("select.mat");
+    if (!s) return;
+    estado.blocos[Number(s.dataset.i)] = s.value;
+    salvar(); desenharGrade(); calcular();
   });
 
-  /* ---------- campos de texto ---------- */
+  /* ---------- campos ---------- */
   var txtM = document.getElementById("txtMinhas"), txtG = document.getElementById("txtGabarito");
-  var editandoCampo = false;
-
+  var editando = false;
   txtM.addEventListener("input", function () {
-    editandoCampo = true; estado.minhas = interpretar(txtM.value);
-    salvar(); desenharGrade(); calcular(); editandoCampo = false;
+    editando = true; estado.minhas = interpretar(txtM.value);
+    salvar(); desenharGrade(); calcular(); editando = false;
   });
   txtG.addEventListener("input", function () {
-    editandoCampo = true; estado.gabarito = interpretar(txtG.value);
-    salvar(); desenharGrade(); calcular(); editandoCampo = false;
+    editando = true; estado.gabarito = interpretar(txtG.value);
+    salvar(); desenharGrade(); calcular(); editando = false;
   });
-
-  function sincronizarCampos() {
-    if (editandoCampo) return;
+  function sincronizar() {
+    if (editando) return;
     if (estado.minhas.some(Boolean)) txtM.value = paraTexto(estado.minhas);
     if (estado.gabarito.some(Boolean)) txtG.value = paraTexto(estado.gabarito);
   }
 
   /* ---------- cálculo ---------- */
   function calcular() {
-    var m = mapa();
-    var porBloco = {}, respondidas = 0, gabPreenchido = 0;
-    BLOCOS.forEach(function (b) { porBloco[b.id] = { b: b, acertos: 0, erradas: [], brancos: 0, anuladas: 0, conferidas: 0 }; });
+    desenharContagem();
+    var r = {};
+    BLOCOS.forEach(function (b) { r[b.id] = { b: b, total: 0, acertos: 0, erradas: [], brancos: 0, anuladas: 0, conferidas: 0 }; });
 
-    m.forEach(function (q, i) {
+    var respondidas = 0, gabPreenchido = 0;
+    estado.blocos.forEach(function (bid, i) {
+      var alvo = r[bid]; if (!alvo) return;
+      alvo.total++;
       var min = estado.minhas[i], gab = estado.gabarito[i];
       if (min) respondidas++;
       if (gab) gabPreenchido++;
       if (!gab) return;
-      var r = porBloco[q.bloco.id];
-      r.conferidas++;
-      if (gab === "X") { r.anuladas++; r.acertos++; return; }
-      if (!min) { r.brancos++; r.erradas.push(q.num); return; }
-      if (min === gab) r.acertos++; else r.erradas.push(q.num);
+      alvo.conferidas++;
+      if (gab === "X") { alvo.anuladas++; alvo.acertos++; return; }
+      if (!min) { alvo.brancos++; alvo.erradas.push(i + 1); return; }
+      if (min === gab) alvo.acertos++; else alvo.erradas.push(i + 1);
     });
 
-    var alvo = document.getElementById("placar");
-
+    var alvoEl = document.getElementById("placar");
     if (!gabPreenchido) {
-      alvo.innerHTML =
-        '<div class="card">' +
-          '<p class="aviso-vazio"><strong>' + respondidas + " de 40</strong> respostas dela registradas. " +
-          "Assim que o gabarito sair, em <strong>14/10</strong>, cole no campo da direita e a nota aparece aqui.</p>" +
-          (respondidas === TOTAL ? '<p class="fine">As 40 já estão registradas.</p>'
-                                 : '<p class="fine">Faltam ' + (TOTAL - respondidas) + ". Dá para completar depois.</p>") +
-        "</div>";
-      resumoTexto(porBloco, 0, 0, respondidas, gabPreenchido);
+      alvoEl.innerHTML =
+        '<div class="card"><p class="aviso-vazio"><strong>' + respondidas + " de 40</strong> respostas dela registradas. " +
+        "Cole o gabarito do caderno dela — está na Área do Candidato desde 14/10 às 18h — e a nota aparece aqui.</p></div>";
+      resumo(r, 0, 0, respondidas, gabPreenchido);
       return;
     }
 
-    var pontos = 0, maximo = 0, acertos = 0, anuladas = 0;
+    var pontos = 0, acertos = 0, anuladas = 0;
     var linhas = BLOCOS.map(function (b) {
-      var r = porBloco[b.id];
-      pontos += r.acertos * b.peso;
-      maximo += b.n * b.peso;
-      acertos += r.acertos;
-      anuladas += r.anuladas;
-      var destaque = (b.peso === 4 && r.conferidas && r.acertos / b.n < 0.6) ? ' style="font-weight:600"' : "";
-      return "<tr" + destaque + "><td>" + b.nome + "</td>" +
-             '<td class="num">' + r.acertos + "/" + b.n + "</td>" +
+      var x = r[b.id];
+      pontos += x.acertos * b.peso; acertos += x.acertos; anuladas += x.anuladas;
+      var forte = (b.peso === 4 && x.conferidas && x.acertos / b.n < 0.6) ? ' style="font-weight:600"' : "";
+      return "<tr" + forte + "><td>" + b.nome + "</td>" +
+             '<td class="num">' + x.acertos + "/" + x.total + "</td>" +
              '<td class="num">' + b.peso + "</td>" +
-             '<td class="num">' + (r.acertos * b.peso) + " / " + (b.n * b.peso) + "</td></tr>";
+             '<td class="num">' + (x.acertos * b.peso) + " / " + (x.total * b.peso) + "</td></tr>";
     }).join("");
 
-    var passou = pontos >= 50;
-    var parcial = gabPreenchido < TOTAL;
-    var esp = porBloco.esp;
-
-    alvo.innerHTML =
+    var passou = pontos >= 50, parcial = gabPreenchido < TOTAL;
+    alvoEl.innerHTML =
       '<div class="score-card">' +
         (parcial ? '<span class="eyebrow" style="color:var(--alert)">Parcial — ' + gabPreenchido + " de 40 do gabarito preenchidas</span>"
                  : '<span class="eyebrow">Conferência completa</span>') +
@@ -404,78 +436,70 @@
             '<span style="font-size:1.1rem;color:var(--ink-3)"> / 100</span></span>' +
           '<span class="score-sub">' + acertos + " de 40 questões certas" +
             (anuladas ? "<br>" + anuladas + (anuladas === 1 ? " anulada contou" : " anuladas contaram") + " a favor" : "") +
-            "<br>mínimo para habilitação: <strong>50 pontos</strong></span>" +
-        "</div>" +
+            "<br>mínimo para habilitação: <strong>50 pontos</strong></span></div>" +
         '<p class="veredito">' + (passou ? "Acima do mínimo de habilitação." : "Abaixo do mínimo de habilitação.") + "</p>" +
         '<p class="fine">' + (passou
-          ? "Passar dos 50 pontos evita a eliminação, mas ainda é preciso estar entre os <strong>220 primeiros</strong> da lista geral. A classificação preliminar sai em 04/12."
-          : "São necessários 50 dos 100 pontos para não ser eliminada. Vale conferir se a ordem dos blocos acima bate com a do caderno dela — ela muda o cálculo.") +
-        "</p>" +
-        '<div class="tw"><table><thead><tr><th>Bloco</th><th class="num">Acertos</th>' +
-          '<th class="num">Peso</th><th class="num">Pontos</th></tr></thead><tbody>' + linhas +
-          '<tr class="total"><td>Total</td><td class="num">' + acertos + "/40</td>" +
-          '<td class="num">—</td><td class="num">' + pontos + " / 100</td></tr>" +
+          ? "Passar dos 50 evita a eliminação, mas ainda é preciso estar entre os <strong>220 primeiros</strong> da lista geral. A classificação preliminar sai em 04/12."
+          : "São necessários 50 dos 100 pontos. Confira se a matéria de cada questão está marcada certo — é ela que define o peso.") + "</p>" +
+        '<div class="tw"><table><thead><tr><th>Bloco</th><th class="num">Acertos</th><th class="num">Peso</th><th class="num">Pontos</th></tr></thead><tbody>' +
+          linhas + '<tr class="total"><td>Total</td><td class="num">' + acertos + "/40</td><td class=\"num\">—</td><td class=\"num\">" + pontos + " / 100</td></tr>" +
         "</tbody></table></div>" +
         '<div class="note"><span class="eyebrow">Critério de desempate</span><p>O segundo critério de desempate é a <strong>maior nota em Conhecimentos Específicos</strong>. Aqui: <strong>' +
-          esp.acertos + " de 10 (" + (esp.acertos * 4) + " pontos)</strong>.</p></div>" +
+          r.esp.acertos + " de " + r.esp.total + " (" + (r.esp.acertos * 4) + " pontos)</strong>.</p></div>" +
       "</div>";
-
-    resumoTexto(porBloco, pontos, acertos, respondidas, gabPreenchido);
+    resumo(r, pontos, acertos, respondidas, gabPreenchido);
   }
 
-  /* ---------- resumo copiável ---------- */
-  function resumoTexto(porBloco, pontos, acertos, respondidas, gabPreenchido) {
+  function resumo(r, pontos, acertos, respondidas, gabPreenchido) {
     var L = [];
     L.push("CONFERÊNCIA DA PROVA — Inspetor de Alunos, Santos (11/10/2026)");
-    L.push("Ordem dos blocos: " + estado.ordem.map(function (id) {
-      return BLOCOS.filter(function (b) { return b.id === id; })[0].curto;
-    }).join(" > "));
+    L.push("Prova randomizada: a ordem abaixo é a do caderno dela.");
     L.push("");
     L.push("Respostas dela: " + paraTexto(estado.minhas));
     if (gabPreenchido) L.push("Gabarito:       " + paraTexto(estado.gabarito));
+    L.push("Matérias:       " + estado.blocos.map(function (id, i) {
+      return (i + 1) + "-" + porId[id].curto.slice(0, 4);
+    }).join(" "));
     L.push("");
-
     if (!gabPreenchido) {
       L.push(respondidas + "/40 respostas registradas. Gabarito ainda não preenchido.");
     } else {
       L.push("NOTA: " + pontos + "/100  (" + acertos + "/40 acertos)" +
-             (gabPreenchido < TOTAL ? "  [parcial: " + gabPreenchido + "/40 conferidas]" : ""));
+             (gabPreenchido < TOTAL ? "  [parcial: " + gabPreenchido + "/40]" : ""));
       L.push("");
       BLOCOS.forEach(function (b) {
-        var r = porBloco[b.id];
-        L.push("- " + b.curto + " (peso " + b.peso + "): " + r.acertos + "/" + b.n +
-               " = " + (r.acertos * b.peso) + " pts" +
-               (r.erradas.length ? "  | errou as questões " + r.erradas.join(", ") : "") +
-               (r.anuladas ? "  | " + r.anuladas + " anulada(s)" : ""));
+        var x = r[b.id];
+        L.push("- " + b.curto + " (peso " + b.peso + "): " + x.acertos + "/" + x.total +
+               " = " + (x.acertos * b.peso) + " pts" +
+               (x.erradas.length ? "  | errou as questões " + x.erradas.join(", ") : "") +
+               (x.anuladas ? "  | " + x.anuladas + " anulada(s)" : ""));
       });
     }
     document.getElementById("resumo").textContent = L.join("\n");
   }
 
   document.getElementById("btnCopiar").addEventListener("click", function () {
-    var t = document.getElementById("resumo").textContent;
-    var btn = this;
-    function feedback(ok) {
+    var btn = this, t = document.getElementById("resumo").textContent;
+    function fim(ok) {
       btn.textContent = ok ? "Copiado" : "Selecione e copie à mão";
       setTimeout(function () { btn.textContent = "Copiar resumo"; }, 2200);
     }
-    try {
-      navigator.clipboard.writeText(t).then(function () { feedback(true); }, function () { feedback(false); });
-    } catch (e) { feedback(false); }
+    try { navigator.clipboard.writeText(t).then(function () { fim(true); }, function () { fim(false); }); }
+    catch (e) { fim(false); }
   });
 
   document.getElementById("btnLimpar").addEventListener("click", function () {
     if (!confirm("Apagar as respostas e o gabarito registrados?")) return;
     estado.minhas = new Array(TOTAL).fill(null);
     estado.gabarito = new Array(TOTAL).fill(null);
-    try { localStorage.removeItem(CHAVE); } catch (e) { /* ignorado */ }
+    try { localStorage.removeItem(CHAVE); } catch (e) {}
     txtM.value = ""; txtG.value = "";
     desenharGrade(); calcular();
   });
 
   carregar();
-  desenharOrdem();
-  sincronizarCampos();
+  desenharRapido();
+  sincronizar();
   desenharGrade();
   calcular();
 })();
